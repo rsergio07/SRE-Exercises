@@ -1,16 +1,38 @@
-In this repository:
+## Class 1 - Essentials
+Run python application 
+[Practice](./exercises/exercise1/)
 
-https://github.ibm.com/jacob-villegas/sre-test
 
-Git repository: git@github.ibm.com:jacob-villegas/sre-test.git
+## Class 2 - Essentials
+Run python application with docker container in the local registry
+[Practice](./exercises/exercise2/)
 
-There is the necessary code to run a simple rest-api in a docker container that returns a json file.
 
-Exercise
-- Create your own GIT repository, within, Implement the necessary automation to deploy the container in the cloud provider of your choice (IBM Cloud, AWS, GCP, etc.).
-- Use IaaC concepts
-- Add a readme file that explains step by step how someone else could run the automation to do the deployment themselves without needing help.
+## Class 3 - Essentials
+Run python application with docker container in the remote registry(Dockerhub)
+[Practice](./exercises/exercise3/)
 
-Extra bonus:
 
-Deploy the container to a Kubernetes cluster in the cloud.
+## Class 4 - Essentials
+Run python application in remote registry with Kubernetes
+[Practice](./exercises/exercise4/)
+
+## Class 5 - SRE
+Make the cluster bigger. Add Grafana and prometheous
+
+## Class 6 - SRE
+Make dashbard, alerts, widget in granafa
+Instana ?
+
+## Class 8 - Devops
+Github Actions CI pipeline
+
+## Class 7 - SRE
+Ansible runbook
+
+## Class 8 - Devops
+Helm charts
+
+## Class 9 - Devops
+ArgoCd
+
