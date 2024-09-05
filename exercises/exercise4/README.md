@@ -90,7 +90,7 @@ kind: Deployment
 metadata:
   name: sre-abc-training-app
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app: sre-abc-training-app
