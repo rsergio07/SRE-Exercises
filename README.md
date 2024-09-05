@@ -18,8 +18,13 @@ Run python application in remote registry with Kubernetes
 [Practice](./exercises/exercise4/)
 
 ## Class 5 - SRE
-Make the cluster bigger. Add Grafana and prometheous
+Make the cluster bigger. Add Prometheous
 [Practice](./exercises/exercise5/)
+
+## Class 6 - SRE
+Make the cluster bigger. Add Grafana
+[Practice](./exercises/exercise6/)
+
 
 ## Class 6 - SRE
 Make dashbard, alerts, widget in granafa

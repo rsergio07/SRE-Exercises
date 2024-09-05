@@ -39,10 +39,9 @@ This would be the traditional way of installing Prometheus.
 3. Configure the `prometheus.yml` file with the list of targets to monitor.
 4. Start Prometheus.
 
-```bash
 ./prometheus --config.file=prometheus.yml
 
-But this is the way to install it within the minickube cluster.
+But this is the way to install it within the minickube cluster. First let create a yaml file with the steps above:
 
 - **Namespace Creation**:
 ```yaml
@@ -134,7 +133,7 @@ Let´s run all together using this command
  minikube service prometheus-service -n monitoring
 ```
 
-##Final test
+## Final test
 In the input field try to look for words like "memory", "cpu" or "kubernetes", then click in one of the results at the autocomplete overlay, then click **Execute** and the resutls will be displayed in the table format, then change to grapgh format.
 
 As promotheus was recently installed there are no too much information to display.
