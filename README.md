@@ -18,27 +18,38 @@ Run python application in remote registry with Kubernetes
 [Practice](./exercises/exercise4/)
 
 ## Class 5 - SRE
-Make the cluster bigger. Add Prometheous
+Make the cluster bigger. Adding Prometheous
 [Practice](./exercises/exercise5/)
 
 ## Class 6 - SRE
-Make the cluster bigger. Add Grafana
+Make the cluster bigger. Adding Grafana
 [Practice](./exercises/exercise6/)
 
 
-## Class 6 - SRE
+## Class 7 - SRE
+Extending Prometheus and adding a Grafana dashboard
+[Practice](./exercises/exercise7/)
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+## Class # - SRE
 Make dashbard, alerts, widget in granafa
 Instana ?
 
-## Class 8 - Devops
+## Class # - Terraform
+Terraform
+
+
+## Class # - Devops
 Github Actions CI pipeline
 
-## Class 7 - SRE
+## Class # - SRE
 Ansible runbook
 
-## Class 8 - Devops
+## Class # - Devops
 Helm charts
 
-## Class 9 - Devops
+## Class # - Devops
 ArgoCd
 
