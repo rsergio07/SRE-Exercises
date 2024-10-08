@@ -1,68 +1,13 @@
 # Overview
 
-This section will show how to extend the information in Prometheus to deploy a more robust dashboard in Grafana.
+In this exercise, we will add a new data sources for Prometheus: `cAdvisor` to observe how the number of available metrics increases in Prometheus.
 
-### 1. Check the Status of Prometheus
-```yaml
-minikube service prometheus-service -n monitoring
-|------------|--------------------|-------------|---------------------------|
-| NAMESPACE  |        NAME        | TARGET PORT |            URL            |
-|------------|--------------------|-------------|---------------------------|
-| monitoring | prometheus-service |        9090 | http://192.168.49.2:32065 |
-|------------|--------------------|-------------|---------------------------|
-🏃  Starting tunnel for service prometheus-service.
-|------------|--------------------|-------------|------------------------|
-| NAMESPACE  |        NAME        | TARGET PORT |          URL           |
-|------------|--------------------|-------------|------------------------|
-| monitoring | prometheus-service |             | http://127.0.0.1:56616 |
-|------------|--------------------|-------------|------------------------|
-```
-Go to the **Targets** option at http://127.0.0.1:56616/targets, and you should only see the Python application displayed ![prometheus](prometheus1.png). 
+Lets open the prometheus with `minikube service start prometheus-service -n monitoring` and use this query `count({__name__=~".+"})` to validate the amount of metrics available
 
-### 2. Let´s install kube-state-metrics
+![Prometheus result](query1.png)
 
-**kube-state-metrics** is a service that listens to the Kubernetes API and generates metrics about the state of the objects within the cluster (e.g., Pods, Deployments, Nodes). It focuses on reflecting the current state of Kubernetes resources rather than measuring the performance of workloads or nodes.
 
-Unlike other monitoring tools that measure performance metrics like CPU or memory usage, kube-state-metrics provides valuable insights into the health, status, and state of Kubernetes resources. It is typically used in conjunction with Prometheus to gather information about resource statuses, failures, and events.
-
-##### Key Metrics Provided
-
-- **Pods**: Track the status, readiness, and restart counts of containers in pods.
-- **Deployments**: Monitor replica counts, available and unavailable replicas.
-- **Nodes**: View node status, capacity, and conditions.
-- **Services**: Keep an eye on service endpoints and related metrics.
-- **Persistent Volumes**: Check volume status, capacity, and reclaim policies.
-
-##### Installation Steps in Minikube
-
-Follow these steps to install kube-state-metrics on a Minikube cluster:
-
-###### 1. Get the settings
-Download the basic configuration from the Github
-```sh
-git clone https://github.com/kubernetes/kube-state-metrics
-```
-###### 2. Install defaukt configuration
-Install the basic configuration from the examples.
-```sh
-kubectl apply -k kube-state-metrics/examples/standard/
-```
-
-###### 3. Add extra configuratin to Prometheus
-Add this extra settings to let Prometheus gather the metics from kube-state-metrics
-```yaml
-      - job_name: kube-state-metrics
-        honor_timestamps: true
-        scrape_interval: 1m
-        scrape_timeout: 1m
-        metrics_path: /metrics
-        scheme: http
-        static_configs:
-        - targets:
-          - kube-state-metrics.kube-system.svc.cluster.local:8080
-```
-
-### 3. Let´s install cAdvisor
+### 2. Let´s install cAdvisor
 
 **cAdvisor** (Container Advisor) is an open-source tool created by Google that provides resource usage and performance metrics for running containers. It collects, processes, and exports information about CPU, memory, network, and disk usage from containers, especially those managed by Docker. 
 
@@ -129,22 +74,96 @@ In your prometheus.yml configuration file, add the following job definition:
         scheme: http
 ```
 
-
-Run this command with all the configuration
-
-
-```sh
-kubectl apply -f cadvisor.yaml
-```
-
 ### 4. Apply changes to Prometheus 
 
 Finally, run the yaml file with all the changes together
 ```sh
-kubectl delete -f prometheus.yaml
+kubectl delete -f ../exercise5/prometheus.yaml
 kubectl apply -f prometheus.yaml
 minikube service prometheus-service -n monitoring
 ```
 
 And the **Targets** option at http://127.0.0.1:56616/targets should look like this
-![prometheus3](prometheus3.gif). 
+![Prometheus targets](targets.png)
+
+use this query `count({__name__=~".+"})` to validate the amount of metrics available
+
+![Prometheus result](query2.png)
+
+### 4. Use the Metric to Build a Graph
+
+At this point, all of these metrics should be available for use.
+
+For more details about the container metrics exposed by cAdvisor, you can refer to their documentation here: [cAdvisor Metrics Documentation](https://github.com/google/cadvisor/blob/master/docs/storage/prometheus.md#prometheus-container-metrics).
+
+To view the metrics in Prometheus, you can explore them by clicking this button:  
+![Button to view the metrics](metrics.png)
+
+By selecting the **table view**, you will be able to see all the information that cAdvisor has sent to Prometheus. The key attributes of each message are displayed, such as `container_label_io_kubernetes_container_name`, which appears in bold in the interface. These attributes can eventually be used in Prometheus queries to group results.  
+![Attributes of the metrics](attributes_of_the_metrics_metrics.png)
+
+For example, you can start by using the following query to see the rate of CPU usage per container over the past 5 minutes:
+
+```promql
+rate(container_cpu_usage_seconds_total[5m])
+```
+This query will return the per-second rate of CPU usage for each container, allowing you to track how much CPU time each container is consuming.
+![Result of the query](query3.png)
+
+
+Next, to group the results by pod, you can modify the query like this:
+```promql
+sum(rate(container_cpu_usage_seconds_total[5m])) by (container_label_io_kubernetes_pod_name)
+```
+This query will aggregate the CPU usage rate for each pod, providing an overview of CPU consumption grouped by Kubernetes pod.
+![Result of the query](query4.png)
+
+### 4. Using the Same Query in Grafana
+First, apply the Grafana configuration and expose the service using the following commands:
+
+```sh
+kubectl apply -f ../exercise6/grafana.yaml
+minikube service grafana-service -n monitoring
+```
+
+Once Grafana is up and running, navigate to the dashboard:
+
+1. Click Dashboard.
+2. Select New.
+3. Choose Add Visualization.
+4. In the visualization panel, click on Prometheus as the data source.
+5. Switch the view to the Code tab.
+6. Append the following PromQL query into the editor:
+
+```promql
+sum(rate(container_cpu_usage_seconds_total[5m])) by (container_label_io_kubernetes_pod_name)
+```
+7. Click Apply to visualize the data.
+![Grafana with static panel](grafana-1.png)
+
+
+### 5. Use the yaml file to create the new panel
+
+To automate the panel creation with the same query, you can modify the Grafana YAML configuration.
+
+Add the following block of code to the targets section within the Grafana dashboard configuration file (grafana.yaml):
+```yaml
+          "targets": [
+            {
+              "expr": "sum(rate(container_cpu_usage_seconds_total[5m])) by (container_label_io_kubernetes_pod_name)",
+              "refId": "B"
+            }
+          ],
+          "title": "Pod CPU Usage",
+```
+This will create a panel that visualizes the CPU usage of each pod.
+
+After modifying the YAML file, re-apply the updated configuration to deploy the new panel:
+```sh
+kubectl delete -f ../exercise6/grafana.yaml
+kubectl apply -f ./grafana.yaml
+minikube service grafana-service -n monitoring
+```
+
+Once the service is running, you can view the updated dashboard and see the new panel created from the YAML file:
+![Grafana with static from yaml file](grafana-2.png)
