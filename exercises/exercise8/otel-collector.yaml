@@ -50,7 +50,7 @@ data:
 
     exporters:
       otlp/jaeger:
-        endpoint: "jaegerservice:4317"  # Update to use the correct Jaeger endpoint
+        endpoint: "jaeger:4317"  # Update to use the correct Jaeger endpoint
         tls:
           insecure: true
       debug: {}  # Use debug exporter instead of logging
@@ -69,23 +69,6 @@ data:
                 processors: [batch]
                 exporters: [debug, otlp/jaeger]
 ---
-#apiVersion: v1
-#kind: Service
-#metadata:
-#  name: otel-collector
-#  namespace: opentelemetry
-#spec:
-#  ports:
-#    - name: otlp-grpc
-#      port: 55680
-#    - name: prometheus-metrics
-#      port: 8888
-#    - name: otlp-http
-#      port: 4317
-#  selector:
-#    app: otel-collector
-#---
-#otel-collector.opentelemetry.svc.cluster.local:4317
 apiVersion: v1
 kind: Service
 metadata:
@@ -101,126 +84,3 @@ spec:
       port: 4317
       targetPort: 4317
   type: NodePort
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: otel-send-script
-  namespace: opentelemetry  # Make sure this namespace exists
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: otel-send-script
-  template:
-    metadata:
-      labels:
-        app: otel-send-script
-    spec:
-      containers:
-        - name: otel-send-script
-          image: python:3.10-slim  # Use a Python image
-          command: [
-            "sh", "-c",
-            "pip install --no-cache-dir opentelemetry-sdk opentelemetry-exporter-otlp opentelemetry-exporter-otlp-proto-grpc && python /app/send_metrics.py"
-          ]
-          volumeMounts:
-            - name: script-volume
-              mountPath: /app
-      volumes:
-        - name: script-volume
-          configMap:
-            name: otel-script-config  # Reference the ConfigMap containing your script
----
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: otel-script-config
-  namespace: opentelemetry
-data:
-  send_metrics.py: |
-    import logging
-    import time
-    from opentelemetry import trace
-    from opentelemetry.exporter.otlp.proto.grpc.trace_exporter import OTLPSpanExporter
-    from opentelemetry.sdk.trace import TracerProvider
-    from opentelemetry.sdk.trace.export import BatchSpanProcessor
-
-    # Configure the OTLP span exporter
-    span_exporter = OTLPSpanExporter(
-        endpoint="otel-collector.opentelemetry.svc.cluster.local:4317",  # Collector's endpoint
-        insecure=True,  # Set to True if using unencrypted connection
-    )
-
-    # Set up tracer provider and span processor
-    tracer_provider = TracerProvider()
-    trace.set_tracer_provider(tracer_provider)
-    span_processor = BatchSpanProcessor(span_exporter)
-    tracer_provider.add_span_processor(span_processor)
-
-    # Get the tracer
-    tracer = trace.get_tracer(__name__)
-
-    # Trace context correlation
-    with tracer.start_as_current_span("foo"):
-        # Do something
-        current_span = trace.get_current_span()
-        current_span.add_event("This is a span event")
-        logging.getLogger().error("This is a log message")
-
-    # Sleep to allow time for the trace to be exported before the program exits
-    time.sleep(5)
-
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: jaeger
-  namespace: opentelemetry
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: jaeger
-  template:
-    metadata:
-      labels:
-        app: jaeger
-    spec:
-      containers:
-        - name: jaeger
-          image: jaegertracing/all-in-one:1.62.0
-          ports:
-            - containerPort: 16686  # Jaeger UI
-            - containerPort: 14268  # Jaeger HTTP Collector
-            - containerPort: 14250  # Jaeger gRPC for OTLP
-            - containerPort: 4317   # OTLP Receiver
-          args: ["--collector.otlp.enabled=true"]  # Enable OTLP gRPC receiver
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: jaegerservice
-  namespace: opentelemetry
-spec:
-  type: ClusterIP
-  ports:
-    - name: ui
-      port: 16686
-      targetPort: 16686
-      protocol: TCP
-    - name: http-collector
-      port: 14268
-      targetPort: 14268
-      protocol: TCP
-    - name: grpc
-      port: 14250
-      targetPort: 14250
-      protocol: TCP
-    - name: otlp-grpc
-      port: 4317
-      targetPort: 4317
-      protocol: TCP
-  selector:
-    app: jaeger
-

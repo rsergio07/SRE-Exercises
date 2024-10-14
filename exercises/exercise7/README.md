@@ -2,6 +2,8 @@
 
 In this exercise, we will add a new data sources for Prometheus: `cAdvisor` to observe how the number of available metrics increases in Prometheus.
 
+![Python-2-Prometheus-2-Grafana](python-Prometheus-grafana.png)
+
 Lets open the prometheus with `minikube service start prometheus-service -n monitoring` and use this query `count({__name__=~".+"})` to validate the amount of metrics available
 
 ![Prometheus result](query1.png)

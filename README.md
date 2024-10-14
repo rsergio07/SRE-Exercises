@@ -48,6 +48,8 @@ Together, these three components (Metrics, Traces, and Logs) form the foundation
 [Practice](./exercises/exercise7/)
 
 
+
+Alerta soreb trazas metricas y logs
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ## Class # - SRE
