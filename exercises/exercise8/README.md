@@ -21,15 +21,13 @@ Jaeger is a distributed tracing platform designed for monitoring and troubleshoo
 Jaeger collects and stores trace data from applications, which is later visualized through its UI. This trace data helps developers understand how requests flow through services, identify slow services, and diagnose distributed system issues. Jaeger works by collecting span data, where each span represents a unit of work in a trace. Spans are linked together to form a complete trace of a request.
 
 ## Steps to Set Up
-
-1. **Configure OpenTelemetry in the Python application**:
+1. **[Configure OpenTelemetry in the Python application](#1-lets-add-the-configuration-code-in-to-the-python-application)**:
    - Install the necessary OpenTelemetry packages for Python.
    - Configure the application to generate traces.
-   
-2. **Set up the OpenTelemetry Collector**:
+   https://github.com/cguillencr/sre-abc-training/tree/main/exercises/exercise8#2-installing-the-opentelemetry-collector-for-sending-traces-to-jaeger
+2. **[Set up the OpenTelemetry Collector](#2-installing-the-opentelemetry-collector-for-sending-traces-to-jaeger)**:
    - Configure the OtelCollector to receive traces from the application.
-   - Define an export pipeline to send traces to Jaeger.
-   
+   - Define an export pipeline to send traces to Jaeger. 
 3. **[Deploy Jaeger](#3-deploy-jaeger-and-visialize-the-traces)**:
    - Ensure Jaeger is running and configured to receive traces from the OtelCollector.
    - Use Jaeger's UI to visualize traces.
@@ -119,6 +117,15 @@ def foo():
 
 #### Push Images
 
+   - Let's add the required libraries to make Otel works in the Python application in the [Docker file](./Dockerfile). 
+   ```docker
+   RUN pip install flask \
+    opentelemetry-api \
+    opentelemetry-sdk \
+    opentelemetry-exporter-otlp-proto-grpc \
+    opentelemetry-instrumentation-flask
+   ```
+
    - You can now push images to this repository using Podman commands from your terminal. For example:
 
  
@@ -127,7 +134,7 @@ def foo():
    podman tag local-image-name username/repository-name:tag
    podman push username/repository-name:tag
    ```
-   At least for demostration purposes this is my personal registry with this image
+   - At least for demostration purposes this is my personal registry with this image
  
    ```bash
    podman login docker.io
@@ -228,40 +235,15 @@ To deploy Jaeger in a Kubernetes cluster, you can use a YAML configuration file.
 
 ##### Jaeger YAML Configuration
 
-Create a file named [Otel Collector](./jaeger.yaml) with the following content:
+Create a file named [jaeger](./jaeger.yaml) with the following content:
 
 ```yaml
-apiVersion: v1
-kind: Service
-metadata:
-  name: jaeger
-  namespace: observability
-spec:
-  ports:
-    - port: 5775
-      name: compact
-    - port: 6831
-      name: thrift-udp
-    - port: 6832
-      name: thrift-http
-    - port: 5778
-      name: config
-    - port: 14250
-      name: grpc
-    - port: 16686
-      name: ui
-    - port: 14268
-      name: collector
-    - port: 14267
-      name: agent
-  selector:
-    app: jaeger
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: jaeger
-  namespace: observability
+  namespace: opentelemetry
 spec:
   replicas: 1
   selector:
@@ -274,25 +256,63 @@ spec:
     spec:
       containers:
         - name: jaeger
-          image: jaegertracing/all-in-one:1.41
+          image: jaegertracing/all-in-one:1.62.0
           ports:
-            - containerPort: 5775
-            - containerPort: 6831
-            - containerPort: 6832
-            - containerPort: 5778
-            - containerPort: 14250
-            - containerPort: 16686
-            - containerPort: 14268
-            - containerPort: 14267
-          env:
-            - name: COLLECTOR_ZIPKIN_HTTP_PORT
-              value: "9411"
-          args:
-            - "--log-level=debug"
+            - containerPort: 16686  # Jaeger UI
+            - containerPort: 14268  # Jaeger HTTP Collector
+            - containerPort: 14250  # Jaeger gRPC for OTLP
+            - containerPort: 4317   # OTLP Receiver
+          args: ["--collector.otlp.enabled=true"]  # Enable OTLP gRPC receiver
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: jaeger
+  namespace: opentelemetry
+spec:
+  type: ClusterIP
+  ports:
+    - name: http-collector
+      port: 14268
+      targetPort: 14268
+      protocol: TCP
+    - name: grpc
+      port: 14250
+      targetPort: 14250
+      protocol: TCP
+    - name: otlp-grpc
+      port: 4317
+      targetPort: 4317
+      protocol: TCP
+  selector:
+    app: jaeger
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: jaeger-service
+  namespace: opentelemetry
+  labels:
+    app: jaeger
+spec:
+  selector:
+    app: jaeger
+  ports:
+    - name: ui
+      port: 16686
+      targetPort: 16686
+      protocol: TCP
+  type: NodePort
 ```
 
+To create a Jager deployment with a servicew that let the integration with the rest of the pods in the cluster. 
+With the command `minikube service jaeger-service  -n opentelemetry` the browser will open the ui of Jaeger and something like this should be diplayed:
+
+Initial page. The blue dots represent every time Jaeger got a trace from the Python application and the red points represent when there is a trace with an error
 ![jaeger-dashboard](jaeger-dashboard.png)
 
+Opening the first trace in the results
 ![jaeger-trace](jaeger-trace.png)
 
+Opening the first trace with a error in the results
 ![jaeger-trace-with-error](jaeger-trace-with-error.png)
