@@ -30,7 +30,7 @@ Jaeger collects and stores trace data from applications, which is later visualiz
    - Configure the OtelCollector to receive traces from the application.
    - Define an export pipeline to send traces to Jaeger.
    
-3. **Deploy Jaeger**:
+3. **[Deploy Jaeger](#3-deploy-jaeger-and-visialize-the-traces)**:
    - Ensure Jaeger is running and configured to receive traces from the OtelCollector.
    - Use Jaeger's UI to visualize traces.
 
@@ -144,30 +144,155 @@ Checkout there is a new version of the code `cguillenmendez/sre-abc-training-pyt
 
 In this section, we will install the OpenTelemetry Collector (OtelCollector) to send traces to Jaeger. The OtelCollector acts as a middleware between your instrumented application and Jaeger, facilitating the collection and export of telemetry data. We will configure the OtelCollector with a specific exporter and service setup.
 
-## Steps to Install the OpenTelemetry Collector
+### Steps to Install the OpenTelemetry Collector
+We need to define how the OtelCollector will operate by creating a configuration file. This file will specify the exporters and services that the collector will use.
 
-1. **Create a Configuration File**:
-   We need to define how the OtelCollector will operate by creating a configuration file. This file will specify the exporters and services that the collector will use.
+Here’s an example:
+```yaml
+receivers:
+   otlp:
+      protocols:
+      grpc:
+         endpoint: "0.0.0.0:4317"
 
-   Here’s an example configuration file (`otel-collector-config.yaml`):
+exporters:
+   jaeger:
+      endpoint: "jaeger:4317"  # Update to use the correct Jaeger endpoint
+      tls:
+      insecure: true  # Set to true if you are using an unencrypted connection
 
-   ```yaml
-   receivers:
-     otlp:
-       protocols:
-         grpc:
-           endpoint: "0.0.0.0:4317"
+service:
+   pipelines:
+      traces:
+      receivers: [otlp]
+      exporters: [jaeger]
+```
+For more details check [Otel Collector](./otel-collector.yaml).
 
-   exporters:
-     jaeger:
-       endpoint: "jaeger:4317"  # Update to use the correct Jaeger endpoint
-       tls:
-         insecure: true  # Set to true if you are using an unencrypted connection
+#### Understanding Exporters, Processors, and Services in OpenTelemetry Collector
 
-   service:
-     pipelines:
-       traces:
-         receivers: [otlp]
-         exporters: [jaeger]
- ```
- For more details check (`otel-collector.yaml`):
+The OpenTelemetry Collector is a crucial component for collecting, processing, and exporting telemetry data from applications. Below, we explain the key components: **exporters**, **processors**, and **services**.
+
+##### Exporters
+
+**Exporters** are responsible for sending the processed telemetry data (such as traces and metrics) to various backends. They act as the final destination for telemetry data collected by the OpenTelemetry Collector. 
+
+###### Key Points:
+- **Function**: Exporters transmit data to monitoring and observability tools, such as Jaeger, Prometheus, or any other compatible backend.
+- **Types**: There are different types of exporters based on the destination. Common exporters include:
+  - **OTLP Exporter**: Sends data to backends that support the OpenTelemetry Protocol (OTLP).
+  - **Jaeger Exporter**: Specifically designed to send trace data to Jaeger.
+  - **Prometheus Exporter**: Exposes metrics to Prometheus for scraping.
+- **Configuration**: Exporters can be configured to include endpoints, authentication methods, and other settings relevant to the destination.
+
+##### Processors
+
+**Processors** are components that transform, filter, or enrich telemetry data before it is sent to exporters. They provide a way to manipulate data to meet the needs of the specific observability goals.
+
+###### Key Points:
+- **Function**: Processors can batch, sample, or modify telemetry data to reduce noise and improve performance.
+- **Types**: Common processors include:
+  - **Batch Processor**: Groups spans or metrics before sending them to exporters, which can improve performance by reducing the number of requests.
+  - **Attribute Processor**: Adds or modifies attributes of the telemetry data based on specified rules.
+  - **Filtering Processor**: Allows filtering of telemetry data to include or exclude certain data points based on defined criteria.
+- **Configuration**: Processors are defined in the configuration file, specifying the order of processing and which data to apply them to.
+
+##### Services
+
+The **service** section in the OpenTelemetry Collector configuration defines how data flows through the system, including the pipelines for processing and exporting telemetry data.
+
+###### Key Points:
+- **Function**: The service section specifies which receivers, processors, and exporters are used to handle different types of telemetry data (such as logs, traces, and metrics).
+- **Pipelines**: Pipelines are defined within the service section to connect receivers, processors, and exporters. Each pipeline can be configured separately based on the type of telemetry data being handled.
+  - **Receivers**: The entry point for telemetry data.
+  - **Processors**: The transformation and processing logic for the data.
+  - **Exporters**: The destinations to which the data is sent.
+- **Configuration**: The service section is structured to define multiple pipelines, allowing for flexible data management depending on the requirements of the observability stack.
+
+## 3. Deploy Jaeger and visialize the traces:
+
+### Jaeger: Distributed Tracing System
+
+Jaeger is an open-source, end-to-end distributed tracing system developed by Uber Technologies. It helps developers monitor and troubleshoot complex, microservices-based architectures by providing insights into the performance and behavior of applications. Jaeger allows you to trace requests across multiple services, visualize latency, and identify bottlenecks in your applications.
+
+#### Features of Jaeger
+
+- **Distributed Context Propagation**: Allows tracking of requests as they flow through various services.
+- **Performance Optimization**: Helps identify slow operations and optimize application performance.
+- **Root Cause Analysis**: Aids in pinpointing the root causes of issues in distributed systems.
+- **Adaptive Sampling**: Dynamically adjusts sampling rates to manage the amount of trace data collected.
+
+#### Installing Jaeger in Kubernetes
+
+To deploy Jaeger in a Kubernetes cluster, you can use a YAML configuration file. Below is an example of a basic deployment configuration for Jaeger.
+
+##### Jaeger YAML Configuration
+
+Create a file named [Otel Collector](./jaeger.yaml) with the following content:
+
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: jaeger
+  namespace: observability
+spec:
+  ports:
+    - port: 5775
+      name: compact
+    - port: 6831
+      name: thrift-udp
+    - port: 6832
+      name: thrift-http
+    - port: 5778
+      name: config
+    - port: 14250
+      name: grpc
+    - port: 16686
+      name: ui
+    - port: 14268
+      name: collector
+    - port: 14267
+      name: agent
+  selector:
+    app: jaeger
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jaeger
+  namespace: observability
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jaeger
+  template:
+    metadata:
+      labels:
+        app: jaeger
+    spec:
+      containers:
+        - name: jaeger
+          image: jaegertracing/all-in-one:1.41
+          ports:
+            - containerPort: 5775
+            - containerPort: 6831
+            - containerPort: 6832
+            - containerPort: 5778
+            - containerPort: 14250
+            - containerPort: 16686
+            - containerPort: 14268
+            - containerPort: 14267
+          env:
+            - name: COLLECTOR_ZIPKIN_HTTP_PORT
+              value: "9411"
+          args:
+            - "--log-level=debug"
+```
+
+![jaeger-dashboard](jaeger-dashboard.png)
+
+![jaeger-trace](jaeger-trace.png)
+
+![jaeger-trace-with-error](jaeger-trace-with-error.png)
