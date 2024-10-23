@@ -87,6 +87,37 @@ Apply these changes [10. Practice](./exercises/exercise10/) to achieve an infras
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+   ```bash
+   cd exercises3
+   podman login docker.io
+   podman build -t cguillenmendez/sre-abc-training-python-app:latest .
+   podman build -t cguillenmendez/sre-abc-training-python-app:0.0.0 .
+   podman push cguillenmendez/sre-abc-training-python-app:latest
+   podman push cguillenmendez/sre-abc-training-python-app:0.0.0
+   ```
+
+ 
+   ```bash
+   cd exercises8
+   podman login docker.io
+   podman build -t cguillenmendez/sre-abc-training-python-app:latest .
+   podman build -t cguillenmendez/sre-abc-training-python-app:0.0.1 .
+   podman push cguillenmendez/sre-abc-training-python-app:latest
+   podman push cguillenmendez/sre-abc-training-python-app:0.0.1
+   ```
+
+
+   ```bash
+   cd exercises10
+   podman login docker.io
+   podman build -t cguillenmendez/sre-abc-training-python-app:latest .
+   podman build -t cguillenmendez/sre-abc-training-python-app:0.0.2 .
+   podman push cguillenmendez/sre-abc-training-python-app:latest
+   podman push cguillenmendez/sre-abc-training-python-app:0.0.2
+   ```
+
+
+
 ## Class # - SRE Alerts
 
 ## Class # - Terraform
