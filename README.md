@@ -22,16 +22,19 @@ The **Software Development Lifecycle (SDLC)** is a structured approach to softwa
 
 Simulating an SDLC, a small application will be created that will eventually be used in various SRE practices. This application will serve as a practical case to demonstrate the integration of SRE at each phase, from planning to maintenance, including the implementation of SLOs, monitoring of metrics, and deployment automation.
 > [!IMPORTANT]
+> **Application Perspectivee**
 > Apply these changes [1. Practice](./exercises/exercise1/) to achieve an infrastructure like this one:
 > ![Infra](exercises/exercise1/Infra.png)
 
 In this session, the application will be packaged into a Docker image to facilitate easier deployment in multiple locations.
-> [!TIP] **Application Perspectivee**
+> [!TIP] 
+> **Application Perspectivee**
 > Apply these changes [2. Practice](./exercises/exercise2/) to achieve an infrastructure like this one:
 > ![Infra](exercises/exercise2/Infra.png)
 
 In this session, the image will be stored in a remote registry(Dockerhub) to use it as the source for the application during deployments.
-> [!TIP] - **Application Perspectivee**
+> [!TIP] 
+> **Application Perspectivee**
 > Apply these changes [3. Practice](./exercises/exercise3/) to achieve an infrastructure like this one:
 > ![Infra](exercises/exercise3/Infra.png)
 
