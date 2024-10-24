@@ -21,9 +21,9 @@ Site Reliability Engineering (SRE) is a discipline that applies software enginee
 The **Software Development Lifecycle (SDLC)** is a structured approach to software development. It involves multiple phases that ensure software is designed, developed, tested, and deployed systematically. SRE plays a critical role in ensuring the reliability and scalability of the systems throughout the SDLC.
 
 Simulating an SDLC, a small application will be created that will eventually be used in various SRE practices. This application will serve as a practical case to demonstrate the integration of SRE at each phase, from planning to maintenance, including the implementation of SLOs, monitoring of metrics, and deployment automation.
-- **Application Perspectivee**
-Apply these changes [1. Practice](./exercises/exercise1/) to achieve an infrastructure like this one:
-![Infra](exercises/exercise1/Infra.png)
+> [!IMPORTANT]
+> Apply these changes [1. Practice](./exercises/exercise1/) to achieve an infrastructure like this one:
+> ![Infra](exercises/exercise1/Infra.png)
 
 In this session, the application will be packaged into a Docker image to facilitate easier deployment in multiple locations.
 - **Application Perspectivee**
@@ -150,6 +150,14 @@ SRE processes should continuously evolve based on feedback and lessons learned f
 - **Invest in Tooling**: Continuously improve monitoring, alerting, and automation systems.
 
 
+
+
+
+
+
+
+
+
 ---------------------------------------------------------------------------------------------------------------------------
 
 Pending
@@ -189,10 +197,3 @@ CI/CD
    podman push cguillenmendez/sre-abc-training-python-app:0.0.23
    ```
 
-
-
-### Explanation:
-- **Expandable Sections**: The `<details>` tag creates an expandable section, while the `<summary>` tag provides the title for that section.
-- **Usage**: This format is useful for keeping a README organized and easy to navigate, especially for larger projects. 
-
-You can copy and paste this code into a Markdown file to see how it works. Let me know if you need further modifications!
