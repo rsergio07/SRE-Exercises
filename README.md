@@ -22,12 +22,11 @@ The **Software Development Lifecycle (SDLC)** is a structured approach to softwa
 
 <details>
 <summary>Practice 1 - Let's create a Python App</summary>
-> [!TIP] 
-> Apply these changes [1. Practice](./exercises/exercise1/) to create a python REST API.This application will serve as a practical case to demonstrate the integration of SRE at each phase, from planning to maintenance, including the implementation of SLOs, monitoring of metrics, and deployment automation.
-> ![Infra](exercises/exercise1/Infra.png)
+[!TIP] 
+Apply these changes [1. Practice](./exercises/exercise1/) to create a python REST API.This application will serve as a practical case to demonstrate the integration of SRE at each phase, from planning to maintenance, including the implementation of SLOs, monitoring of metrics, and deployment automation.
+![Infra](exercises/exercise1/Infra.png)
 </details>
 
-> [!TIP] 
 <details>
 <summary>Practice 2 - Let's create a Dockerize the application</summary>
 Apply these changes [2. Practice](./exercises/exercise2/) to achieve the application will be packaged into a Docker image to facilitate easier deployment in multiple locations.
