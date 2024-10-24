@@ -13,7 +13,6 @@ Site Reliability Engineering (SRE) is a discipline that applies software enginee
 6. [Change Management and Automation](#change-management-and-automation)
 7. [Cost Optimization](#cost-optimization)
 8. [Continuous Improvement](#continuous-improvement)
-9. [Conclusion](#conclusion)
 
 ---
 
@@ -22,26 +21,19 @@ Site Reliability Engineering (SRE) is a discipline that applies software enginee
 The **Software Development Lifecycle (SDLC)** is a structured approach to software development. It involves multiple phases that ensure software is designed, developed, tested, and deployed systematically. SRE plays a critical role in ensuring the reliability and scalability of the systems throughout the SDLC.
 
 Simulating an SDLC, a small application will be created that will eventually be used in various SRE practices. This application will serve as a practical case to demonstrate the integration of SRE at each phase, from planning to maintenance, including the implementation of SLOs, monitoring of metrics, and deployment automation.
-
-- **Infrastructure Perspectivee**
+- **Application Perspectivee**
 Apply these changes [1. Practice](./exercises/exercise1/) to achieve an infrastructure like this one:
 ![Infra](exercises/exercise1/Infra.png)
 
-Now run the python application with docker container in the local registry
-- **Infrastructure Perspectivee**
+In this session, the application will be packaged into a Docker image to facilitate easier deployment in multiple locations.
+- **Application Perspectivee**
 Apply these changes [2. Practice](./exercises/exercise2/) to achieve an infrastructure like this one:
 ![Infra](exercises/exercise2/Infra.png)
 
-Now run the python application with docker container from the remote registry(Dockerhub)
-- **Infrastructure Perspectivee**
+In this session, the image will be stored in a remote registry(Dockerhub) to use it as the source for the application during deployments.
+- **Application Perspectivee**
 Apply these changes [3. Practice](./exercises/exercise3/) to achieve an infrastructure like this one:
 ![Infra](exercises/exercise3/Infra.png)
-
-Now run the python application using a remote registry image with Kubernetes cluster.
-- **Infrastructure Perspectivee**
-Apply these changes [4. Practice](./exercises/exercise4/) to achieve an infrastructure like this one:
-![Infra](exercises/exercise4/Infra.png)
-
 
 SRE integrates with SDLC during the deployment and maintenance phases, ensuring smooth releases and reliable operations post-deployment. This process involves proactive monitoring, incident management, and automation to minimize downtime and maintain high availability.
 
@@ -50,6 +42,12 @@ SRE integrates with SDLC during the deployment and maintenance phases, ensuring 
 SRE is guided by several core principles that shape how operations are managed:
 
 - **Emphasize Reliability**: Ensure that systems maintain high availability and performance.
+
+In this session, a Kubernetes cluster can be used to run our application with 3 replicas so that if one fails, the other 2 can take over the load, thus increasing the availability of the service.
+- **Application Perspectivee**
+Apply these changes [4. Practice](./exercises/exercise4/) to achieve an infrastructure like this one:
+![Infra](exercises/exercise4/Infra.png)
+
 - **Use SLIs and SLOs**: Define and track Service Level Indicators (SLIs) and Service Level Objectives (SLOs) to measure reliability.
 - **Blameless Postmortems**: Learn from failures without blaming individuals, focusing on how systems can be improved.
 - **Automate Operations**: Use automation to reduce manual interventions and improve system scalability.
@@ -190,3 +188,11 @@ CI/CD
    podman push cguillenmendez/sre-abc-training-python-app:latest
    podman push cguillenmendez/sre-abc-training-python-app:0.0.23
    ```
+
+
+
+### Explanation:
+- **Expandable Sections**: The `<details>` tag creates an expandable section, while the `<summary>` tag provides the title for that section.
+- **Usage**: This format is useful for keeping a README organized and easy to navigate, especially for larger projects. 
+
+You can copy and paste this code into a Markdown file to see how it works. Let me know if you need further modifications!
