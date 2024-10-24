@@ -26,14 +26,14 @@ Simulating an SDLC, a small application will be created that will eventually be 
 > ![Infra](exercises/exercise1/Infra.png)
 
 In this session, the application will be packaged into a Docker image to facilitate easier deployment in multiple locations.
-- **Application Perspectivee**
-Apply these changes [2. Practice](./exercises/exercise2/) to achieve an infrastructure like this one:
-![Infra](exercises/exercise2/Infra.png)
+> [!TIP] **Application Perspectivee**
+> Apply these changes [2. Practice](./exercises/exercise2/) to achieve an infrastructure like this one:
+> ![Infra](exercises/exercise2/Infra.png)
 
 In this session, the image will be stored in a remote registry(Dockerhub) to use it as the source for the application during deployments.
-- **Application Perspectivee**
-Apply these changes [3. Practice](./exercises/exercise3/) to achieve an infrastructure like this one:
-![Infra](exercises/exercise3/Infra.png)
+> [!TIP] - **Application Perspectivee**
+> Apply these changes [3. Practice](./exercises/exercise3/) to achieve an infrastructure like this one:
+> ![Infra](exercises/exercise3/Infra.png)
 
 SRE integrates with SDLC during the deployment and maintenance phases, ensuring smooth releases and reliable operations post-deployment. This process involves proactive monitoring, incident management, and automation to minimize downtime and maintain high availability.
 
