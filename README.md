@@ -24,19 +24,14 @@ The **Software Development Lifecycle (SDLC)** is a structured approach to softwa
 > Apply these changes [1. Practice](./exercises/exercise1/) to create a python REST API.This application will serve as a practical case to demonstrate the integration of SRE at each phase, from planning to maintenance, including the implementation of SLOs, monitoring of metrics, and deployment automation.
 > <img src="exercises/exercise1/Infra.png" alt="Infra" height="50" />
 
-----------
-> [!TIP] 
-> Apply these changes [1. Practice](./exercises/exercise1/) to create a python REST API.This application will serve as a practical case to demonstrate the integration of SRE at each phase, from planning to maintenance, including the implementation of SLOs, monitoring of metrics, and deployment automation.
-> ![Infra](exercises/exercise1/Infra.png)
-
 In this session, the 
 > [!TIP] 
 > Apply these changes [2. Practice](./exercises/exercise2/) to achieve the application will be packaged into a Docker image to facilitate easier deployment in multiple locations.
-> ![Infra](exercises/exercise2/Infra.png)
+> <img src="exercises/exercise2/Infra.png" alt="Infra" height="50" />
 
 > [!TIP] 
 > Apply these changes [3. Practice](./exercises/exercise3/) the image will be stored in a remote registry(Dockerhub) to use it as the source for the application during deployments.
-> ![Infra](exercises/exercise3/Infra.png)
+> <img src="exercises/exercise3/Infra.png" alt="Infra" height="50" />
 
 SRE integrates with SDLC during the deployment and maintenance phases, ensuring smooth releases and reliable operations post-deployment. This process involves proactive monitoring, incident management, and automation to minimize downtime and maintain high availability.
 
