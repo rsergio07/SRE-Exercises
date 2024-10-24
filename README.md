@@ -27,11 +27,11 @@ The **Software Development Lifecycle (SDLC)** is a structured approach to softwa
 In this session, the 
 > [!TIP] 
 > Apply these changes [2. Practice](./exercises/exercise2/) to achieve the application will be packaged into a Docker image to facilitate easier deployment in multiple locations.
-> <img src="exercises/exercise2/Infra.png" alt="Infra" height="50" />
+> <img src="exercises/exercise2/Infra.png" alt="Infra" height="200" />
 
 > [!TIP] 
 > Apply these changes [3. Practice](./exercises/exercise3/) the image will be stored in a remote registry(Dockerhub) to use it as the source for the application during deployments.
-> <img src="exercises/exercise3/Infra.png" alt="Infra" height="50" />
+> <img src="exercises/exercise3/Infra.png" alt="Infra" height="200" />
 
 SRE integrates with SDLC during the deployment and maintenance phases, ensuring smooth releases and reliable operations post-deployment. This process involves proactive monitoring, incident management, and automation to minimize downtime and maintain high availability.
 
