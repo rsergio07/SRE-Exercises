@@ -30,11 +30,9 @@ The **Software Development Lifecycle (SDLC)** is a structured approach to softwa
 > [!TIP] 
 > <details>
 > <summary>Practice 2 - Let's create a Dockerize the application</summary>
-> Apply these changes [2. Practice](./exercises/exercise2/) to achieve the application will be packaged into a Docker image to facilitate easier deployment in multiple locations.
-> ![Infra](exercises/exercise2/Infra.png)
+Apply these changes [2. Practice](./exercises/exercise2/) to achieve the application will be packaged into a Docker image to facilitate easier deployment in multiple locations.
+![Infra](exercises/exercise2/Infra.png)
 > </details>
-
-
 
 > [!TIP] 
 > Apply these changes [3. Practice](./exercises/exercise3/) the image will be stored in a remote registry(Dockerhub) to use it as the source for the application during deployments.
