@@ -79,20 +79,20 @@ In this section, a **Grafana** server is installed, which will allow data visual
 
 
    - **Metrics**: Quantitative data points such as CPU usage, memory consumption, and request rates.
-      > [!TIP] 
-      > Apply these changes [7. Practice](./exercises/exercise7/) to achieve an infrastructure like this one:
-      > ![Infra](exercises/exercise7/Infra.png)
+> [!TIP] 
+> Apply these changes [7. Practice](./exercises/exercise7/) to achieve an infrastructure like this one:
+> ![Infra](exercises/exercise7/Infra.png)
 
 
   - **Traces**: Record the journey of requests as they flow through different services, useful for diagnosing performance bottlenecks.
-      > [!TIP] 
-      > Apply these changes [8. Practice](./exercises/exercise8/) to achieve an infrastructure like this one:
-      > ![Infra](exercises/exercise8/Infra.png)
+> [!TIP] 
+> Apply these changes [8. Practice](./exercises/exercise8/) to achieve an infrastructure like this one:
+> ![Infra](exercises/exercise8/Infra.png)
 
   - **Logs**: Detailed records of system events that provide context and historical information during incidents.
-      > [!TIP] 
-      > Apply these changes [10. Practice](./exercises/exercise10/) to achieve an infrastructure like this one:
-      > ![Infra](exercises/exercise10/Infra.png)
+> [!TIP] 
+> Apply these changes [10. Practice](./exercises/exercise10/) to achieve an infrastructure like this one:
+> ![Infra](exercises/exercise10/Infra.png)
 
 - **Golden Signals**: Monitoring should focus on four critical **Golden Signals** to track the health of a service:
   
