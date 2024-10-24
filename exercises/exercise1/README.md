@@ -22,4 +22,4 @@ To run the Flask application, execute the following command from your terminal:
 python3 classes/class1/app.py
 ```
 ## Access the Application
-Once the server is running, open your web browser and go to http://127.0.0.1:5000/. You should see the text "Hello, World!" displayed.
+Once the server is running, open your web browser and go to http://127.0.0.1:5000/. You should see the text `"Hello, World!" displayed.`
