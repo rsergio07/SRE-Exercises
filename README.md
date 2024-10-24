@@ -152,13 +152,14 @@ SRE processes should continuously evolve based on feedback and lessons learned f
 - **Invest in Tooling**: Continuously improve monitoring, alerting, and automation systems.
 
 
-
-
+---------------------------------------------------------------------------------------------------------------------------
 
 Pending
+Terraform
 Runbooks
 Ansible
 AngoDC
+Helm charts
 CI/CD
 
    ```bash
@@ -189,24 +190,3 @@ CI/CD
    podman push cguillenmendez/sre-abc-training-python-app:latest
    podman push cguillenmendez/sre-abc-training-python-app:0.0.23
    ```
-
-
-
-## Class # - SRE Alerts
-
-## Class # - Terraform
-Terraform
-
-
-## Class # - Devops
-Github Actions CI pipeline
-
-## Class # - SRE
-Ansible runbook
-
-## Class # - Devops
-Helm charts
-
-## Class # - Devops
-ArgoCd
-
