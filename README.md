@@ -97,6 +97,10 @@ In this section, a **Grafana** server is installed, which will allow data visual
 > 
 > <img src="exercises/exercise8/Infra.png" alt="Infra" height="150" />
 
+> [!TIP] 
+> Apply these changes [9. Practice](./exercises/exercise9/) to achieve an infrastructure like this one:
+> 
+> <img src="exercises/exercise9/Infra.png" alt="Infra" height="150" />
   - **Logs**: Detailed records of system events that provide context and historical information during incidents.
 > [!TIP] 
 > Apply these changes [10. Practice](./exercises/exercise10/) to achieve an infrastructure like this one:
