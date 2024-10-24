@@ -20,22 +20,17 @@ Site Reliability Engineering (SRE) is a discipline that applies software enginee
 
 The **Software Development Lifecycle (SDLC)** is a structured approach to software development. It involves multiple phases that ensure software is designed, developed, tested, and deployed systematically. SRE plays a critical role in ensuring the reliability and scalability of the systems throughout the SDLC.
 
-Simulating an SDLC, a small application will be created that will eventually be used in various SRE practices. This application will serve as a practical case to demonstrate the integration of SRE at each phase, from planning to maintenance, including the implementation of SLOs, monitoring of metrics, and deployment automation.
-> [!Practice]
-> **Application Perspectivee**
-> Apply these changes [1. Practice](./exercises/exercise1/) to achieve an infrastructure like this one:
+> [!TIP] 
+> Apply these changes [1. Practice](./exercises/exercise1/) to create a python REST API.This application will serve as a practical case to demonstrate the integration of SRE at each phase, from planning to maintenance, including the implementation of SLOs, monitoring of metrics, and deployment automation.
 > ![Infra](exercises/exercise1/Infra.png)
 
-In this session, the application will be packaged into a Docker image to facilitate easier deployment in multiple locations.
+In this session, the 
 > [!TIP] 
-> **Application Perspectivee**
-> Apply these changes [2. Practice](./exercises/exercise2/) to achieve an infrastructure like this one:
+> Apply these changes [2. Practice](./exercises/exercise2/) to achieve the application will be packaged into a Docker image to facilitate easier deployment in multiple locations.
 > ![Infra](exercises/exercise2/Infra.png)
 
-In this session, the image will be stored in a remote registry(Dockerhub) to use it as the source for the application during deployments.
 > [!TIP] 
-> **Application Perspectivee**
-> Apply these changes [3. Practice](./exercises/exercise3/) to achieve an infrastructure like this one:
+> Apply these changes [3. Practice](./exercises/exercise3/) the image will be stored in a remote registry(Dockerhub) to use it as the source for the application during deployments.
 > ![Infra](exercises/exercise3/Infra.png)
 
 SRE integrates with SDLC during the deployment and maintenance phases, ensuring smooth releases and reliable operations post-deployment. This process involves proactive monitoring, incident management, and automation to minimize downtime and maintain high availability.
@@ -47,9 +42,9 @@ SRE is guided by several core principles that shape how operations are managed:
 - **Emphasize Reliability**: Ensure that systems maintain high availability and performance.
 
 In this session, a Kubernetes cluster can be used to run our application with 3 replicas so that if one fails, the other 2 can take over the load, thus increasing the availability of the service.
-- **Application Perspectivee**
-Apply these changes [4. Practice](./exercises/exercise4/) to achieve an infrastructure like this one:
-![Infra](exercises/exercise4/Infra.png)
+> [!TIP] 
+> Apply these changes [4. Practice](./exercises/exercise4/) to achieve an infrastructure like this one:
+> ![Infra](exercises/exercise4/Infra.png)
 
 - **Use SLIs and SLOs**: Define and track Service Level Indicators (SLIs) and Service Level Objectives (SLOs) to measure reliability.
 - **Blameless Postmortems**: Learn from failures without blaming individuals, focusing on how systems can be improved.
@@ -73,31 +68,31 @@ Monitoring is crucial for detecting issues early and responding swiftly to incid
 - **Set Up Monitoring Systems**: Tools like Prometheus, Grafana, and OpenTelemetry provide insights into system performance using **metrics**, **traces**, and **logs**.
 
 In this section, a **Prometheus** server is installed on the node that will eventually be used as a repository for traces and metrics.
-- **Infrastructure Perspectivee**
-Apply these changes [5. Practice](./exercises/exercise5/) to achieve an infrastructure like this one:
-![Infra](exercises/exercise5/Infra.png)
+> [!TIP] 
+> Apply these changes [5. Practice](./exercises/exercise5/) to achieve an infrastructure like this one:
+> ![Infra](exercises/exercise5/Infra.png)
 
 In this section, a **Grafana** server is installed, which will allow data visualization from different sources, in this case, Prometheus. Eventually, it will be used to deploy an observability and monitoring strategy.
-- **Infrastructure Perspectivee**
-Apply these changes [6. Practice](./exercises/exercise6/) to achieve an infrastructure like this one:
-![Infra](exercises/exercise6/Infra.png)
+> [!TIP] 
+> Apply these changes [6. Practice](./exercises/exercise6/) to achieve an infrastructure like this one:
+> ![Infra](exercises/exercise6/Infra.png)
 
 
    - **Metrics**: Quantitative data points such as CPU usage, memory consumption, and request rates.
-      - **Infrastructure Perspectivee**
-      Apply these changes [7. Practice](./exercises/exercise7/) to achieve an infrastructure like this one:
-      ![Infra](exercises/exercise7/Infra.png)
+      > [!TIP] 
+      > Apply these changes [7. Practice](./exercises/exercise7/) to achieve an infrastructure like this one:
+      > ![Infra](exercises/exercise7/Infra.png)
 
 
   - **Traces**: Record the journey of requests as they flow through different services, useful for diagnosing performance bottlenecks.
-      - **Infrastructure Perspectivee**
-      Apply these changes [8. Practice](./exercises/exercise8/) to achieve an infrastructure like this one:
-      ![Infra](exercises/exercise8/Infra.png)
+      > [!TIP] 
+      > Apply these changes [8. Practice](./exercises/exercise8/) to achieve an infrastructure like this one:
+      > ![Infra](exercises/exercise8/Infra.png)
 
   - **Logs**: Detailed records of system events that provide context and historical information during incidents.
-      - **Infrastructure Perspectivee**
-      Apply these changes [10. Practice](./exercises/exercise10/) to achieve an infrastructure like this one:
-      ![Infra](exercises/exercise10/Infra.png)
+      > [!TIP] 
+      > Apply these changes [10. Practice](./exercises/exercise10/) to achieve an infrastructure like this one:
+      > ![Infra](exercises/exercise10/Infra.png)
 
 - **Golden Signals**: Monitoring should focus on four critical **Golden Signals** to track the health of a service:
   
