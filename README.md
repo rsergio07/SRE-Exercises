@@ -23,7 +23,7 @@ The **Software Development Lifecycle (SDLC)** is a structured approach to softwa
 > [!TIP] 
 > Apply these changes [1. Practice](./exercises/exercise1/) to create a python REST API.This application will serve as a practical case to demonstrate the integration of SRE at each phase, from planning to maintenance, including the implementation of SLOs, monitoring of metrics, and deployment automation.
 > 
-> <img src="exercises/exercise1/Infra.png" alt="Infra" height="150" />
+> <img src="exercises/exercise1/Infra.png" alt="Infra" height="50" />
 
 In this session, the 
 > [!TIP] 
@@ -47,7 +47,8 @@ SRE is guided by several core principles that shape how operations are managed:
 In this session, a Kubernetes cluster can be used to run our application with 3 replicas so that if one fails, the other 2 can take over the load, thus increasing the availability of the service.
 > [!TIP] 
 > Apply these changes [4. Practice](./exercises/exercise4/) to achieve an infrastructure like this one:
-> ![Infra](exercises/exercise4/Infra.png)
+> 
+> <img src="exercises/exercise4/Infra.png" alt="Infra" height="150" />
 
 - **Use SLIs and SLOs**: Define and track Service Level Indicators (SLIs) and Service Level Objectives (SLOs) to measure reliability.
 - **Blameless Postmortems**: Learn from failures without blaming individuals, focusing on how systems can be improved.
@@ -73,29 +74,34 @@ Monitoring is crucial for detecting issues early and responding swiftly to incid
 In this section, a **Prometheus** server is installed on the node that will eventually be used as a repository for traces and metrics.
 > [!TIP] 
 > Apply these changes [5. Practice](./exercises/exercise5/) to achieve an infrastructure like this one:
-> ![Infra](exercises/exercise5/Infra.png)
+> 
+> <img src="exercises/exercise5/Infra.png" alt="Infra" height="150" />
 
 In this section, a **Grafana** server is installed, which will allow data visualization from different sources, in this case, Prometheus. Eventually, it will be used to deploy an observability and monitoring strategy.
 > [!TIP] 
 > Apply these changes [6. Practice](./exercises/exercise6/) to achieve an infrastructure like this one:
-> ![Infra](exercises/exercise6/Infra.png)
+> 
+> <img src="exercises/exercise6/Infra.png" alt="Infra" height="150" />
 
 
    - **Metrics**: Quantitative data points such as CPU usage, memory consumption, and request rates.
 > [!TIP] 
 > Apply these changes [7. Practice](./exercises/exercise7/) to achieve an infrastructure like this one:
-> ![Infra](exercises/exercise7/Infra.png)
+> 
+> <img src="exercises/exercise7/Infra.png" alt="Infra" height="150" />
 
 
   - **Traces**: Record the journey of requests as they flow through different services, useful for diagnosing performance bottlenecks.
 > [!TIP] 
 > Apply these changes [8. Practice](./exercises/exercise8/) to achieve an infrastructure like this one:
-> ![Infra](exercises/exercise8/Infra.png)
+> 
+> <img src="exercises/exercise8/Infra.png" alt="Infra" height="150" />
 
   - **Logs**: Detailed records of system events that provide context and historical information during incidents.
 > [!TIP] 
 > Apply these changes [10. Practice](./exercises/exercise10/) to achieve an infrastructure like this one:
-> ![Infra](exercises/exercise10/Infra.png)
+> 
+> <img src="exercises/exercise10/Infra.png" alt="Infra" height="150" />
 
 - **Golden Signals**: Monitoring should focus on four critical **Golden Signals** to track the health of a service:
   
