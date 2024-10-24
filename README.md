@@ -20,6 +20,18 @@ Site Reliability Engineering (SRE) is a discipline that applies software enginee
 
 The **Software Development Lifecycle (SDLC)** is a structured approach to software development. It involves multiple phases that ensure software is designed, developed, tested, and deployed systematically. SRE plays a critical role in ensuring the reliability and scalability of the systems throughout the SDLC.
 
+<details>
+
+<summary>Tips for collapsed sections</summary>
+
+### You can add a header
+
+Apply these changes [1. Practice](./exercises/exercise1/) to create a python REST API.This application will serve as a practical case to demonstrate the integration of SRE at each phase, from planning to maintenance, including the implementation of SLOs, monitoring of metrics, and deployment automation.
+
+![Infra](exercises/exercise1/Infra.png)
+
+</details>
+
 > [!TIP] 
 > Apply these changes [1. Practice](./exercises/exercise1/) to create a python REST API.This application will serve as a practical case to demonstrate the integration of SRE at each phase, from planning to maintenance, including the implementation of SLOs, monitoring of metrics, and deployment automation.
 > ![Infra](exercises/exercise1/Infra.png)
