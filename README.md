@@ -237,6 +237,18 @@ Monitoring is crucial for detecting issues early and responding swiftly to incid
   > 
   > <img src="exercises/exercise12/Infra.png" alt="Infra" height="150" />
   </details>
+  <details>
+  <summary style="color: green;">
+      <a href="exercises/exercise14/" style="color: green; text-decoration: none;">
+          :pencil2: 
+          Practice #14 - Automatinc runbooks with ansible. PENDING
+      </a>
+  </summary>
+
+  > Apply these changes [14. Practice](./exercises/exercise13/):
+  > 
+  > <img src="exercises/exercise12/Infra.png" alt="Infra" height="150" />
+  </details>
 
 ## Operational Readiness Reviews (ORR)
 
@@ -250,15 +262,15 @@ Operational Readiness Reviews ensure that services are ready for production depl
 
 <details>
   <summary style="color: green;">
-      <a href="exercises/exercise14/" style="color: green; text-decoration: none;">
+      <a href="exercises/exercise15/" style="color: green; text-decoration: none;">
           :pencil2: 
           Practice #14 -  PENDING
       </a>
   </summary>
 
-  > Apply these changes [14. Practice](./exercises/exercise14/):
+  > Apply these changes [15. Practice](./exercises/exercise14/):
   > 
-  > <img src="exercises/exercise12/Infra.png" alt="Infra" height="150" />
+  > <img src="exercises/exercise15/Infra.png" alt="Infra" height="150" />
   </details>
   
 ## Change Management and Automation
@@ -267,72 +279,72 @@ Automating repetitive tasks and following structured change management processes
 
 ### Key Automation Practices:
 - **Infrastructure as Code (IaC)**: Use tools like Terraform or Kubernetes for automated infrastructure management.
-<details>
-  <summary style="color: green;">
-      <a href="exercises/exercise15/" style="color: green; text-decoration: none;">
-          :pencil2: 
-          Practice #15 - Helm chart PENDING
-      </a>
-  </summary>
+    <details>
+    <summary style="color: green;">
+        <a href="exercises/exercise16/" style="color: green; text-decoration: none;">
+            :pencil2: 
+            Practice #16 - Helm chart PENDING
+        </a>
+    </summary>
 
-  > Apply these changes [15. Practice](./exercises/exercise14/):
-  > 
-  > <img src="exercises/exercise12/Infra.png" alt="Infra" height="150" />
-  </details>
+    > Apply these changes [16. Practice](./exercises/exercise14/):
+    > 
+    > <img src="exercises/exercise12/Infra.png" alt="Infra" height="150" />
+    </details>
 
 - **CI/CD Pipelines**: Implement continuous integration and continuous delivery pipelines to deploy changes in a controlled manner.
-<details>
-  <summary style="color: green;">
-      <a href="exercises/exercise16/" style="color: green; text-decoration: none;">
-          :pencil2: 
-          Practice #16 -  Github actions PENDING
-      </a>
-  </summary>
+    <details>
+    <summary style="color: green;">
+        <a href="exercises/exercise16/" style="color: green; text-decoration: none;">
+            :pencil2: 
+            Practice #17 -  Github actions PENDING
+        </a>
+    </summary>
 
-  > Apply these changes [16. Practice](./exercises/exercise14/):
-  > 
-  > <img src="exercises/exercise12/Infra.png" alt="Infra" height="150" />
-  </details>
-  <details>
-  <summary style="color: green;">
-      <a href="exercises/exercise17/" style="color: green; text-decoration: none;">
-          :pencil2: 
-          Practice #17 -  Argo CD PENDING
-      </a>
-  </summary>
+    > Apply these changes [17. Practice](./exercises/exercise14/):
+    > 
+    > <img src="exercises/exercise17/Infra.png" alt="Infra" height="150" />
+    </details>
+    <details>
+    <summary style="color: green;">
+        <a href="exercises/exercise18/" style="color: green; text-decoration: none;">
+            :pencil2: 
+            Practice #18 -  Argo CD PENDING
+        </a>
+    </summary>
 
-  > Apply these changes [17. Practice](./exercises/exercise14/):
-  > 
-  > <img src="exercises/exercise17/Infra.png" alt="Infra" height="150" />
-  </details>
+    > Apply these changes [18. Practice](./exercises/exercise14/):
+    > 
+    > <img src="exercises/exercise18/Infra.png" alt="Infra" height="150" />
+    </details>
 
 - **Automate Rollbacks**: Set up automated rollback strategies for failed deployments.
 
   <details>
   <summary style="color: green;">
-      <a href="exercises/exercise17/" style="color: green; text-decoration: none;">
+      <a href="exercises/exercise19/" style="color: green; text-decoration: none;">
           :pencil2: 
           Practice #18 -  Kubernetes rollabck PENDING
       </a>
   </summary>
 
-  > Apply these changes [18. Practice](./exercises/exercise14/):
+  > Apply these changes [19. Practice](./exercises/exercise14/):
   > 
-  > <img src="exercises/exercise18/Infra.png" alt="Infra" height="150" />
+  > <img src="exercises/exercise19/Infra.png" alt="Infra" height="150" />
   </details>
 
 - **Perform Chaos Engineering**: Test system resilience by simulating failures in a controlled way.
   <details>
   <summary style="color: green;">
-      <a href="exercises/exercise17/" style="color: green; text-decoration: none;">
+      <a href="exercises/exercise20/" style="color: green; text-decoration: none;">
           :pencil2: 
-          Practice #19 - PENDING
+          Practice #20 - PENDING
       </a>
   </summary>
 
-  > Apply these changes [19. Practice](./exercises/exercise14/):
+  > Apply these changes [20. Practice](./exercises/exercise14/):
   > 
-  > <img src="exercises/exercise18/Infra.png" alt="Infra" height="150" />
+  > <img src="exercises/exercise20/Infra.png" alt="Infra" height="150" />
   </details>
 
 ## Cost Optimization
