@@ -67,19 +67,19 @@ SRE is guided by several core principles that shape how operations are managed:
 
 - **Emphasize Reliability**: Ensure that systems maintain high availability and performance.
 
-In this session, a Kubernetes cluster can be used to run our application with 3 replicas so that if one fails, the other 2 can take over the load, thus increasing the availability of the service.
-<details>
-<summary style="color: green;">
-    <a href="exercises/exercise4/" style="color: green; text-decoration: none;">
-        :pencil2: 
-        Practice #4
-    </a>
-</summary>
+  In this session, a Kubernetes cluster can be used to run our application with 3 replicas so that if one fails, the other 2 can take over the load, thus increasing the availability of the service.
+  <details>
+  <summary style="color: green;">
+      <a href="exercises/exercise4/" style="color: green; text-decoration: none;">
+          :pencil2: 
+          Practice #4
+      </a>
+  </summary>
 
-> Apply these changes [4. Practice](./exercises/exercise4/) to achieve an infrastructure like this one:
-> 
-> <img src="exercises/exercise4/Infra.png" alt="Infra" height="150" />
-</details>
+  > Apply these changes [4. Practice](./exercises/exercise4/) to achieve an infrastructure like this one:
+  > 
+  > <img src="exercises/exercise4/Infra.png" alt="Infra" height="150" />
+  </details>
 
 - **Use SLIs and SLOs**: Define and track Service Level Indicators (SLIs) and Service Level Objectives (SLOs) to measure reliability.
 - **Blameless Postmortems**: Learn from failures without blaming individuals, focusing on how systems can be improved.
