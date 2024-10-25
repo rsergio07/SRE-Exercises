@@ -22,11 +22,11 @@ The **Software Development Lifecycle (SDLC)** is a structured approach to softwa
 
 <details>
 
-<summary>Tips for collapsed sections</summary>
+<summary style="color: green;">
+    <img src="https://img.icons8.com/ios-filled/50/00ff00/light-on.png" alt="Light Bulb Icon" style="vertical-align: middle;"/> 
+    Practice #1
+</summary>
 
-### You can add a header
-
-> [!TIP]
 > Apply these changes [1. Practice](./exercises/exercise1/) to create a python REST API.This application will serve as a practical case to demonstrate the integration of SRE at each phase, from planning to maintenance, including the implementation of SLOs, monitoring of metrics, and deployment automation.
 > 
 > <img src="exercises/exercise1/Infra.png" alt="Infra" height="50" />
