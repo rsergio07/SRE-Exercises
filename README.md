@@ -23,34 +23,31 @@ The **Software Development Lifecycle (SDLC)** is a structured approach to softwa
 <details>
 
 <summary style="color: green;">
-:pencil2:  [1. Practice](./exercises/exercise1/)
+    <a href="exercises/exercise1/" style="color: green; text-decoration: none;">
+        <img src="https://img.icons8.com/ios-filled/50/00ff00/light-on.png" alt="Light Bulb Icon" style="vertical-align: middle;"/> 
+        Practice #1
+    </a>
+
 </summary>
 
-> Apply these changes to create a python REST API.This application will serve as a practical case to demonstrate the integration of SRE at each phase, from planning to maintenance, including the implementation of SLOs, monitoring of metrics, and deployment automation.
+> Apply these changes [1. Practice](./exercises/exercise1/) to create a python REST API.This application will serve as a practical case to demonstrate the integration of SRE at each phase, from planning to maintenance, including the implementation of SLOs, monitoring of metrics, and deployment automation.
 > 
 > <img src="exercises/exercise1/Infra.png" alt="Infra" height="50" />
 
 </details>
 
-<summary style="color: green;">
-:pencil2:  [2. Practice](./exercises/exercise2/)
-</summary>
 
-> Apply these changes to achieve the application will be packaged into a Docker image to facilitate easier deployment in multiple locations.
+
+
+> [!TIP] 
+> Apply these changes [2. Practice](./exercises/exercise2/) to achieve the application will be packaged into a Docker image to facilitate easier deployment in multiple locations.
 > 
 > <img src="exercises/exercise2/Infra.png" alt="Infra" height="150" />
 
-</details>
-
-<summary style="color: green;">
-:pencil2:  [3. Practice](./exercises/exercise3/)
-</summary>
-
-> Apply these changes to achieve the image will be stored in a remote registry(Dockerhub) to use it as the source for the application during deployments.
+> [!TIP] 
+> Apply these changes [3. Practice](./exercises/exercise3/) the image will be stored in a remote registry(Dockerhub) to use it as the source for the application during deployments.
 > 
 > <img src="exercises/exercise3/Infra.png" alt="Infra" height="150" />
-
-</details>
 
 SRE integrates with SDLC during the deployment and maintenance phases, ensuring smooth releases and reliable operations post-deployment. This process involves proactive monitoring, incident management, and automation to minimize downtime and maintain high availability.
 
@@ -61,15 +58,10 @@ SRE is guided by several core principles that shape how operations are managed:
 - **Emphasize Reliability**: Ensure that systems maintain high availability and performance.
 
 In this session, a Kubernetes cluster can be used to run our application with 3 replicas so that if one fails, the other 2 can take over the load, thus increasing the availability of the service.
-<summary style="color: green;">
-:pencil2:  Practice #4
-</summary>
-
+> [!TIP] 
 > Apply these changes [4. Practice](./exercises/exercise4/) to achieve an infrastructure like this one:
 > 
 > <img src="exercises/exercise4/Infra.png" alt="Infra" height="150" />
-
-</details>
 
 - **Use SLIs and SLOs**: Define and track Service Level Indicators (SLIs) and Service Level Objectives (SLOs) to measure reliability.
 - **Blameless Postmortems**: Learn from failures without blaming individuals, focusing on how systems can be improved.
