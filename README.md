@@ -24,7 +24,7 @@ The **Software Development Lifecycle (SDLC)** is a structured approach to softwa
 
 <summary style="color: green;">
     <a href="exercises/exercise1/" style="color: green; text-decoration: none;">
-        <img src="https://img.icons8.com/ios-filled/50/00ff00/light-on.png" alt="Light Bulb Icon" style="vertical-align: middle;"/> 
+        :pencil2: 
         Practice #1
     </a>
 
