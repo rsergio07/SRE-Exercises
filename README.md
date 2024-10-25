@@ -201,7 +201,7 @@ Monitoring is crucial for detecting issues early and responding swiftly to incid
 
   > Apply these changes [11. Practice](./exercises/exercise11/):
   > 
-  > <img src="exercises/exercise11/Infra.png" alt="Infra" height="150" />
+  > <img src="exercises/exercise11/images/Dashboard.png" alt="Infra" height="150" />
   </details>
 
 - **Define Alerts**: Use alerts based on SLIs, metrics, traces, and logs to notify teams of potential problems before they affect customers.
@@ -210,13 +210,13 @@ Monitoring is crucial for detecting issues early and responding swiftly to incid
   <summary style="color: green;">
       <a href="exercises/exercise12/" style="color: green; text-decoration: none;">
           :pencil2: 
-          Practice #12 - Alerts definition PENDING
+          Practice #12 - Alerts definition
       </a>
   </summary>
 
   > Apply these changes [12. Practice](./exercises/exercise12/):
   > 
-  > <img src="exercises/exercise12/Infra.png" alt="Infra" height="150" />
+  > <img src="exercises/exercise12/images/grafana_alert.png" alt="Infra" height="150" />
   </details>
   
 - **Incident Response**: When issues occur, follow a clear incident management process to resolve them quickly:
