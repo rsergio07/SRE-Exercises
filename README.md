@@ -46,12 +46,18 @@ The **Software Development Lifecycle (SDLC)** is a structured approach to softwa
 > <img src="exercises/exercise2/Infra.png" alt="Infra" height="150" />
 </details>
 
+<details>
+<summary style="color: green;">
+    <a href="exercises/exercise3/" style="color: green; text-decoration: none;">
+        :pencil2: 
+        Practice #3
+    </a>
+</summary>
 
-
-> [!TIP] 
 > Apply these changes [3. Practice](./exercises/exercise3/) the image will be stored in a remote registry(Dockerhub) to use it as the source for the application during deployments.
 > 
 > <img src="exercises/exercise3/Infra.png" alt="Infra" height="150" />
+</details>
 
 SRE integrates with SDLC during the deployment and maintenance phases, ensuring smooth releases and reliable operations post-deployment. This process involves proactive monitoring, incident management, and automation to minimize downtime and maintain high availability.
 
@@ -62,10 +68,18 @@ SRE is guided by several core principles that shape how operations are managed:
 - **Emphasize Reliability**: Ensure that systems maintain high availability and performance.
 
 In this session, a Kubernetes cluster can be used to run our application with 3 replicas so that if one fails, the other 2 can take over the load, thus increasing the availability of the service.
-> [!TIP] 
+<details>
+<summary style="color: green;">
+    <a href="exercises/exercise4/" style="color: green; text-decoration: none;">
+        :pencil2: 
+        Practice #4
+    </a>
+</summary>
+
 > Apply these changes [4. Practice](./exercises/exercise4/) to achieve an infrastructure like this one:
 > 
 > <img src="exercises/exercise4/Infra.png" alt="Infra" height="150" />
+</details>
 
 - **Use SLIs and SLOs**: Define and track Service Level Indicators (SLIs) and Service Level Objectives (SLOs) to measure reliability.
 - **Blameless Postmortems**: Learn from failures without blaming individuals, focusing on how systems can be improved.
@@ -89,40 +103,86 @@ Monitoring is crucial for detecting issues early and responding swiftly to incid
 - **Set Up Monitoring Systems**: Tools like Prometheus, Grafana, and OpenTelemetry provide insights into system performance using **metrics**, **traces**, and **logs**.
 
 In this section, a **Prometheus** server is installed on the node that will eventually be used as a repository for traces and metrics.
-> [!TIP] 
+<details>
+<summary style="color: green;">
+    <a href="exercises/exercise5/" style="color: green; text-decoration: none;">
+        :pencil2: 
+        Practice #5
+    </a>
+</summary>
+
 > Apply these changes [5. Practice](./exercises/exercise5/) to achieve an infrastructure like this one:
 > 
 > <img src="exercises/exercise5/Infra.png" alt="Infra" height="150" />
+</details>
 
 In this section, a **Grafana** server is installed, which will allow data visualization from different sources, in this case, Prometheus. Eventually, it will be used to deploy an observability and monitoring strategy.
-> [!TIP] 
+<details>
+<summary style="color: green;">
+    <a href="exercises/exercise6/" style="color: green; text-decoration: none;">
+        :pencil2: 
+        Practice #6
+    </a>
+</summary>
+
 > Apply these changes [6. Practice](./exercises/exercise6/) to achieve an infrastructure like this one:
 > 
 > <img src="exercises/exercise6/Infra.png" alt="Infra" height="150" />
-
+</details>
 
    - **Metrics**: Quantitative data points such as CPU usage, memory consumption, and request rates.
-> [!TIP] 
-> Apply these changes [7. Practice](./exercises/exercise7/) to achieve an infrastructure like this one:
-> 
-> <img src="exercises/exercise7/Infra.png" alt="Infra" height="150" />
+      <details>
+      <summary style="color: green;">
+          <a href="exercises/exercise7/" style="color: green; text-decoration: none;">
+              :pencil2: 
+              Practice #7
+          </a>
+      </summary>
 
+      > Apply these changes [7. Practice](./exercises/exercise7/) to achieve an infrastructure like this one:
+      > 
+      > <img src="exercises/exercise7/Infra.png" alt="Infra" height="150" />
+      </details>
 
   - **Traces**: Record the journey of requests as they flow through different services, useful for diagnosing performance bottlenecks.
-> [!TIP] 
-> Apply these changes [8. Practice](./exercises/exercise8/) to achieve an infrastructure like this one:
-> 
-> <img src="exercises/exercise8/Infra.png" alt="Infra" height="150" />
+      <details>
+      <summary style="color: green;">
+          <a href="exercises/exercise8/" style="color: green; text-decoration: none;">
+              :pencil2: 
+              Practice #8
+          </a>
+      </summary>
 
-> [!TIP] 
-> Apply these changes [9. Practice](./exercises/exercise9/) to achieve an infrastructure like this one:
-> 
-> <img src="exercises/exercise9/Infra.png" alt="Infra" height="150" />
+      > Apply these changes [8. Practice](./exercises/exercise8/) to achieve an infrastructure like this one:
+      > 
+      > <img src="exercises/exercise8/Infra.png" alt="Infra" height="150" />
+      </details>
+      <details>
+      <summary style="color: green;">
+          <a href="exercises/exercise9/" style="color: green; text-decoration: none;">
+              :pencil2: 
+              Practice #9
+          </a>
+      </summary>
+
+      > Apply these changes [9. Practice](./exercises/exercise9/) to achieve an infrastructure like this one:
+      > 
+      > <img src="exercises/exercise9/Infra.png" alt="Infra" height="150" />
+      </details>
+
   - **Logs**: Detailed records of system events that provide context and historical information during incidents.
-> [!TIP] 
-> Apply these changes [10. Practice](./exercises/exercise10/) to achieve an infrastructure like this one:
-> 
-> <img src="exercises/exercise10/Infra.png" alt="Infra" height="150" />
+      <details>
+      <summary style="color: green;">
+          <a href="exercises/exercise10/" style="color: green; text-decoration: none;">
+              :pencil2: 
+              Practice #10
+          </a>
+      </summary>
+
+      > Apply these changes [10. Practice](./exercises/exercise10/) to achieve an infrastructure like this one:
+      > 
+      > <img src="exercises/exercise10/Infra.png" alt="Infra" height="150" />
+      </details>
 
 - **Golden Signals**: Monitoring should focus on four critical **Golden Signals** to track the health of a service:
   
