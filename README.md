@@ -23,30 +23,30 @@ The **Software Development Lifecycle (SDLC)** is a structured approach to softwa
 <details>
 
 <summary style="color: green;">
-:pencil2:  Practice #1
+:pencil2:  [1. Practice](./exercises/exercise1/)
 </summary>
 
-> Apply these changes [1. Practice](./exercises/exercise1/) to create a python REST API.This application will serve as a practical case to demonstrate the integration of SRE at each phase, from planning to maintenance, including the implementation of SLOs, monitoring of metrics, and deployment automation.
+> Apply these changes to create a python REST API.This application will serve as a practical case to demonstrate the integration of SRE at each phase, from planning to maintenance, including the implementation of SLOs, monitoring of metrics, and deployment automation.
 > 
 > <img src="exercises/exercise1/Infra.png" alt="Infra" height="50" />
 
 </details>
 
 <summary style="color: green;">
-:pencil2:  Practice #2
+:pencil2:  [2. Practice](./exercises/exercise2/)
 </summary>
 
-> Apply these changes [2. Practice](./exercises/exercise2/) to achieve the application will be packaged into a Docker image to facilitate easier deployment in multiple locations.
+> Apply these changes to achieve the application will be packaged into a Docker image to facilitate easier deployment in multiple locations.
 > 
 > <img src="exercises/exercise2/Infra.png" alt="Infra" height="150" />
 
 </details>
 
 <summary style="color: green;">
-:pencil2:  Practice #2
+:pencil2:  [3. Practice](./exercises/exercise3/)
 </summary>
 
-> Apply these changes [3. Practice](./exercises/exercise3/) the image will be stored in a remote registry(Dockerhub) to use it as the source for the application during deployments.
+> Apply these changes to achieve the image will be stored in a remote registry(Dockerhub) to use it as the source for the application during deployments.
 > 
 > <img src="exercises/exercise3/Infra.png" alt="Infra" height="150" />
 
