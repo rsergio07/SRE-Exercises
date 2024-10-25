@@ -191,13 +191,52 @@ Monitoring is crucial for detecting issues early and responding swiftly to incid
   3. **Errors**: The rate of failed requests.
   4. **Saturation**: How full a service's resources are, such as CPU or memory.
 
+  <details>
+  <summary style="color: green;">
+      <a href="exercises/exercise11/" style="color: green; text-decoration: none;">
+          :pencil2: 
+          Practice #11 - Dashboard creation PENDING
+      </a>
+  </summary>
+
+  > Apply these changes [11. Practice](./exercises/exercise10/):
+  > 
+  > <img src="exercises/exercise11/Infra.png" alt="Infra" height="150" />
+  </details>
+
 - **Define Alerts**: Use alerts based on SLIs, metrics, traces, and logs to notify teams of potential problems before they affect customers.
+
+  <details>
+  <summary style="color: green;">
+      <a href="exercises/exercise12/" style="color: green; text-decoration: none;">
+          :pencil2: 
+          Practice #12 - Alerts definition PENDING
+      </a>
+  </summary>
+
+  > Apply these changes [12. Practice](./exercises/exercise12/):
+  > 
+  > <img src="exercises/exercise12/Infra.png" alt="Infra" height="150" />
+  </details>
   
 - **Incident Response**: When issues occur, follow a clear incident management process to resolve them quickly:
   1. **Detect the issue** using Golden Signals, monitoring, and alerting systems.
   2. **Respond to the alert** and acknowledge the incident.
   3. **Mitigate the problem** using workarounds or rollbacks to minimize customer impact.
   4. **Document the incident** for review and postmortem analysis.
+
+  <details>
+  <summary style="color: green;">
+      <a href="exercises/exercise13/" style="color: green; text-decoration: none;">
+          :pencil2: 
+          Practice #13 - time to detect, time to acknowledge, Time to resolve. PENDING
+      </a>
+  </summary>
+
+  > Apply these changes [13. Practice](./exercises/exercise13/):
+  > 
+  > <img src="exercises/exercise12/Infra.png" alt="Infra" height="150" />
+  </details>
 
 ## Operational Readiness Reviews (ORR)
 
@@ -208,6 +247,19 @@ Operational Readiness Reviews ensure that services are ready for production depl
 - Review the capacity plan and ensure scaling capabilities.
 - Confirm all dependencies are resilient to failures.
 - Review disaster recovery strategies.
+
+<details>
+  <summary style="color: green;">
+      <a href="exercises/exercise14/" style="color: green; text-decoration: none;">
+          :pencil2: 
+          Practice #14 -  PENDING
+      </a>
+  </summary>
+
+  > Apply these changes [14. Practice](./exercises/exercise14/):
+  > 
+  > <img src="exercises/exercise12/Infra.png" alt="Infra" height="150" />
+  </details>
   
 ## Change Management and Automation
 
@@ -215,9 +267,73 @@ Automating repetitive tasks and following structured change management processes
 
 ### Key Automation Practices:
 - **Infrastructure as Code (IaC)**: Use tools like Terraform or Kubernetes for automated infrastructure management.
+<details>
+  <summary style="color: green;">
+      <a href="exercises/exercise15/" style="color: green; text-decoration: none;">
+          :pencil2: 
+          Practice #15 - Helm chart PENDING
+      </a>
+  </summary>
+
+  > Apply these changes [15. Practice](./exercises/exercise14/):
+  > 
+  > <img src="exercises/exercise12/Infra.png" alt="Infra" height="150" />
+  </details>
+
 - **CI/CD Pipelines**: Implement continuous integration and continuous delivery pipelines to deploy changes in a controlled manner.
+<details>
+  <summary style="color: green;">
+      <a href="exercises/exercise16/" style="color: green; text-decoration: none;">
+          :pencil2: 
+          Practice #16 -  Github actions PENDING
+      </a>
+  </summary>
+
+  > Apply these changes [16. Practice](./exercises/exercise14/):
+  > 
+  > <img src="exercises/exercise12/Infra.png" alt="Infra" height="150" />
+  </details>
+  <details>
+  <summary style="color: green;">
+      <a href="exercises/exercise17/" style="color: green; text-decoration: none;">
+          :pencil2: 
+          Practice #17 -  Argo CD PENDING
+      </a>
+  </summary>
+
+  > Apply these changes [17. Practice](./exercises/exercise14/):
+  > 
+  > <img src="exercises/exercise17/Infra.png" alt="Infra" height="150" />
+  </details>
+
 - **Automate Rollbacks**: Set up automated rollback strategies for failed deployments.
+
+  <details>
+  <summary style="color: green;">
+      <a href="exercises/exercise17/" style="color: green; text-decoration: none;">
+          :pencil2: 
+          Practice #18 -  Kubernetes rollabck PENDING
+      </a>
+  </summary>
+
+  > Apply these changes [18. Practice](./exercises/exercise14/):
+  > 
+  > <img src="exercises/exercise18/Infra.png" alt="Infra" height="150" />
+  </details>
+
 - **Perform Chaos Engineering**: Test system resilience by simulating failures in a controlled way.
+  <details>
+  <summary style="color: green;">
+      <a href="exercises/exercise17/" style="color: green; text-decoration: none;">
+          :pencil2: 
+          Practice #19 - PENDING
+      </a>
+  </summary>
+
+  > Apply these changes [19. Practice](./exercises/exercise14/):
+  > 
+  > <img src="exercises/exercise18/Infra.png" alt="Infra" height="150" />
+  </details>
 
 ## Cost Optimization
 
