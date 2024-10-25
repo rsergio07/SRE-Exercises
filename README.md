@@ -21,7 +21,6 @@ Site Reliability Engineering (SRE) is a discipline that applies software enginee
 The **Software Development Lifecycle (SDLC)** is a structured approach to software development. It involves multiple phases that ensure software is designed, developed, tested, and deployed systematically. SRE plays a critical role in ensuring the reliability and scalability of the systems throughout the SDLC.
 
 <details>
-
 <summary style="color: green;">
     <a href="exercises/exercise1/" style="color: green; text-decoration: none;">
         :pencil2: 
@@ -34,6 +33,7 @@ The **Software Development Lifecycle (SDLC)** is a structured approach to softwa
 > <img src="exercises/exercise1/Infra.png" alt="Infra" height="50" />
 </details>
 
+<details>
 <summary style="color: green;">
     <a href="exercises/exercise2/" style="color: green; text-decoration: none;">
         :pencil2: 
