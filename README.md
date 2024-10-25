@@ -102,33 +102,33 @@ Monitoring is crucial for detecting issues early and responding swiftly to incid
 ### Best Practices:
 - **Set Up Monitoring Systems**: Tools like Prometheus, Grafana, and OpenTelemetry provide insights into system performance using **metrics**, **traces**, and **logs**.
 
-In this section, a **Prometheus** server is installed on the node that will eventually be used as a repository for traces and metrics.
-<details>
-<summary style="color: green;">
-    <a href="exercises/exercise5/" style="color: green; text-decoration: none;">
-        :pencil2: 
-        Practice #5
-    </a>
-</summary>
+  In this section, a **Prometheus** server is installed on the node that will eventually be used as a repository for traces and metrics.
+  <details>
+  <summary style="color: green;">
+      <a href="exercises/exercise5/" style="color: green; text-decoration: none;">
+          :pencil2: 
+          Practice #5
+      </a>
+  </summary>
 
-> Apply these changes [5. Practice](./exercises/exercise5/) to achieve an infrastructure like this one:
-> 
-> <img src="exercises/exercise5/Infra.png" alt="Infra" height="150" />
-</details>
+  > Apply these changes [5. Practice](./exercises/exercise5/) to achieve an infrastructure like this one:
+  > 
+  > <img src="exercises/exercise5/Infra.png" alt="Infra" height="150" />
+  </details>
 
-In this section, a **Grafana** server is installed, which will allow data visualization from different sources, in this case, Prometheus. Eventually, it will be used to deploy an observability and monitoring strategy.
-<details>
-<summary style="color: green;">
-    <a href="exercises/exercise6/" style="color: green; text-decoration: none;">
-        :pencil2: 
-        Practice #6
-    </a>
-</summary>
+  In this section, a **Grafana** server is installed, which will allow data visualization from different sources, in this case, Prometheus. Eventually, it will be used to deploy an observability and monitoring strategy.
+  <details>
+  <summary style="color: green;">
+      <a href="exercises/exercise6/" style="color: green; text-decoration: none;">
+          :pencil2: 
+          Practice #6
+      </a>
+  </summary>
 
-> Apply these changes [6. Practice](./exercises/exercise6/) to achieve an infrastructure like this one:
-> 
-> <img src="exercises/exercise6/Infra.png" alt="Infra" height="150" />
-</details>
+  > Apply these changes [6. Practice](./exercises/exercise6/) to achieve an infrastructure like this one:
+  > 
+  > <img src="exercises/exercise6/Infra.png" alt="Infra" height="150" />
+  </details>
 
    - **Metrics**: Quantitative data points such as CPU usage, memory consumption, and request rates.
       <details>
