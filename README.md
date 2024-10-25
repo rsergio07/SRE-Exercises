@@ -195,11 +195,11 @@ Monitoring is crucial for detecting issues early and responding swiftly to incid
   <summary style="color: green;">
       <a href="exercises/exercise11/" style="color: green; text-decoration: none;">
           :pencil2: 
-          Practice #11 - Dashboard creation PENDING
+          Practice #11 - Dashboard creation
       </a>
   </summary>
 
-  > Apply these changes [11. Practice](./exercises/exercise10/):
+  > Apply these changes [11. Practice](./exercises/exercise11/):
   > 
   > <img src="exercises/exercise11/Infra.png" alt="Infra" height="150" />
   </details>
