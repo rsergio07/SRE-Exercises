@@ -24,7 +24,7 @@ The **Software Development Lifecycle (SDLC)** is a structured approach to softwa
 <summary style="color: green;">
     <a href="exercises/exercise1/" style="color: green; text-decoration: none;">
         :pencil2: 
-        Practice #1
+        Practice #1 - Python app
     </a>
 </summary>
 
@@ -37,7 +37,7 @@ The **Software Development Lifecycle (SDLC)** is a structured approach to softwa
 <summary style="color: green;">
     <a href="exercises/exercise2/" style="color: green; text-decoration: none;">
         :pencil2: 
-        Practice #2
+        Practice #2 - App packaged as image 
     </a>
 </summary>
 
@@ -50,7 +50,7 @@ The **Software Development Lifecycle (SDLC)** is a structured approach to softwa
 <summary style="color: green;">
     <a href="exercises/exercise3/" style="color: green; text-decoration: none;">
         :pencil2: 
-        Practice #3
+        Practice #3 - App image ni to a registry
     </a>
 </summary>
 
@@ -72,7 +72,7 @@ SRE is guided by several core principles that shape how operations are managed:
   <summary style="color: green;">
       <a href="exercises/exercise4/" style="color: green; text-decoration: none;">
           :pencil2: 
-          Practice #4
+          Practice #4 - Running the app as a service
       </a>
   </summary>
 
@@ -107,7 +107,7 @@ Monitoring is crucial for detecting issues early and responding swiftly to incid
   <summary style="color: green;">
       <a href="exercises/exercise5/" style="color: green; text-decoration: none;">
           :pencil2: 
-          Practice #5
+          Practice #5 - Including Prometheus in the cluster
       </a>
   </summary>
 
@@ -121,7 +121,7 @@ Monitoring is crucial for detecting issues early and responding swiftly to incid
   <summary style="color: green;">
       <a href="exercises/exercise6/" style="color: green; text-decoration: none;">
           :pencil2: 
-          Practice #6
+          Practice #6 - Including Grafana in the cluster
       </a>
   </summary>
 
@@ -135,7 +135,7 @@ Monitoring is crucial for detecting issues early and responding swiftly to incid
       <summary style="color: green;">
           <a href="exercises/exercise7/" style="color: green; text-decoration: none;">
               :pencil2: 
-              Practice #7
+              Practice #7 - Sharing node metrics
           </a>
       </summary>
 
@@ -149,7 +149,7 @@ Monitoring is crucial for detecting issues early and responding swiftly to incid
       <summary style="color: green;">
           <a href="exercises/exercise8/" style="color: green; text-decoration: none;">
               :pencil2: 
-              Practice #8
+              Practice #8 - Sharing app traces
           </a>
       </summary>
 
@@ -161,7 +161,7 @@ Monitoring is crucial for detecting issues early and responding swiftly to incid
       <summary style="color: green;">
           <a href="exercises/exercise9/" style="color: green; text-decoration: none;">
               :pencil2: 
-              Practice #9
+              Practice #9 - Creating Metrics from Traces
           </a>
       </summary>
 
@@ -175,7 +175,7 @@ Monitoring is crucial for detecting issues early and responding swiftly to incid
       <summary style="color: green;">
           <a href="exercises/exercise10/" style="color: green; text-decoration: none;">
               :pencil2: 
-              Practice #10
+              Practice #10 - Sharing app logs
           </a>
       </summary>
 
