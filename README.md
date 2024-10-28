@@ -7,7 +7,7 @@ Site Reliability Engineering (SRE) is a discipline that applies software enginee
 ## Table of Contents
 1. [Software Development Lifecycle (SDLC)](#software-development-lifecycle-sdlc)
 2. [Core Principles](#core-principles)
-3. [Defining Service Level Objectives (SLOs)](#defining-service-level-objectives-slos)
+3. [SLIs, SLOs, SLAs, and Error Budgets](#slis-slos-slas-and-error-budgets)
 4. [Monitoring and Incident Management](#monitoring-and-incident-management)
 5. [Operational Readiness Reviews (ORR)](#operational-readiness-reviews-orr)
 6. [Change Management and Automation](#change-management-and-automation)
@@ -85,15 +85,38 @@ SRE is guided by several core principles that shape how operations are managed:
 - **Blameless Postmortems**: Learn from failures without blaming individuals, focusing on how systems can be improved.
 - **Automate Operations**: Use automation to reduce manual interventions and improve system scalability.
 
-## Defining Service Level Objectives (SLOs)
+## SLIs, SLOs, SLAs, and Error Budgets
 
 Service Level Objectives (SLOs) are key metrics that define the expected performance and availability of a service. They are derived from **Service Level Indicators (SLIs)**, which measure system behavior.
 
 ### Key Steps:
-1. **Identify Key Metrics**: Define SLIs based on customer experience (e.g., latency, uptime, error rates).
-2. **Set SLO Targets**: Establish acceptable thresholds for SLIs (e.g., 99.9% uptime over a quarter).
-3. **Monitor SLOs Continuously**: Use monitoring tools to ensure adherence to these objectives.
-4. **Negotiate SLOs with Stakeholders**: Ensure alignment between business needs and engineering efforts.
+
+1. **Service Level Indicator (SLI)**: A metric that measures specific system performance attributes, such as latency, availability, or error rate.
+
+2. **Service Level Objective (SLO)**: A target for acceptable performance of an SLI, e.g., 99.9% availability. SLOs aim to balance reliability and development speed.
+
+3. **Service Level Agreement (SLA)**: A formal agreement with customers defining expected performance and penalties for unmet objectives.
+
+4. **Error Budget**: The allowable margin for failure within an SLO, which provides flexibility for feature development without excessive risk.
+
+<details>
+  <summary style="color: green;">
+      <a href="exercises/topic0/" style="color: green; text-decoration: none;">
+          :pencil2: 
+          SLO´s list
+      </a>
+  </summary>
+
+  > Create a list of 3 SLO´s to eventually use in the observability startegy. This is an [example](./exercises/topic0#service-level-objectives-slos).
+
+  </details>
+
+### White-Box Monitoring and SLOs
+
+In white-box monitoring, metrics, traces, and logs are the primary data sources for monitoring **Service Level Indicators (SLIs)**, ensuring that **Service Level Objectives (SLOs)** are met. For example:
+   - **Metrics** measure uptime and latency, forming the basis for availability and performance SLOs.
+   - **Traces** reveal the journey of each request, ensuring SLOs related to request latency are achieved.
+   - **Logs** provide additional context for errors and anomalies, supporting SLO adherence by enabling detailed investigations when issues arise.
 
 ## Monitoring and Incident Management
 
@@ -214,7 +237,7 @@ Monitoring is crucial for detecting issues early and responding swiftly to incid
       </a>
   </summary>
 
-  > Apply these changes [12. Practice](./exercises/exercise12/):
+  > Apply these changes [12. Practice](./exercises/exercise12/) to alerts like this one for each [SLO](#slis-slos-slas-and-error-budgets) define above:
   > 
   > <img src="exercises/exercise12/images/grafana_alert.png" alt="Infra" height="150" />
   </details>
