@@ -237,7 +237,7 @@ Monitoring is crucial for detecting issues early and responding swiftly to incid
       </a>
   </summary>
 
-  > Apply these changes [12. Practice](./exercises/exercise12/) to alerts like this one for each [SLO](#slis-slos-slas-and-error-budgets) define above:
+  > Apply these changes [12. Practice](./exercises/exercise12/) to create alerts like these onces for each [SLO](#slis-slos-slas-and-error-budgets) define above:
   > 
   > <img src="exercises/exercise12/images/grafana_alert.png" alt="Infra" height="150" />
   </details>

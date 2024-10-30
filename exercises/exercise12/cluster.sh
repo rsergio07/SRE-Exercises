@@ -24,7 +24,7 @@ kubectl apply -f ../exercise10/deployment.yaml;
 kubectl apply -f ../exercise10/otel-collector.yaml;
 kubectl apply -f ../exercise8/jaeger.yaml;
 kubectl apply -f ../exercise9/prometheus.yaml;
-kubectl apply -f ../exercise10/grafana-loki.yaml;
+kubectl apply -f ./grafana-loki.yaml;
 kubectl apply -f ./grafana.yaml;
 echo "-------------------------------------------------------------------------"
 echo "wait"
