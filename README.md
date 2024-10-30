@@ -252,7 +252,7 @@ Monitoring is crucial for detecting issues early and responding swiftly to incid
   <summary style="color: green;">
       <a href="exercises/exercise13/" style="color: green; text-decoration: none;">
           :pencil2: 
-          Practice #13 - time to detect, time to acknowledge, Time to resolve. PENDING
+          Practice #13 - time to detect, time to acknowledge, Time to resolve.
       </a>
   </summary>
 

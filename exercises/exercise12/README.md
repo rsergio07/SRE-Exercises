@@ -65,11 +65,9 @@ Following the SLO definitions, create at least one alert for each SLO.
   ```plaintext
   sum(count_over_time({service_name="unknown_service"} |= "err" [5m])) by (service_name)
   ```
-Set a threshold to trigger an alert if the number of errors exceeds 5,500.
+  Set a threshold to trigger an alert if the number of errors exceeds 5,500.
 
-The idea is to receive an alert if any of the previous thresholds are exceeded.
-
-In this [link](grafana.yaml), you will find all the required configurations to validate the results, which should generate something like this:
+The idea is to receive an alert if any of the previous thresholds are exceeded. In this [link](grafana.yaml), you will find all the required configurations to validate the results, which should generate something like this:
 
 ![alt text](images/grafana_test_alert.png)
 
