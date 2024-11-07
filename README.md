@@ -85,6 +85,19 @@ SRE is guided by several core principles that shape how operations are managed:
 - **Blameless Postmortems**: Learn from failures without blaming individuals, focusing on how systems can be improved.
 - **Automate Operations**: Use automation to reduce manual interventions and improve system scalability.
 
+  <details>
+  <summary style="color: green;">
+      <a href="exercises/exercise4.1/" style="color: green; text-decoration: none;">
+          :pencil2: 
+          Practice #4.1 - Running the app as a service
+      </a>
+  </summary>
+
+  > Apply these changes in [Practice 4.1](./exercises/exercise4.1/) to use an Infrastructure as Code (IaC) approach to automate infrastructure setup with Ansible, instead of running commands directly in the shell.
+  > 
+  > <img src="exercises/exercise4.1/Infra.png" alt="Infra" height="150" />
+  </details>
+
 ## SLIs, SLOs, SLAs, and Error Budgets
 
 Service Level Objectives (SLOs) are key metrics that define the expected performance and availability of a service. They are derived from **Service Level Indicators (SLIs)**, which measure system behavior.
@@ -107,7 +120,7 @@ Service Level Objectives (SLOs) are key metrics that define the expected perform
       </a>
   </summary>
 
-  > Create a list of 3 SLO´s to eventually use in the observability startegy. This is an [example](./exercises/topic0#service-level-objectives-slos).
+  > Create a list of 4 SLO´s to eventually use in the observability strategy. This is an [example](./exercises/topic0#service-level-objectives-slos). Consider adding a new SLO based on the percentile of HTTP request latencies. Percentiles are used to measure how often certain performance thresholds are met for a majority of users. For instance, a 95th percentile latency of 100ms means that 95% of requests are served within 100ms, offering a realistic view of user experience by focusing on the performance seen by the majority of requests, rather than average or extreme cases alone.
 
   </details>
 
@@ -247,19 +260,16 @@ Monitoring is crucial for detecting issues early and responding swiftly to incid
   2. **Respond to the alert** and acknowledge the incident.
   3. **Mitigate the problem** using workarounds or rollbacks to minimize customer impact.
   4. **Document the incident** for review and postmortem analysis.
-
   <details>
   <summary style="color: green;">
-      <a href="exercises/exercise13/" style="color: green; text-decoration: none;">
+      <a href="exercises/topic1/" style="color: green; text-decoration: none;">
           :pencil2: 
-          Practice #13 - time to detect, time to acknowledge, Time to resolve.
+           Time to Detect, Time to Acknowledge and Time to Resolve
       </a>
   </summary>
 
-  > Apply these changes [13. Practice](./exercises/exercise13/):
-  > 
-  > <img src="exercises/exercise12/Infra.png" alt="Infra" height="150" />
   </details>
+
   <details>
   <summary style="color: green;">
       <a href="exercises/exercise14/" style="color: green; text-decoration: none;">

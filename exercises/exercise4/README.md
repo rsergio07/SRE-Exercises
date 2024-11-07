@@ -1,4 +1,16 @@
-# Kubernetes, Minikube, kubectl, YAML, and Podman Desktop: A Quick Start Guide
+# Table of Contents
+- [Kubernetes, Minikube, kubectl, YAML, and Podman Desktop: A Quick Start Guide](#kubernetes-minikube-kubectl-yaml-and-podman-desktop-a-quick-start-guide)
+  - [What is Kubernetes?](#what-is-kubernetes)
+  - [What is Minikube?](#what-is-minikube)
+  - [What is kubectl?](#what-is-kubectl)
+  - [What is YAML?](#what-is-yaml)
+  - [How to Enable Local Minikube in Podman Desktop](#how-to-enable-local-minikube-in-podman-desktop)
+- [Deploying the SRE ABC Training Python App on Kubernetes](#deploying-the-sre-abc-training-python-app-on-kubernetes)
+  - [Deployment YAML](#deployment-yaml)
+  - [Service YAML](#service-yaml)
+  - [Deployment Steps](#deployment-steps)
+  - [Access the Application](#access-the-application)
+- [Final Objective](#final-objective)
 
 ## What is Kubernetes?
 
@@ -212,16 +224,20 @@ minikube service sre-abc-training-service
 ``` 
 Notice how the service is mapping the host port 30007 to the pod port 5000 where the python applicatin is running
 
+---
+# Final Objective
+At the end of this document, you should accomplished this:
+> [!IMPORTANT]
+> ##  Reviewing the Deployment and Services in Minikube Dashboard
+> To visually inspect the deployment and services:
+> minikube dashboard
+> 
+> - **Start the Minikube Dashboard**:
+> ```sh
+> minikube dashboard
+> ```
+> ![k8s_dashboard](k8s_dashboard.png)
+> - **Review the Deployment**: In the Minikube dashboard, navigate to Workloads > Deployments. Here you can see the sre-abc-training-app deployment and monitor its status, including the number of replicas and their health.
+> 
+> - **Review the Services**: In the Minikube dashboard, navigate to Services under the Network section. You can view the sre-abc-training-service and check its configuration, including the NodePort assigned and the pods it is routing traffic to.
 
-##  Reviewing the Deployment and Services in Minikube Dashboard
-To visually inspect the deployment and services:
-minikube dashboard
-
-- **Start the Minikube Dashboard**:
-```sh
-minikube dashboard
-```
-
-- **Review the Deployment**: In the Minikube dashboard, navigate to Workloads > Deployments. Here you can see the sre-abc-training-app deployment and monitor its status, including the number of replicas and their health.
-
-- **Review the Services**: In the Minikube dashboard, navigate to Services under the Network section. You can view the sre-abc-training-service and check its configuration, including the NodePort assigned and the pods it is routing traffic to.

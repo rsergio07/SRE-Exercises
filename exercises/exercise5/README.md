@@ -1,4 +1,11 @@
-# Prometheus
+# Table of Contents
+- [Overview](#overview)
+- [Key Features](#key-features)
+- [Architecture](#architecture)
+- [Use Cases](#use-cases)
+- [Installation](#installation)
+- [Tip for Infrastructure as Code (IaC) with Ansible](#tip-for-infrastructure-as-code-iac-with-ansible)
+- [Final Objective](#final-objective)
 
 ## Overview
 
@@ -127,13 +134,39 @@ spec:
 ```
 
 - **Run it together**:
-Let´s run all together using this command
+Let´s run all together using these commands
 ```yaml
  kubectl apply -f prometheus.yaml 
  minikube service prometheus-service -n monitoring
 ```
+---
+# Tip for Infrastructure as Code (IaC) with Ansible
 
-## Final test
-In the input field try to look for words like "memory", "cpu" or "kubernetes", then click in one of the results at the autocomplete overlay, then click **Execute** and the resutls will be displayed in the table format, then change to grapgh format.
-
-As promotheus was recently installed there are no too much information to display.
+> [!TIP]
+> A more efficient **Infrastructure as Code (IaC)** approach can be implemented with Ansible to apply the Prometheus configuration and start its service in Minikube. Below is an example of how to structure a YAML playbook to achieve this:
+> 1. **Create a YAML Playbook**
+> ```yaml
+> ---
+> - name: Apply Prometheus configuration and start service in Minikube
+>   hosts: all
+>   become: yes  # Optional, if sudo permissions are required
+>   tasks:
+>     - name: Apply Prometheus configuration
+>       command: kubectl apply -f prometheus.yaml
+>       args:
+>         chdir: ./  #  directory where the command should be executed
+> ```
+> 2. **Run the Playbook**
+> ```bash
+> ansible-playbook -i ../exercise4.1/ansible_quickstart/inventory.ini infra.yaml
+> minikube service prometheus-service -n monitoring
+> ```
+---
+# Final Objective
+At the end of this document, you should accomplished this:
+> [!IMPORTANT]
+> In the input field try to look for words like "memory", "cpu" or "kubernetes", then click in one of the results at the autocomplete overlay, then click > **Execute** and the resutls will be displayed in the table format, then change to grapgh format.
+> 
+> As promotheus was recently installed there are no too much information to display.
+> 
+> ![prometheus_table](prometheus_table.png)

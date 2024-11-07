@@ -1,5 +1,14 @@
-# Python Application with Podman
+# Table of Contents
+- [Python Application with Podman](#python-application-with-podman)
+  - [What is Docker?](#what-is-docker)
+  - [Prerequisites](#prerequisites)
+  - [Project Structure](#project-structure)
+  - [Building the Container Image](#building-the-container-image)
+  - [Running the Container](#running-the-container)
+  - [Conclusion](#conclusion)
+- [Final Objective](#final-objective)
 
+# Python Application with Podman
 This README provides instructions on how to build and run a Python application using Podman. Podman is an open-source, container management tool that allows you to create and manage containers without requiring a daemon like Docker. This makes Podman a great option for running containers in environments where you prefer not to use Docker or need rootless container management.
 
 ## What is Docker?
@@ -83,5 +92,9 @@ This command runs the my-python-app container in interactive mode. The --rm flag
 Conclusion
 You now have a basic setup for building and running a Python application using Podman. Podman provides a similar experience to Docker but with additional benefits, such as rootless container management.
 
-## Access the Application
-Once the container is running, open your web browser and go to http://127.0.0.1:5000/. You should see the text "Hello, World!" displayed.
+---
+# Final Objective
+At the end of this document, you should accomplished this:
+> [!IMPORTANT]
+> Once the container is running, open your web browser and go to `http://127.0.0.1:5000/`. You should see the text "Hello, World!" displayed.
+> ![app](app.png)

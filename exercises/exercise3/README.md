@@ -1,4 +1,9 @@
-# Docker Hub Guide
+# Table of Contents
+- [Docker Hub Guide](#docker-hub-guide)
+  - [Introduction to Docker Hub](#introduction-to-docker-hub)
+  - [Creating a Docker Hub Account](#creating-a-docker-hub-account)
+  - [Creating a Docker Repository](#creating-a-docker-repository)
+- [Final Objective](#final-objective)
 
 ## Introduction to Docker Hub
 
@@ -71,3 +76,11 @@ A Docker repository is a place where Docker images are stored and can be pulled 
    ```bash
    podman run --rm -it -p 5000:5000 cguillenmendez/sre-abc-training-python-app:latest
    ```
+
+---
+# Final Objective
+At the end of this document, you should accomplished this:
+> [!IMPORTANT]
+> Once the container is running, open your web browser and go to `http://127.0.0.1:5000/`. You should see the text "Hello, World!" displayed.
+> ![app](app.png)
+

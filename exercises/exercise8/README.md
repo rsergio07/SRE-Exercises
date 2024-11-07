@@ -1,3 +1,10 @@
+# Table of Contents
+ - [Overview](#overview)
+ - [Steps to Set Up](#steps-to-set-up)
+ - [Deployment](#deployment)
+ - [Tip for Infrastructure as Code (IaC) with Ansible](#tip-for-infrastructure-as-code-iac-with-ansible)
+ - [Final Objective](#final-objective)
+
 # Overview
 
 In this exercise, we will modify a Python application to generate traces by adding some configuration to the OpenTelemetry Collector (OtelCollector). This will instrument the code to produce traces once the application is running. These traces will then be sent to the OtelCollector, and subsequently, they will be displayed in Jaeger.
@@ -305,14 +312,84 @@ spec:
   type: NodePort
 ```
 
-To create a Jager deployment with a servicew that let the integration with the rest of the pods in the cluster. 
-With the command `minikube service jaeger-service  -n opentelemetry` the browser will open the ui of Jaeger and something like this should be diplayed:
+# Deployment
+Before deploy all the new staff it's important to clean the changes from the previous exercises and then apply the new settings wih short program like this one:
+```bash
+#!/bin/bash
+kubectl delete -f ../exercise4/deployment.yaml;
+kubectl delete -f ../exercise4/service.yaml;
+kubectl delete -f deployment.yaml;
+kubectl delete -f otel-collector.yaml;
+kubectl delete -f ../exercise7/grafana.yaml;
+sleep 5;
+kubectl apply -f deployment.yaml;
+kubectl apply -f otel-collector.yaml;
+kubectl apply -f jaeger.yaml;
+kubectl apply -f ../exercise7/grafana.yaml;
+kubectl get pods -A
+```
 
-Initial page. The blue dots represent every time Jaeger got a trace from the Python application and the red points represent when there is a trace with an error
-![jaeger-dashboard](jaeger-dashboard.png)
+# Tip for Infrastructure as Code (IaC) with Ansible
 
-Opening the first trace in the results
-![jaeger-trace](jaeger-trace.png)
-
-Opening the first trace with a error in the results
-![jaeger-trace-with-error](jaeger-trace-with-error.png)
+> [!TIP]
+> A more efficient **Infrastructure as Code (IaC)** approach can be implemented with Ansible to apply the Jaeger configuration and start its service in Minikube. Below is an example of how to structure a YAML playbook to achieve this:
+> 1. **Create a YAML Playbook**
+> ```yaml
+> ---
+> - name: Manage Kubernetes Resources
+>   hosts: all
+>   become: yes
+>   tasks:
+>     - name: Delete existing deployment from exercise4
+>       command: kubectl delete -f ../exercise4/deployment.yaml
+>       ignore_errors: yes  # Ignore errors if file doesn't exist
+> 
+>     - name: Delete existing service from exercise4
+>       command: kubectl delete -f ../exercise4/service.yaml
+>       ignore_errors: yes
+> 
+>     - name: Delete current deployment
+>       command: kubectl delete -f deployment.yaml
+>       ignore_errors: yes
+> 
+>     - name: Delete OpenTelemetry Collector configuration
+>       command: kubectl delete -f otel-collector.yaml
+>       ignore_errors: yes
+> 
+>     - name: Delete Grafana configuration from exercise7
+>       command: kubectl delete -f ../exercise7/grafana.yaml
+>       ignore_errors: yes
+> 
+>     - name: Pause for resource cleanup
+>       wait_for:
+>         timeout: 5
+> 
+>     - name: Apply new deployment configuration
+>       command: kubectl apply -f deployment.yaml
+> 
+>     - name: Apply OpenTelemetry Collector configuration
+>       command: kubectl apply -f otel-collector.yaml
+> 
+>     - name: Apply Jaeger configuration
+>       command: kubectl apply -f jaeger.yaml
+> 
+>     - name: Apply Grafana configuration from exercise7
+>       command: kubectl apply -f ../exercise7/grafana.yaml
+> ```
+> 2. **Run the Playbook**
+> ```bash
+> ansible-playbook -i ../exercise4.1/ansible_quickstart/inventory.ini infra.yaml
+> minikube service jaeger-service  -n opentelemetry
+> ```
+---
+# Final Objective
+At the end of this document, you should accomplished this:
+> [!IMPORTANT]
+> Initial page. The blue dots represent every time Jaeger got a trace from the Python application and the red points represent when there is a trace with an error
+> ![jaeger-dashboard](jaeger-dashboard.png)
+> 
+> Opening the first trace in the results
+> ![jaeger-trace](jaeger-trace.png)
+> 
+> Opening the first trace with a error in the results
+> ![jaeger-trace-with-error](jaeger-trace-with-error.png)

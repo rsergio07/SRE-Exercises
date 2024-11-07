@@ -1,5 +1,17 @@
 
-## Observability approach
+# Table of Contents
+
+- [Observability Approach](#observability-approach)
+  - [What Are the Golden Signals?](#what-are-the-golden-signals)
+  - [Latency](#latency)
+  - [Traffic](#traffic)
+  - [Errors](#errors)
+  - [Saturation](#saturation)
+- [Deployment](#deployment)
+- [Tip for Infrastructure as Code (IaC) with Ansible](#tip-for-infrastructure-as-code-iac-with-ansible)
+- [Final Objective](#final-objective)
+
+# Observability approach
 
 The **Golden Signals** approach is a fundamental monitoring framework in **Site Reliability Engineering (SRE)**. These signals provide key insights into system health, helping engineers quickly identify, diagnose, and resolve issues in production. Google's SRE teams developed the Golden Signals framework to define a standard set of metrics essential for monitoring system reliability.
 
@@ -60,9 +72,52 @@ The Golden Signals consist of four primary metrics:
   > The output shoud be like this:
   > <img src="images/prometheus_result8.png" alt="Prometheus result" height="150" />
 
-These signals offer a holistic view of system performance, enabling SREs to quickly address critical reliability issues. Here is a preview of the dashboard 
+# Deployment
+Before deploy all the new staff it's important to clean the changes from the previous exercises and then apply the new settings wih short program like this one:
+```bash
+#!/bin/bash
 
-<img src="images/Dashboard.png" alt="Dashboard" height="150" />
-<img src="images/Dashboard1.png" alt="Dashboard" height="150" />
+kubectl delete ns application
+kubectl delete ns opentelemetry
+kubectl delete ns monitoring
+kubectl delete pv --all 
+kubectl delete pvc --all 
+sleep 5;
 
-At [New Dashboard](grafana.yaml) is an example of all Grafana setting which include the new dashboard configuration
+echo "-------------------------------------------------------------------------"
+echo "Start creating"
+echo "-------------------------------------------------------------------------"
+kubectl apply -f ../exercise10/storage.yaml;
+kubectl apply -f ../exercise10/deployment.yaml;
+kubectl apply -f ../exercise10/otel-collector.yaml;
+kubectl apply -f ../exercise8/jaeger.yaml;
+kubectl apply -f ../exercise9/prometheus.yaml;
+kubectl apply -f ../exercise10/grafana-loki.yaml;
+kubectl apply -f ./grafana.yaml;
+echo "-------------------------------------------------------------------------"
+echo "wait"
+echo "-------------------------------------------------------------------------"
+sleep 5;
+kubectl get pods -A
+```
+# Tip for Infrastructure as Code (IaC) with Ansible
+
+> [!TIP]
+> A more efficient **Infrastructure as Code (IaC)** approach can be implemented with Ansible to apply the new configuration and start its service in Minikube. An [example](./infra.yaml) of how to structure a YAML playbook to achieve this.
+
+> 2. **Run the Playbook**
+> ```bash
+> ansible-playbook -i ../exercise4.1/ansible_quickstart/inventory.ini infra.yaml
+> minikube service grafana-service -n monitoring
+> ```
+
+---
+# Final Objective
+At the end of this document, you should accomplished this:
+> [!IMPORTANT]
+> These signals offer a holistic view of system performance, enabling SREs to quickly address critical reliability issues. Here is a preview of the dashboard 
+> 
+> <img src="images/Dashboard.png" alt="Dashboard" height="150" />
+> <img src="images/Dashboard1.png" alt="Dashboard" height="150" />
+> 
+> At [New Dashboard](grafana.yaml) is an example of all Grafana setting which include the new dashboard configuration

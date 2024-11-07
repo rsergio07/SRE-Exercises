@@ -19,7 +19,7 @@ In the Site Reliability Engineering (SRE) process, three critical metrics help o
 
 Suppose that upon receiving an alert, you begin to review the application logs and notice several errors. 
 
-![alt text](image.png)
+![Granafa Alert](./images/granafa-alert.png)
 
 ## 2. Time to Acknowledge (TTA)
 
@@ -47,7 +47,7 @@ Suppose that upon receiving an alert, you begin to review the application logs a
 
 
 Suppose that upon receiving an alert, you begin to review the application logs and notice several errors. 
-![alt text](image-1.png)
+![Granafa Result](./images/granafa-result.png)
 
 You decide to consult with the development team, who indicates that restarting the service will resolve the issue. Therefore, you execute the following commands to restart the service:
 

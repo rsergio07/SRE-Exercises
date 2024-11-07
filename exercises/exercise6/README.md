@@ -1,5 +1,12 @@
-# Introduction to Grafana
+# Table of Contents
+- [Introduction to Grafana](#introduction-to-grafana)
+- [Key Features](#key-features)
+- [Getting Started](#getting-started)
+- [Install Grafana in the Cluster](#install-grafana-in-the-cluster)
+- [Tip for Infrastructure as Code (IaC) with Ansible](#tip-for-infrastructure-as-code-iac-with-ansible)
+- [Final Objective](#final-objective)
 
+# Introduction to Grafana
 Grafana is an open-source platform for monitoring and observability that provides powerful visualization and analysis capabilities for your metrics and logs. It is widely used for creating interactive and customizable dashboards to gain insights into your system's performance and health.
 
 ## Key Features
@@ -172,13 +179,37 @@ Now let´s configure Grafana to define a internal path for the provider where th
       "version": 1
     }
 ```
-
-Finally run the yaml file and expose the service.
-```sh
+- **Run it together**:
+Let´s run all together using these commands
+```yaml
 kubectl apply -f grafana.yaml
 minikube service grafana-service -n monitoring
 ```
-These are the credencials **admin/amin** to access Grafana and see the datasource and the dashboard that should look something like this
-![alt text](image.png). 
 
-Please notice that only the the Prometheus metrics are available. The python application is not there yet.
+# Tip for Infrastructure as Code (IaC) with Ansible
+
+> [!TIP]
+> A more efficient **Infrastructure as Code (IaC)** approach can be implemented with Ansible to apply the Grafana configuration and start its service in Minikube. Below is an example of how to structure a YAML playbook to achieve this:
+> 1. **Create a YAML Playbook**
+> ```yaml
+> ---
+> - name: Apply Grafana configuration and start service in Minikube
+>   hosts: all
+>   become: yes  # Optional, if sudo permissions are required
+>   tasks:
+>     - name: Apply Grafana configuration
+>       command: kubectl apply -f grafana.yaml
+>       args:
+>         chdir: ./  #  directory where the command should be executed
+> ```
+> 2. **Run the Playbook**
+> ```bash
+> ansible-playbook -i ../exercise4.1/ansible_quickstart/inventory.ini infra.yaml
+> minikube service grafana-service -n monitoring
+> ```
+---
+# Final Objective
+At the end of this document, you should accomplished this:
+> [!IMPORTANT]
+> These are the credencials **admin/amin** to access Grafana and see the datasource and the dashboard that should look something like this
+> ![alt text](image.png). 

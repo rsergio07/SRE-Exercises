@@ -1,4 +1,16 @@
-# Overview
+# Table of Contents
+- [Install cAdvisor](#lets-install-cadvisor)
+   - [Key Features](#key-features)
+   - [Integration with Prometheus](#integration-with-prometheus)
+   - [How to Use cAdvisor with Prometheus](#how-to-use-cadvisor-with-prometheus)
+      - [Running cAdvisor](#running-cadvisor)
+      - [Add Extra Configuration to Prometheus](#add-extra-configuration-to-prometheus)
+- [Apply Changes to Prometheus](#apply-changes-to-prometheus)
+- [Use the Metric to Build a Graph](#use-the-metric-to-build-a-graph)
+- [Using the Same Query in Grafana](#using-the-same-query-in-grafana)
+- [Use the YAML File to Create the New Panel](#use-the-yaml-file-to-create-the-new-panel)
+- [Tip for Infrastructure as Code (IaC) with Ansible](#tip-for-infrastructure-as-code-iac-with-ansible)
+- [Final Objective](#final-objective)
 
 In this exercise, we will add a new data sources for Prometheus: `cAdvisor` to observe how the number of available metrics increases in Prometheus.
 
@@ -167,5 +179,32 @@ kubectl apply -f ./grafana.yaml
 minikube service grafana-service -n monitoring
 ```
 
-Once the service is running, you can view the updated dashboard and see the new panel created from the YAML file:
-![Grafana with static from yaml file](grafana-2.png)
+# Tip for Infrastructure as Code (IaC) with Ansible
+
+> [!TIP]
+> A more efficient **Infrastructure as Code (IaC)** approach can be implemented with Ansible to apply the Grafana configuration and start its service in Minikube. Below is an example of how to structure a YAML playbook to achieve this:
+> 1. **Create a YAML Playbook**
+> ```yaml
+> ---
+> - name: Manage Grafana YAML files in Kubernetes
+>   hosts: localhost
+>   become: yes
+>   tasks:
+>     - name: Delete existing Grafana deployment
+>       command: kubectl delete -f ../exercise6/grafana.yaml
+>       ignore_errors: yes  # Ignore errors if the file doesn't exist or can't be deleted
+> 
+>     - name: Apply the new Grafana configuration
+>       command: kubectl apply -f ./grafana.yaml
+> ```
+> 2. **Run the Playbook**
+> ```bash
+> ansible-playbook -i ../exercise4.1/ansible_quickstart/inventory.ini infra.yaml
+> minikube service grafana-service -n monitoring
+> ```
+---
+# Final Objective
+At the end of this document, you should accomplished this:
+> [!IMPORTANT]
+> Once the service is running, you can view the updated dashboard and see the new panel created from the YAML file:
+> ![Grafana with static from yaml file](grafana-2.png)

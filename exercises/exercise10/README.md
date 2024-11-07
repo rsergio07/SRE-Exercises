@@ -1,5 +1,14 @@
 
-## Logging Setup for SRE Application
+# Table of Contents
+
+- [Logging Setup for SRE Application](#logging-setup-for-sre-application)
+- [Deployment](#deployment)
+   - [Minikube Logging Directory Setup](#minikube-logging-directory-setup)
+- [Tip for Infrastructure as Code (IaC) with Ansible](#tip-for-infrastructure-as-code-iac-with-ansible)
+- [Final Objective](#final-objective)
+
+
+# Logging Setup for SRE Application
 
 In this section, we will modify the Python application to generate logs, which will be redirected to a file named `./logs/sre-app.log`. Once the logging mechanism is set up, we will adjust the infrastructure to forward this log file to Grafana as part of the observability strategy.
 
@@ -340,9 +349,80 @@ data:
 ```
 Checkout the full example [here](./grafana.yaml)
 
-This is how the widget shoud looks like
-![Errors-logs-panel-at-granafa.png](errors-logs-panel-at-granafa.png)
+# Deployment
+Before deploy all the new staff it's important to clean the changes from the previous exercises and then apply the new settings wih short program like this one:
+```bash
+#!/bin/bash
+podman login docker.io
+podman build -t cguillenmendez/sre-abc-training-python-app:latest .
+podman build -t cguillenmendez/sre-abc-training-python-app:0.0.23 .
+podman push cguillenmendez/sre-abc-training-python-app:latest
+podman push cguillenmendez/sre-abc-training-python-app:0.0.23
 
-But, also you could create graphs like this one 
-![errors-logs-panel-at-granafa-graph](errors-logs-panel-at-granafa-graph.png)
-with the proper filters.
+kubectl delete ns application
+kubectl delete ns opentelemetry
+kubectl delete ns monitoring
+kubectl delete pv --all 
+kubectl delete pvc --all 
+sleep 5;
+
+## Run commands inside Minikube
+## Create the directory for logs
+# sudo mkdir -p /data/sre-app/logs
+  
+## Change permissions to make it writable by all users
+# sudo chmod 777 /data/sre-app/logs
+
+## Exit from the Minikube SSH session
+# exit
+echo "-------------------------------------------------------------------------"
+echo "Start creating"
+echo "-------------------------------------------------------------------------"
+kubectl apply -f ./storage.yaml;
+kubectl apply -f ./deployment.yaml;
+kubectl apply -f ./otel-collector.yaml;
+kubectl apply -f ../exercise8/jaeger.yaml;
+kubectl apply -f ../exercise9/prometheus.yaml;
+kubectl apply -f ./grafana-loki.yaml;
+kubectl apply -f ./grafana.yaml;
+echo "-------------------------------------------------------------------------"
+echo "wait"
+echo "-------------------------------------------------------------------------"
+sleep 10;
+kubectl get pods -A
+```
+
+Minikube is a local Kubernetes cluster running inside a VM or container. The filesystem of this environment is isolated and ephemeral (i.e., it doesn't persist across Minikube restarts unless explicitly managed).
+This means directories like /data/sre-app/logs are not pre-created, and manual intervention is needed to set them up.
+```bash
+## Run commands inside Minikube
+## Create the directory for logs
+# sudo mkdir -p /data/sre-app/logs
+  
+## Change permissions to make it writable by all users
+# sudo chmod 777 /data/sre-app/logs
+
+## Exit from the Minikube SSH session
+# exit
+```
+
+# Tip for Infrastructure as Code (IaC) with Ansible
+
+> [!TIP]
+> A more efficient **Infrastructure as Code (IaC)** approach can be implemented with Ansible to apply the new configuration and start its service in Minikube. An [example](./infra.yaml) of how to structure a YAML playbook to achieve this.
+
+> 2. **Run the Playbook**
+> ```bash
+> ansible-playbook -i ../exercise4.1/ansible_quickstart/inventory.ini infra.yaml
+> minikube service grafana-service -n monitoring
+> ```
+---
+# Final Objective
+At the end of this document, you should accomplished this:
+> [!IMPORTANT]
+> This is how the widget shoud looks like
+> ![Errors-logs-panel-at-granafa.png](errors-logs-panel-at-granafa.png)
+> 
+> But, also you could create graphs like this one 
+> ![errors-logs-panel-at-granafa-graph](errors-logs-panel-at-granafa-graph.png)
+> with the proper filters.

@@ -1,6 +1,21 @@
+# Table of Contents
+
+- [Configuring OpenTelemetry Collector for Trace-Based Metrics](#configuring-opentelemetry-collector-for-trace-based-metrics)
+   - [Steps Overview](#steps-overview)
+   - [SpanMetrics Connector](#spanmetrics-connector)
+   - [Example Configuration for OpenTelemetry Collector](#example-configuration-for-opentelemetry-collector)
+     - [Key Configuration Components](#key-configuration-components)
+   - [Exporting Metrics to Prometheus](#exporting-metrics-to-prometheus)
+   - [Build a Dashboard at Grafana using the new metrics](#build-a-dashboard-at-grafana-using-the-new-metrics)
+-  [Deployment](#deployment)
+-  [Tip for Infrastructure as Code (IaC) with Ansible](#tip-for-infrastructure-as-code-iac-with-ansible)
+-  [Final Objective](#final-objective)
+
+
 # Configuring OpenTelemetry Collector for Trace-Based Metrics
 
 In this section, we will configure the OpenTelemetry Collector to generate metrics based on the traces received from the Python application. To achieve this, we will use the `spanmetricsconnector`, a component available in the [OpenTelemetry Collector Contrib repository](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/connector/spanmetricsconnector). This connector will act as a processor that creates metrics from the incoming traces, and we will configure an exporter to send these metrics to Prometheus.
+
 
 ![python otelcollector jaeger](<python-otelcollector-jaeger.png>)
 
@@ -118,8 +133,85 @@ At the [grafana](./grafana.yaml) configuration file:
           ...
     }
 ```
-and  use this command to see the results
-``` bash
-  minikube service grafana-service -n monitoring
+
+# Deployment
+Before deploy all the new staff it's important to clean the changes from the previous exercises and then apply the new settings wih short program like this one:
+```bash
+#!/bin/bash
+kubectl delete ns application
+kubectl delete ns opentelemetry
+kubectl delete ns monitoring
+sleep 5;
+kubectl apply -f ../exercise8/deployment.yaml;
+kubectl apply -f ./otel-collector.yaml;
+kubectl apply -f ../exercise8/jaeger.yaml;
+kubectl apply -f ./prometheus.yaml;
+kubectl apply -f ./grafana.yaml;
 ```
-![Granafa-dashboard](Granafa-dashboard.png)
+
+# Tip for Infrastructure as Code (IaC) with Ansible
+
+> [!TIP]
+> A more efficient **Infrastructure as Code (IaC)** approach can be implemented with Ansible to apply the new configuration and start its service in Minikube. Below is an example of how to structure a YAML playbook to achieve this:
+> 1. **Create a YAML Playbook**
+> ```yaml
+> ---
+> - name: Automate Kubernetes Cleanup and Deployment
+>   hosts: all
+>   gather_facts: no
+>
+>   tasks:
+>     - name: Delete 'application' namespace
+>       command:
+>         cmd: kubectl delete ns application
+>       ignore_errors: yes
+> 
+>     - name: Delete 'opentelemetry' namespace
+>       command:
+>         cmd: kubectl delete ns opentelemetry
+>       ignore_errors: yes
+> 
+>     - name: Delete 'monitoring' namespace
+>       command:
+>         cmd: kubectl delete ns monitoring
+>       ignore_errors: yes
+> 
+>     - name: Wait for 5 seconds
+>       wait_for:
+>         timeout: 5
+> 
+>     - name: Apply deployment.yaml
+>       command:
+>         cmd: kubectl apply -f ../exercise8/deployment.yaml
+> 
+>     - name: Apply otel-collector.yaml
+>       command:
+>         cmd: kubectl apply -f ./otel-collector.yaml
+> 
+>     - name: Apply jaeger.yaml
+>       command:
+>         cmd: kubectl apply -f ../exercise8/jaeger.yaml
+> 
+>     - name: Apply prometheus.yaml
+>       command:
+>         cmd: kubectl apply -f ./prometheus.yaml
+> 
+>     - name: Apply grafana.yaml
+>       command:
+>         cmd: kubectl apply -f ./grafana.yaml
+> 
+>     - name: Get all pods across all namespaces
+>       command:
+>         cmd: kubectl get pods -A
+> 
+> ```
+> 2. **Run the Playbook**
+> ```bash
+> ansible-playbook -i ../exercise4.1/ansible_quickstart/inventory.ini infra.yaml
+> minikube service grafana-service -n monitoring
+> ```
+---
+# Final Objective
+At the end of this document, you should accomplished this:
+> [!IMPORTANT]
+> ![Granafa-dashboard](Granafa-dashboard.png)
