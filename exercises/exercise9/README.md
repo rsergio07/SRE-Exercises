@@ -17,7 +17,7 @@
 In this section, we will configure the OpenTelemetry Collector to generate metrics based on the traces received from the Python application. To achieve this, we will use the `spanmetricsconnector`, a component available in the [OpenTelemetry Collector Contrib repository](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/connector/spanmetricsconnector). This connector will act as a processor that creates metrics from the incoming traces, and we will configure an exporter to send these metrics to Prometheus.
 
 
-![python otelcollector jaeger](<python-otelcollector-jaeger.png>)
+![Infra](<Infra.png>)
 
 All the following configurations are going to create the line in red for the draw above
 

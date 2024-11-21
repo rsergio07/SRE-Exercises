@@ -267,20 +267,23 @@ Monitoring is crucial for detecting issues early and responding swiftly to incid
            Time to Detect, Time to Acknowledge and Time to Resolve
       </a>
   </summary>
-
+  
+  > These metrics are important for measuring the performance of the SRE team. 
   </details>
 
   <details>
   <summary style="color: green;">
-      <a href="exercises/exercise14/" style="color: green; text-decoration: none;">
+      <a href="exercises/exercise13/" style="color: green; text-decoration: none;">
           :pencil2: 
-          Practice #14 - Automatinc runbooks with ansible. PENDING
+          Practice #13 - Automate runbooks with ansible.
       </a>
   </summary>
 
-  > Apply these changes [14. Practice](./exercises/exercise13/):
-  > 
-  > <img src="exercises/exercise12/Infra.png" alt="Infra" height="150" />
+   > Apply these changes [13. Practice](./exercises/exercise13/)  to achieve an infrastructure like this one:
+   > 
+   > <img src="exercises/exercise13/Infra.png" alt="Infra" height="150" />
+   > 
+   > In this setup, SREs are responsible for ensuring reliability using tools like Grafana, Jaeger, and AWX, while customers interact with the application.
   </details>
 
 ## Operational Readiness Reviews (ORR)

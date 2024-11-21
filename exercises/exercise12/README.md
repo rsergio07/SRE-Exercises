@@ -13,6 +13,9 @@
 
 Grafana alerts can notify you when a certain metric exceeds a defined threshold. Here’s how to create alerts for **Latency** and **Errors** in your Grafana dashboard.
 
+![Infra](<../exercise10/Infra.png>)
+From infrastucture point of view all the elements are going to be the same because the new alerts are going to be inside Grafana.
+
 ## 1. Loki changes
 Explicar que es y porque se usa
 https://grafana.com/docs/loki/latest/alert/

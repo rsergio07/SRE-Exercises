@@ -15,6 +15,7 @@ sleep 5;
 
 ## Run commands inside Minikube
 ## Create the directory for logs
+# minikube ssh
 # sudo mkdir -p /data/sre-app/logs
   
 ## Change permissions to make it writable by all users

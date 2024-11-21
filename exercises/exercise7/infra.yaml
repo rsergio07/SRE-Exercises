@@ -1,6 +1,6 @@
 ---
 - name: Manage Grafana YAML files in Kubernetes
-  hosts: localhoallst
+  hosts: all
   become: yes 
   tasks:
     - name: Delete existing Grafana deployment

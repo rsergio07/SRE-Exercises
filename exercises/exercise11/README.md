@@ -15,6 +15,9 @@
 
 The **Golden Signals** approach is a fundamental monitoring framework in **Site Reliability Engineering (SRE)**. These signals provide key insights into system health, helping engineers quickly identify, diagnose, and resolve issues in production. Google's SRE teams developed the Golden Signals framework to define a standard set of metrics essential for monitoring system reliability.
 
+![Logs](<../exercise10/Infra.png>)
+From infrastucture point of view all the elements are going to be the same because the new dashboards are going to be inside Grafana.
+
 ## What Are the Golden Signals?
 
 The Golden Signals consist of four primary metrics:

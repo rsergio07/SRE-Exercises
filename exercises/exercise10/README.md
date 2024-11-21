@@ -12,6 +12,11 @@
 
 In this section, we will modify the Python application to generate logs, which will be redirected to a file named `./logs/sre-app.log`. Once the logging mechanism is set up, we will adjust the infrastructure to forward this log file to Grafana as part of the observability strategy.
 
+![Infra](<Infra.png>)
+
+All the following configurations are going to create the square in blue for the draw above
+
+
 ### Steps:
 1. **Modify the Python Application**:
    - The Python code will be updated to create logs for various events and actions.
@@ -368,6 +373,7 @@ sleep 5;
 
 ## Run commands inside Minikube
 ## Create the directory for logs
+# minikube ssh
 # sudo mkdir -p /data/sre-app/logs
   
 ## Change permissions to make it writable by all users
@@ -397,6 +403,7 @@ This means directories like /data/sre-app/logs are not pre-created, and manual i
 ```bash
 ## Run commands inside Minikube
 ## Create the directory for logs
+# minikube ssh
 # sudo mkdir -p /data/sre-app/logs
   
 ## Change permissions to make it writable by all users
