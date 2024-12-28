@@ -1,8 +1,25 @@
 # SRE (Site Reliability Engineering) Process
 
+---
+
 ## Introduction
 
 Site Reliability Engineering (SRE) is a discipline that applies software engineering principles to operations to create scalable and highly reliable systems. The SRE process focuses on balancing the need for reliability with the pace of innovation. This document outlines the key practices, principles, and workflows involved in the SRE process.
+
+---
+
+## Getting Started
+
+Before beginning any practice or exercise, clone this repository to your local machine using the following command:
+
+```bash
+git clone https://github.com/cguilencr/sre-abc-training.git
+cd sre-abc-training
+```
+
+This ensures you have access to all the required files and directory structures needed to complete the exercises.
+
+---
 
 ## Table of Contents
 1. [Software Development Lifecycle (SDLC)](#software-development-lifecycle-sdlc)
@@ -298,15 +315,15 @@ Operational Readiness Reviews ensure that services are ready for production depl
 
 <details>
   <summary style="color: green;">
-      <a href="exercises/exercise15/" style="color: green; text-decoration: none;">
+      <a href="exercises/exercise14/" style="color: green; text-decoration: none;">
           :pencil2: 
-          Practice #14 -  PENDING
+          Practice #14 - Operational Readiness Reviews (ORR)
       </a>
   </summary>
 
-  > Apply these changes [15. Practice](./exercises/exercise14/):
+  > Apply these changes [14. Practice](./exercises/exercise14/):
   > 
-  > <img src="exercises/exercise15/Infra.png" alt="Infra" height="150" />
+  > <img src="exercises/exercise14/Infra.png" alt="Infra" height="150" />
   </details>
   
 ## Change Management and Automation
