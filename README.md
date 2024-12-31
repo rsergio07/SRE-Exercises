@@ -303,21 +303,12 @@ Monitoring is crucial for detecting issues early and responding swiftly to incid
    > In this setup, SREs are responsible for ensuring reliability using tools like Grafana, Jaeger, and AWX, while customers interact with the application.
   </details>
 
-## Operational Readiness Reviews (ORR)
-
-Operational Readiness Reviews ensure that services are ready for production deployment. ORRs evaluate the robustness of infrastructure, the maturity of monitoring, and the ability to handle failures.
-
-### Checklist for ORR:
-- Ensure service has monitoring and alerting in place.
-- Review the capacity plan and ensure scaling capabilities.
-- Confirm all dependencies are resilient to failures.
-- Review disaster recovery strategies.
 
 <details>
   <summary style="color: green;">
       <a href="exercises/exercise14/" style="color: green; text-decoration: none;">
           :pencil2: 
-          Practice #14 - Operational Readiness Reviews (ORR)
+          Practice #14 - Syntetic Monitoring  Pending
       </a>
   </summary>
 
@@ -325,7 +316,31 @@ Operational Readiness Reviews ensure that services are ready for production depl
   > 
   > <img src="exercises/exercise14/Infra.png" alt="Infra" height="150" />
   </details>
-  
+
+## Operational Readiness Reviews (ORR)
+
+Operational Readiness Reviews ensure that services are ready for production deployment. ORRs evaluate the robustness of infrastructure, the maturity of monitoring, and the ability to handle failures.
+
+### Checklist for Operational Readiness Review (ORR):
+- Ensure service has monitoring and alerting in place.
+- Review the capacity plan and ensure scaling capabilities.
+- Confirm all dependencies are resilient to failures.
+- Review disaster recovery strategies.
+
+
+<details>
+  <summary style="color: green;">
+      <a href="exercises/topic3/" style="color: green; text-decoration: none;">
+          :pencil2: 
+          ORR
+      </a>
+  </summary>
+
+  > Previously, in [section 4: SLOs](https://github.com/cguillencr/sre-abc-training#slis-slos-slas-and-error-budgets), a list of 4 SLOs was created. Now, based on the information in the [Operational Readiness Review (ORR)](https://github.com/cguillencr/sre-abc-training/tree/main/exercises/topic3), please attach the results of a review conducted by you in the same document.
+
+  </details>
+
+ 
 ## Change Management and Automation
 
 Automating repetitive tasks and following structured change management processes helps reduce risk during deployments.
