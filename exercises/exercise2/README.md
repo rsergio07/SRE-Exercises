@@ -1,100 +1,168 @@
-# Table of Contents
-- [Python Application with Podman](#python-application-with-podman)
-  - [What is Docker?](#what-is-docker)
-  - [Prerequisites](#prerequisites)
-  - [Project Structure](#project-structure)
-  - [Building the Container Image](#building-the-container-image)
-  - [Running the Container](#running-the-container)
-  - [Conclusion](#conclusion)
+# Python Application with Podman
+
+## Table of Contents
+- [Introduction](#introduction)
+- [What is Docker?](#what-is-docker)
+- [What is Podman?](#what-is-podman)
+- [Project Structure](#project-structure)
+- [Dockerfile Explanation](#dockerfile-explanation)
+- [Prerequisites](#prerequisites)
+- [Building the Container Image](#building-the-container-image)
+- [Running the Container](#running-the-container)
+- [Conclusion](#conclusion)
 - [Final Objective](#final-objective)
 
-# Python Application with Podman
-This README provides instructions on how to build and run a Python application using Podman. Podman is an open-source, container management tool that allows you to create and manage containers without requiring a daemon like Docker. This makes Podman a great option for running containers in environments where you prefer not to use Docker or need rootless container management.
+---
+
+## Introduction
+
+This exercise focuses on containerizing a Python application and running it using **Podman**, a modern container management tool. You will learn how to build a container image and run it locally, enabling you to work with containerized environments in a secure and rootless manner.
+
+---
 
 ## What is Docker?
 
-Docker is a popular platform used for developing, shipping, and running applications inside containers. Containers allow developers to package an application with all of its dependencies and run it in a consistent environment across different systems. Docker simplifies the process of managing containerized applications by providing a consistent interface to interact with containers.
+**Docker** is a popular platform used for developing, shipping, and running applications inside containers. Containers allow developers to package an application with all its dependencies and run it in a consistent environment across different systems. Docker provides:
+- Simplified container management.
+- Compatibility across multiple platforms.
+- A daemon-based approach to container orchestration.
 
-## Prerequisites
+---
 
-- [Podman](https://podman.io/getting-started/installation) installed on your system.
-- A basic understanding of Python and containerization concepts.
+## What is Podman?
 
-## Project Structure
+**Podman** is an open-source container engine similar to Docker but without requiring a background daemon. Key features include:
+- Daemonless and rootless operation for enhanced security.
+- Full compatibility with Dockerfiles.
+- Support for running containers in environments where Docker is not available or needed.
 
-## Dockerfile
+Unlike Docker, Podman does not require root access and provides improved security for managing containers.
 
-[Here](./Dockerfile) is a sample `Dockerfile` for the Python application:
-
-
-Here's the README.md file formatted in Markdown:
-
-markdown
-Copiar código
-# Python Application with Podman
-
-This README provides instructions on how to build and run a Python application using Podman. Podman is an open-source, container management tool that allows you to create and manage containers without requiring a daemon like Docker. This makes Podman a great option for running containers in environments where you prefer not to use Docker or need rootless container management.
-
-## What is Docker?
-
-Docker is a popular platform used for developing, shipping, and running applications inside containers. Containers allow developers to package an application with all of its dependencies and run it in a consistent environment across different systems. Docker simplifies the process of managing containerized applications by providing a consistent interface to interact with containers.
-
-## Prerequisites
-
-- [Podman](https://podman.io/getting-started/installation) installed on your system.
-- A basic understanding of Python and containerization concepts.
+---
 
 ## Project Structure
 
-classes/class2/ ├── Dockerfile ├── app.py └── requirements.txt
+Here is the project structure for this exercise:
 
-- `Dockerfile`: Contains instructions to build the container image.
-- `app.py`: The Python application script.
+```
+exercises/exercise2/
+├── Dockerfile
+├── Infra.png
+├── README.md
+├── app.png
+└── app.py
+```
 
-## Dockerfile
+- **Dockerfile**: Contains the instructions for building the container image.
+- **Infra.png**: Diagram or visualization of the application's infrastructure.
+- **README.md**: This file contains instructions for the exercise.
+- **app.png**: Screenshot of the application running.
+- **app.py**: Python script for the application.
 
-Here is a sample `Dockerfile` for the Python application:
+---
+
+## Dockerfile Explanation
+
+The `Dockerfile` is a script that contains a series of instructions to automate the creation of a container image. Here is what each instruction in the provided `Dockerfile` does:
 
 ```Dockerfile
-# Use the official Python image from the Docker Hub
+# Use the official Python image from Docker Hub
 FROM python:3.9-slim
 
-# Set the working directory
+# Set the working directory inside the container
 WORKDIR /app
 
-# Copy the requirements file into the container
-COPY requirements.txt .
+# Copy the application code into the container
+COPY app.py .
 
-# Install the Python dependencies
-RUN pip install --no-cache-dir -r requirements.txt
-
-# Copy the rest of the application code into the container
-COPY . .
+# Install the Python dependencies (if any)
+RUN pip install flask
 
 # Specify the command to run the application
 CMD ["python", "app.py"]
-Building the Container Image
-To build the container image using Podman, navigate to the project directory where the Dockerfile is located and run:
-
-```bash
-podman build -t my-python-app .
 ```
-This command tells Podman to build an image with the tag my-python-app using the Dockerfile in the current directory.
 
-Running the Container
-To run the container using Podman, use the following command:
+**Explanation:**
+1. `FROM`: Specifies the base image (Python 3.9 slim version) for the container.
+2. `WORKDIR`: Sets the working directory inside the container to `/app`.
+3. `COPY`: Copies the `app.py` file from the host to the container's working directory.
+4. `RUN`: Installs the `flask` package inside the container.
+5. `CMD`: Defines the command to run the Python application when the container starts.
 
+---
+
+## Prerequisites
+
+Before you start, ensure the following:
+- **Podman installed** on macOS. Follow the [Podman installation guide](https://podman.io/getting-started/installation) or use:
+  ```bash
+  brew install podman
+  ```
+- Basic understanding of Python and containerization concepts.
+- Completion of Exercise #1.
+
+For macOS users new to Podman, initialize and start the Podman machine:
+```bash
+podman machine init
+podman machine start
+```
+
+Verify that Podman is working with:
+```bash
+podman info
+```
+
+---
+
+## Building the Container Image
+
+1. Navigate to the `exercise2` directory:
+   ```bash
+   cd exercises/exercise2
+   ```
+
+2. Build the container image:
+   ```bash
+   podman build -t my-python-app .
+   ```
+
+   - `-t my-python-app`: Assigns the tag `my-python-app` to the image.
+   - `.`: Specifies the current directory containing the `Dockerfile`.
+
+---
+
+## Running the Container
+
+Run the container using Podman:
 ```bash
 podman run --rm -it -p 5000:5000 my-python-app
 ```
-This command runs the my-python-app container in interactive mode. The --rm flag ensures that the container is removed after it stops.
 
-Conclusion
-You now have a basic setup for building and running a Python application using Podman. Podman provides a similar experience to Docker but with additional benefits, such as rootless container management.
+Explanation of flags:
+- `--rm`: Removes the container after it stops.
+- `-it`: Runs the container interactively.
+- `-p 5000:5000`: Maps port 5000 on the container to port 5000 on the host.
+
+Access the application by visiting:
+```bash
+http://127.0.0.1:5000/
+```
 
 ---
-# Final Objective
-At the end of this document, you should accomplished this:
-> [!IMPORTANT]
-> Once the container is running, open your web browser and go to `http://127.0.0.1:5000/`. You should see the text "Hello, World!" displayed.
+
+## Conclusion
+
+You have now successfully containerized and run a Python application using Podman. This exercise demonstrates the basics of containerization and prepares you for more advanced deployment scenarios.
+
+---
+
+## Final Objective
+
+At the end of this exercise, you should accomplish the following:
+
+> **[!IMPORTANT]**
+> Once the container is running, open your web browser and go to `http://127.0.0.1:5000/`. You should see the text **"Hello, World!"** displayed.
+>
 > ![app](app.png)
+
+---
