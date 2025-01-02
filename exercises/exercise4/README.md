@@ -148,3 +148,50 @@ At the end of this exercise, you should accomplish the following:
 > ![k8s_dashboard](k8s_dashboard.png)
 
 ---
+
+## Cleanup
+
+Once you have completed the exercise and confirmed the application is running and visible in the Minikube dashboard, you can clean up the resources to ensure your environment is tidy and ready for the next exercise.
+
+### Steps to Clean Up
+
+1. **Delete the Deployment**:
+   ```bash
+   kubectl delete -f deployment.yaml
+   ```
+   This will delete the deployment and the associated pods.
+
+2. **Delete the Service**:
+   ```bash
+   kubectl delete -f service.yaml
+   ```
+   This will delete the service that exposed the application.
+
+3. **Verify All Resources Are Deleted**:
+   Check that there are no running pods or services in the default namespace:
+   ```bash
+   kubectl get pods
+   ```
+   The output should show:
+   ```
+   No resources found in default namespace.
+   ```
+
+4. **List Remaining Files**:
+   Confirm that only your YAML files and documentation remain in the directory:
+   ```bash
+   ls -l
+   ```
+   You should see an output like:
+   ```
+   total 1032
+   -rw-r--r--  1 rsergio  staff   78073 Dec 27 12:50 Infra.png
+   -rw-r--r--  1 rsergio  staff    4002 Jan  2 12:44 README.md
+   -rw-r--r--  1 rsergio  staff     403 Dec 27 12:50 deployment.yaml
+   -rw-r--r--  1 rsergio  staff  433344 Dec 27 12:50 k8s_dashboard.png
+   -rw-r--r--  1 rsergio  staff     252 Dec 27 12:50 service.yaml
+   ```
+
+By following these steps, you ensure that your environment is clean and ready for subsequent exercises.
+
+---
