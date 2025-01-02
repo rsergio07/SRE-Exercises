@@ -132,7 +132,7 @@ Service Level Objectives (SLOs) are key metrics that define the expected perform
 <details>
   <summary style="color: green;">
       <a href="exercises/topic0/" style="color: green; text-decoration: none;">
-          :pencil2: 
+          :chart_with_upwards_trend: 
           SLO´s list
       </a>
   </summary>
@@ -285,7 +285,7 @@ Monitoring is crucial for detecting issues early and responding swiftly to incid
       </a>
   </summary>
   
-  > These metrics are important for measuring the performance of the SRE team. 
+  > These metrics are important for measuring the performance of the SRE (Site Reliability Engineering) team. By monitoring these metrics, an SRE team can efficiently plan and improve its performance: 
   </details>
 
   <details>
@@ -304,17 +304,15 @@ Monitoring is crucial for detecting issues early and responding swiftly to incid
   </details>
 
 
-<details>
+  <details>
   <summary style="color: green;">
-      <a href="exercises/exercise14/" style="color: green; text-decoration: none;">
-          :pencil2: 
-          Practice #14 - Syntetic Monitoring  Pending
-      </a>
-  </summary>
+        <a href="exercises/topic4/" style="color: green; text-decoration: none;">
+            :chart_with_upwards_trend: 
+            Syntetic Monitoring
+        </a>
+    </summary>
 
-  > Apply these changes [14. Practice](./exercises/exercise14/):
-  > 
-  > <img src="exercises/exercise14/Infra.png" alt="Infra" height="150" />
+    > Previously, Ansible was used to automate a task. Now, you must use it to create a synthetic monitor that simulates a browser accessing the endpoint. To achieve this, you need to create an Ansible script that runs on AWX and connects to the endpoint, ensuring the status code is 200.
   </details>
 
 ## Operational Readiness Reviews (ORR)
@@ -331,7 +329,7 @@ Operational Readiness Reviews ensure that services are ready for production depl
 <details>
   <summary style="color: green;">
       <a href="exercises/topic3/" style="color: green; text-decoration: none;">
-          :pencil2: 
+          :chart_with_upwards_trend: 
           ORR
       </a>
   </summary>
