@@ -2,6 +2,10 @@
 
 ## Table of Contents
 - [Introduction](#introduction)
+  - [What is Kubernetes?](#what-is-kubernetes)
+  - [What is Minikube?](#what-is-minikube)
+  - [What is kubectl?](#what-is-kubectl)
+  - [What is YAML?](#what-is-yaml)
 - [Prerequisites](#prerequisites)
 - [Navigate to the Application Directory](#navigate-to-the-application-directory)
 - [Install Minikube on macOS](#install-minikube-on-macos)
@@ -13,6 +17,7 @@
   - [Steps to Deploy](#steps-to-deploy)
 - [Exploring the Application in the Dashboard](#exploring-the-application-in-the-dashboard)
 - [Final Objective](#final-objective)
+- [Cleanup](#cleanup)
 
 ---
 
@@ -20,14 +25,53 @@
 
 This exercise will guide you through deploying a Python application to Kubernetes using Minikube with Podman as the container runtime. You will configure the deployment, expose the service, and explore the Kubernetes dashboard to observe the running application.
 
+### What is Kubernetes?
+
+Kubernetes (K8s) is an open-source platform that automates the deployment, scaling, and management of containerized applications. It provides a resilient framework to run distributed systems reliably.
+
+#### Key Features:
+- **Automatic bin packing**: Allocates resources based on container requirements.
+- **Self-healing**: Restarts or replaces containers as needed.
+- **Horizontal scaling**: Dynamically scales applications based on demand.
+- **Service discovery and load balancing**: Manages traffic routing between applications.
+- **Automated rollouts and rollbacks**: Simplifies application updates.
+
+### What is Minikube?
+
+Minikube is a lightweight Kubernetes implementation for local development and testing. It creates a single-node Kubernetes cluster on your local machine, enabling you to learn and experiment with Kubernetes.
+
+#### Why Use Minikube?
+- **Simple Setup**: Quickly spin up a Kubernetes environment.
+- **Feature Support**: Most Kubernetes features, such as DNS and dashboards, are available.
+- **Resource Management**: Manage cluster resources locally without affecting production.
+
+### What is kubectl?
+
+`kubectl` is the command-line tool for interacting with Kubernetes clusters. It allows you to deploy applications, inspect resources, and manage clusters.
+
+#### Common Commands:
+- `kubectl get pods`: List all running pods.
+- `kubectl apply -f <file.yaml>`: Apply configuration from a YAML file.
+- `kubectl delete -f <file.yaml>`: Delete resources defined in a YAML file.
+
+### What is YAML?
+
+YAML (YAML Ain't Markup Language) is a data serialization format used to configure Kubernetes resources. It is human-readable and ideal for defining structured data.
+
+#### Key YAML Concepts:
+- **apiVersion**: Defines the Kubernetes API version.
+- **kind**: Specifies the resource type (e.g., Deployment, Service).
+- **metadata**: Contains resource information like names and labels.
+- **spec**: Describes the desired state of the resource.
+
 ---
 
 ## Prerequisites
 
-Before starting, ensure you have completed Exercises 1–3. Additionally, the following tools must be installed on your system:
-- **Podman**: A daemonless container engine.
-- **Minikube**: A tool to set up a local Kubernetes cluster.
-- **kubectl**: The command-line tool for Kubernetes.
+Before starting, ensure you have completed Exercises 1–3. Additionally, install the following tools:
+- **Podman**
+- **Minikube**
+- **kubectl**
 
 ---
 
@@ -61,13 +105,13 @@ minikube version
 
 ## Starting Minikube with Podman
 
-Minikube can run with different drivers. In this exercise, we will use Podman as the container runtime. Start Minikube with the following command:
+Start Minikube with the Podman driver and container runtime:
 
 ```bash
 minikube start --driver=podman --container-runtime=containerd
 ```
 
-Verify the Minikube setup:
+Verify the setup:
 
 ```bash
 minikube status
@@ -77,27 +121,27 @@ minikube status
 
 ## Accessing the Kubernetes Dashboard
 
-Minikube includes a built-in dashboard for managing Kubernetes resources visually. Launch the dashboard using:
+Launch the Kubernetes dashboard:
 
 ```bash
 minikube dashboard
 ```
 
-> **Note:** This command locks the terminal. Open a new terminal to continue working while the dashboard is open.
+> **Note:** Open a new terminal for further commands while the dashboard runs.
 
 ---
 
 ## Deploying the Application
 
-In this exercise, the deployment and service YAML files are already created in the `exercise4` directory. 
+The necessary YAML files for the deployment and service are already present in the `exercise4` directory.
 
 ### Deployment YAML
 
-The `deployment.yaml` defines the application's deployment, including the number of replicas and the container image used. It is configured to deploy the `cguillenmendez/sre-abc-training-python-app` image.
+The `deployment.yaml` defines the application's deployment, including replicas and container image.
 
 ### Service YAML
 
-The `service.yaml` configures the Kubernetes Service to expose the application using a NodePort.
+The `service.yaml` exposes the application using a NodePort.
 
 ### Steps to Deploy
 
@@ -115,7 +159,6 @@ The `service.yaml` configures the Kubernetes Service to expose the application u
    ```bash
    kubectl get pods
    ```
-   Wait until all pods are in the `Running` state.
 
 4. Verify the Service:
    ```bash
@@ -131,11 +174,9 @@ The `service.yaml` configures the Kubernetes Service to expose the application u
    minikube dashboard
    ```
 
-2. In the dashboard, explore:
-   - **Workloads > Deployments**: Verify the `sre-abc-training-app` deployment, its replicas, and status.
-   - **Network > Services**: Check the `sre-abc-training-service`, including its NodePort and associated pods.
-
-> **Note:** Observe how the dashboard reflects the state of the cluster before and after the deployment.
+2. Explore:
+   - **Workloads > Deployments**: View the `sre-abc-training-app` deployment, replicas, and status.
+   - **Network > Services**: Review the `sre-abc-training-service`, its NodePort, and associated pods.
 
 ---
 
@@ -143,32 +184,27 @@ The `service.yaml` configures the Kubernetes Service to expose the application u
 
 At the end of this exercise, you should accomplish the following:
 
-> **[!IMPORTANT]**  
-> Use the Minikube dashboard to visually inspect the deployment and service. Ensure all pods are running, and the application is accessible.  
+> **[IMPORTANT]**  
+> Use the Minikube dashboard to inspect the deployment and service. Ensure all pods are running, and the application is accessible.  
 > ![k8s_dashboard](k8s_dashboard.png)
 
 ---
 
 ## Cleanup
 
-Once you have completed the exercise and confirmed the application is running and visible in the Minikube dashboard, you can clean up the resources to ensure your environment is tidy and ready for the next exercise.
-
-### Steps to Clean Up
+After completing the exercise, clean up the resources to keep your environment tidy.
 
 1. **Delete the Deployment**:
    ```bash
    kubectl delete -f deployment.yaml
    ```
-   This will delete the deployment and the associated pods.
 
 2. **Delete the Service**:
    ```bash
    kubectl delete -f service.yaml
    ```
-   This will delete the service that exposed the application.
 
 3. **Verify All Resources Are Deleted**:
-   Check that there are no running pods or services in the default namespace:
    ```bash
    kubectl get pods
    ```
@@ -177,21 +213,6 @@ Once you have completed the exercise and confirmed the application is running an
    No resources found in default namespace.
    ```
 
-4. **List Remaining Files**:
-   Confirm that only your YAML files and documentation remain in the directory:
-   ```bash
-   ls -l
-   ```
-   You should see an output like:
-   ```
-   total 1032
-   -rw-r--r--  1 rsergio  staff   78073 Dec 27 12:50 Infra.png
-   -rw-r--r--  1 rsergio  staff    4002 Jan  2 12:44 README.md
-   -rw-r--r--  1 rsergio  staff     403 Dec 27 12:50 deployment.yaml
-   -rw-r--r--  1 rsergio  staff  433344 Dec 27 12:50 k8s_dashboard.png
-   -rw-r--r--  1 rsergio  staff     252 Dec 27 12:50 service.yaml
-   ```
-
-By following these steps, you ensure that your environment is clean and ready for subsequent exercises.
+By following these steps, your environment will be ready for the next exercise.
 
 ---
