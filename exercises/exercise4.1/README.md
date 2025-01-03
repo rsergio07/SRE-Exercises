@@ -8,8 +8,10 @@
 - [Navigate to the Exercise Directory](#navigate-to-the-exercise-directory)
 - [Step 1: Install pipx](#step-1-install-pipx)
 - [Step 2: Install Ansible with pipx](#step-2-install-ansible-with-pipx)
-- [Step 3: Setting Up an Inventory File](#step-3-setting-up-an-inventory-file)
-- [Step 4: Running an Ansible Playbook](#step-4-running-an-ansible-playbook)
+- [Step 3: Getting Started with Ansible](#step-3-getting-started-with-ansible)
+- [Step 4: Setting Up an Inventory File](#step-4-setting-up-an-inventory-file)
+  - [Testing the Inventory File](#testing-the-inventory-file)
+- [Step 5: Running an Ansible Playbook](#step-5-running-an-ansible-playbook)
   - [Verify the Output](#verify-the-output)
 - [Final Objective](#final-objective)
 
@@ -48,7 +50,7 @@ To begin, navigate to the directory for Exercise 4.1:
 cd sre-abc-training/exercises/exercise4.1
 ```
 
-This directory contains the necessary files for the exercise.
+This directory contains the necessary files for the exercise, including `inventory.ini`, `playbook.yaml`, and `iac_paybook.yaml`.
 
 ---
 
@@ -80,24 +82,83 @@ ansible --version
 
 ---
 
-## Step 3: Setting Up an Inventory File
+## Step 3: Getting Started with Ansible
 
-The required files for this exercise, including `inventory.ini` and `playbook.yaml`, are already provided in the `ansible_quickstart` directory. You do not need to create them manually. Here's the content for reference:
+To prepare the environment, create a new directory for your Ansible project and navigate into it. Although this directory is already part of the cloned repository, the following command illustrates the structure:
 
-### Inventory File: `inventory.ini`
+```bash
+mkdir ansible_quickstart && cd ansible_quickstart
+```
+
+The `ansible_quickstart` directory contains:
+- `inventory.ini`: Defines the systems Ansible will manage.
+- `playbook.yaml`: A simple playbook to test Ansible functionality.
+
+---
+
+## Step 4: Setting Up an Inventory File
+
+An inventory file is used to define the systems Ansible will manage. The provided file, `inventory.ini`, contains the following content:
 
 ```ini
 [allhosts]
 127.0.0.1 ansible_connection=local
 ```
 
-This file tells Ansible to connect to the localhost (`127.0.0.1`) using the local connection method.
+This file tells Ansible to connect to 127.0.0.1 (localhost) using the local connection method, which is useful for testing and development.
+
+### Testing the Inventory File
+
+To confirm that the inventory file is correctly configured, run:
+
+```bash
+ansible-inventory -i inventory.ini --list
+```
+
+Expected output:
+
+```json
+{
+    "_meta": {
+        "hostvars": {}
+    },
+    "all": {
+        "children": [
+            "ungrouped",
+            "allhosts"
+        ]
+    },
+    "allhosts": {
+        "hosts": [
+            "127.0.0.1"
+        ]
+    }
+}
+```
+
+To verify connectivity, use the following command:
+
+```bash
+ansible allhosts -m ping -i inventory.ini
+```
+
+Expected output:
+
+```bash
+127.0.0.1 | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/local/bin/python3.12"
+    },
+    "changed": false,
+    "ping": "pong"
+}
+```
 
 ---
 
-## Step 4: Running an Ansible Playbook
+## Step 5: Running an Ansible Playbook
 
-To run the provided playbook, execute the following command:
+To test Ansible and run the provided playbook, execute the following command:
 
 ```bash
 ansible-playbook -i inventory.ini playbook.yaml --ask-become-pass
@@ -130,23 +191,6 @@ ok: [127.0.0.1] => {
 PLAY RECAP ***********************************************************************************************************************
 127.0.0.1                  : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
 ```
-
-### Breakdown of the Output
-
-1. **Gathering Facts**:
-   - Ansible collects system information about the target host (`127.0.0.1`) for use in playbooks.
-
-2. **Ping my hosts**:
-   - This task sends a ping to the target host and confirms connectivity.
-
-3. **Print message**:
-   - Outputs the message "Hello world" using the `debug` module.
-
-4. **Play Recap**:
-   - Summarizes the outcome of all tasks:
-     - `ok`: The task ran successfully.
-     - `changed`: Tasks that modified the system.
-     - `failed`: Tasks that encountered errors.
 
 ---
 
