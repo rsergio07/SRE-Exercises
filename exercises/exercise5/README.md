@@ -1,6 +1,7 @@
-# Deploying Prometheus in Minikube with Ansible
+# Deploying Prometheus in Minikube
 
 ## Table of Contents
+- [Navigate to the Application Directory](#navigate-to-the-application-directory)
 - [Overview](#overview)
 - [Key Features of Prometheus](#key-features-of-prometheus)
 - [Architecture](#architecture)
@@ -15,6 +16,18 @@
 - [Running the Playbook](#running-the-playbook)
 - [Final Objective](#final-objective)
 - [Cleanup](#cleanup)
+
+---
+
+## Navigate to the Application Directory
+
+To begin, navigate to the directory for Exercise 5:
+
+```bash
+cd sre-abc-training/exercises/exercise5
+```
+
+> **Note**: This directory contains the necessary YAML files for the deployment and service configuration.
 
 ---
 
@@ -72,9 +85,9 @@ In this exercise, we’ll focus on deploying Prometheus within a Minikube cluste
 
 ## Prometheus Installation Steps
 
-The `prometheus.yaml` file required for this exercise is already included in the directory. You do not need to create this file manually. The file contains configurations for the namespace, ConfigMap, deployment, and service for Prometheus.
-
 > **Note**: Before proceeding, ensure that both Minikube and Podman are running. These were set up in previous exercises.
+
+The `prometheus.yaml` file required for this exercise is already included in the directory. You do not need to create this file manually. The file contains configurations for the namespace, ConfigMap, deployment, and service for Prometheus.
 
 ---
 
@@ -206,6 +219,10 @@ At the end of this exercise, you should accomplish the following:
 > - Search for metrics like `memory` or `CPU` in the input field.  
 > - View the results in table and graph formats.  
 > - As Prometheus was recently installed, there may be limited data available.
+
+> **Expected Output**  
+> Once successful, you should see a table similar to the following:  
+> ![Prometheus Table Output](prometheus_table.png)
 
 ---
 
