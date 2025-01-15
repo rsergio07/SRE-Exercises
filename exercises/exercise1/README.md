@@ -32,7 +32,7 @@ python3 --version
 Navigate to the `exercise1` directory where the application files are located:
 
 ```bash
-cd exercises/exercise1
+cd sre-abc-training/exercises/exercise1
 ```
 
 This ensures you are in the correct directory to execute the application.
