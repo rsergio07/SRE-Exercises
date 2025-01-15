@@ -1,70 +1,89 @@
-# Table of Contents
-- [Introduction to Grafana](#introduction-to-grafana)
-- [Key Features](#key-features)
-- [Getting Started](#getting-started)
-- [Install Grafana in the Cluster](#install-grafana-in-the-cluster)
-- [Tip for Infrastructure as Code (IaC) with Ansible](#tip-for-infrastructure-as-code-iac-with-ansible)
+# Deploying Grafana in Minikube with Ansible
+
+## Table of Contents
+- [Overview](#overview)
+- [Key Features of Grafana](#key-features-of-grafana)
+- [Architecture](#architecture)
+- [Use Cases](#use-cases)
+- [Traditional Installation](#traditional-installation)
+- [Grafana Installation Steps](#grafana-installation-steps)
+  - [Step 1: Namespace Creation](#step-1-namespace-creation)
+  - [Step 2: Grafana Deployment and Service](#step-2-grafana-deployment-and-service)
+  - [Step 3: Configuring Prometheus as a Data Source](#step-3-configuring-prometheus-as-a-data-source)
+  - [Step 4: Verifying the Configuration](#step-4-verifying-the-configuration)
+- [Running the Playbook](#running-the-playbook)
 - [Final Objective](#final-objective)
+- [Cleanup](#cleanup)
 
-# Introduction to Grafana
-Grafana is an open-source platform for monitoring and observability that provides powerful visualization and analysis capabilities for your metrics and logs. It is widely used for creating interactive and customizable dashboards to gain insights into your system's performance and health.
+---
 
-## Key Features
+## Overview
 
-### 1. **Customizable Dashboards**
+Grafana is an open-source platform for monitoring and observability that provides powerful visualization and analysis capabilities. This exercise focuses on deploying Grafana in a Minikube cluster and integrating it with Prometheus (set up in Exercise 5).
 
-Grafana allows you to create and customize dashboards with a wide range of visualization options, including graphs, tables, heatmaps, and more. You can arrange and configure panels to display data in a way that suits your needs.
+> **Note**: The `grafana.yaml` file required for this exercise is already present in the directory. You do not need to create it manually.  
+> **Important**: Before proceeding, ensure that both Minikube and Podman are running. These were set up in previous exercises.
 
-### 2. **Rich Data Sources Integration**
+---
 
-Grafana supports integration with various data sources, including:
-- **Prometheus**: A powerful metrics collection and querying system.
-- **InfluxDB**: A time-series database.
-- **Elasticsearch**: A search and analytics engine.
-- **MySQL, PostgreSQL**: Relational databases.
-- **CloudWatch, Graphite**, and many others.
+## Key Features of Grafana
 
-You can connect multiple data sources and query them simultaneously within a single dashboard.
+- Customizable Dashboards with interactive visualizations.
+- Integration with multiple data sources such as Prometheus, InfluxDB, and Elasticsearch.
+- Advanced alerting and notification capabilities.
+- User management and role-based access control.
 
-### 3. **Advanced Query Capabilities**
+---
 
-Grafana provides advanced querying capabilities to extract and aggregate data from connected data sources. You can write complex queries to filter, transform, and analyze your metrics and logs.
+## Architecture
 
-### 4. **Alerting**
+Grafana's key components:
+- **Dashboard**: Provides data visualization and analysis.
+- **Data Sources**: Supports multiple data backends for metrics and logs.
+- **Alerting**: Generates alerts based on configured rules and thresholds.
 
-Grafana supports alerting based on defined thresholds and conditions. Alerts can be configured to notify you through various channels such as email, Slack, or webhook when specific conditions are met.
+---
 
-### 5. **Plugins and Extensions**
+## Use Cases
 
-Grafana has a rich ecosystem of plugins and extensions that add additional functionality and integrations. These plugins include new visualization options, data source integrations, and application features.
+- Real-time application monitoring.
+- Infrastructure performance tracking.
+- System health alerts and notifications.
+- Metrics visualization from multiple data sources.
 
-### 6. **User Management and Access Control**
+---
 
-Grafana provides robust user management and access control features. You can define roles and permissions to control who can view, edit, or manage dashboards and data sources.
+## Traditional Installation
 
-### 7. **Data Annotations and Time Ranges**
+To install Grafana traditionally:
+1. Download the latest Grafana release from [Grafana Downloads](https://grafana.com/grafana/download).
+2. Run the binary or install via a package manager.
+3. Access Grafana on `http://localhost:3000` (default port).
+4. Login using the default credentials (`admin/admin`).
 
-Grafana allows you to annotate your data with events or notes to provide context for specific metrics. You can also adjust the time range for your visualizations to focus on different periods of data.
+In this exercise, we’ll deploy Grafana in a Minikube cluster using Kubernetes YAML configurations.
 
-### 8. **Community and Support**
+---
 
-Grafana has a large and active community of users and contributors. The official Grafana documentation, forums, and GitHub repository provide extensive resources and support for getting started and troubleshooting issues.
+## Grafana Installation Steps
 
-## Getting Started
+### Step 1: Namespace Creation
 
-To get started with Grafana:
-1. **Install Grafana**: Follow the [installation instructions](https://grafana.com/docs/grafana/latest/installation/) for your platform.
-2. **Add Data Sources**: Configure your data sources within the Grafana UI.
-3. **Create Dashboards**: Use the Grafana UI to create and customize dashboards.
-4. **Set Up Alerts**: Configure alerts based on your metrics and thresholds.
+To isolate monitoring tools, the `grafana.yaml` file includes a namespace definition:
+```yaml
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: monitoring # Namespace for monitoring tools.
+```
 
-For detailed documentation and tutorials, visit the [Grafana Documentation](https://grafana.com/docs/grafana/latest/).
+---
 
+### Step 2: Grafana Deployment and Service
 
-## Install granafa in the cluster
+The `grafana.yaml` file also defines the Grafana deployment and service:
 
-Let's review the [Grafana Setup yaml file](./grafana.yaml) to install the grafana server.
-
+- **Deployment**:
 ```yaml
 apiVersion: apps/v1
 kind: Deployment
@@ -85,24 +104,17 @@ spec:
     spec:
       containers:
         - name: grafana
-          image: grafana/grafana:latest #Docker image to use (grafana/grafana:latest).
+          image: grafana/grafana:latest
           ports:
             - containerPort: 3000
-          volumeMounts:
-            - name: grafana-config #The name of the volume (grafana-config).
-              mountPath: /etc/grafana/provisioning #Path inside the container where the volume is mounted (/etc/grafana/provisioning).
-              readOnly: true #Specifies if the volume is read-only (true).
-      volumes:
-        - name: grafana-config #The name of the volume (grafana-config).
-          configMap:
-            name: grafana-config#The ConfigMap providing the volume (grafana-config).
 ```
-Then a service will be created to access the grafana server installed above 
+
+- **Service**:
 ```yaml
 apiVersion: v1
 kind: Service
 metadata:
-  name: grafana-service #The name of the service (grafana-service).
+  name: grafana-service
   namespace: monitoring
   labels:
     app: grafana
@@ -114,10 +126,13 @@ spec:
       port: 3000
       targetPort: 3000
   type: NodePort
-
 ```
-Then include a section like this one to create a datasource with the Promotheus installed previously and start query the information inside Promotheus. 
 
+---
+
+### Step 3: Configuring Prometheus as a Data Source
+
+The `grafana.yaml` file configures Prometheus as a data source:
 ```yaml
 apiVersion: v1
 kind: ConfigMap
@@ -127,89 +142,93 @@ metadata:
   labels:
     app: grafana
 data:
-  datasources.yaml: | #Configures Grafana to use Prometheus as a data source
+  datasources.yaml: |
     apiVersion: 1
-    deleteDatasources:
-      - name: Prometheus #Deletes existing Prometheus data source if it exists
     datasources:
-      - name: Prometheus #Defines the Prometheus data source with its URL and settings.
+      - name: Prometheus
         type: prometheus
-        access: proxy
         url: http://prometheus-service.monitoring.svc.cluster.local:9090
+        access: proxy
         isDefault: true
-        version: 1
-        editable: true
 ```
-Now let´s configure Grafana to define a internal path for the provider where the dashboard are going to be stored.
-```yaml
-  dashboards.yaml: |
-    apiVersion: 1
-    providers:
-      - name: 'default'
-        orgId: 1
-        folder: ''
-        type: file
-        disableDeletion: false
-        options:
-          path: /etc/grafana/provisioning/dashboards
-  example-dashboard.json: |
-    {
-      "id": null,
-      "uid": "example-dashboard",
-      "title": "Example Dashboard",
-      "tags": [],
-      "style": "dark",
-      "timezone": "browser",
-      "editable": true,
-      "panels": [
-        {
-          "datasource": "Prometheus",
-          "id": 1,
-          "targets": [
-            {
-              "expr": "sum by(job) (rate(process_cpu_seconds_total[1m]))",
-              "refId": "A"
-            }
-          ],
-          "title": "CPU Usage",
-          "type": "graph"
-        }
-      ],
-      "schemaVersion": 16,
-      "version": 1
-    }
-```
-- **Run it together**:
-Let´s run all together using these commands
-```yaml
+
+---
+
+### Step 4: Verifying the Configuration
+
+Deploy the Grafana resources:
+```bash
 kubectl apply -f grafana.yaml
+```
+
+Verify the status of the pods in the `monitoring` namespace:
+```bash
+kubectl get pods -n monitoring
+```
+
+Access Grafana:
+```bash
 minikube service grafana-service -n monitoring
 ```
 
-# Tip for Infrastructure as Code (IaC) with Ansible
+If everything is set up correctly, you should see the Grafana login screen. Use the default credentials (`admin/admin`) to log in.
 
-> [!TIP]
-> A more efficient **Infrastructure as Code (IaC)** approach can be implemented with Ansible to apply the Grafana configuration and start its service in Minikube. Below is an example of how to structure a YAML playbook to achieve this:
-> 1. **Create a YAML Playbook**
-> ```yaml
-> ---
-> - name: Apply Grafana configuration and start service in Minikube
->   hosts: all
->   become: yes  # Optional, if sudo permissions are required
->   tasks:
->     - name: Apply Grafana configuration
->       command: kubectl apply -f grafana.yaml
->       args:
->         chdir: ./  #  directory where the command should be executed
-> ```
-> 2. **Run the Playbook**
-> ```bash
-> ansible-playbook -i ../exercise4.1/ansible_quickstart/inventory.ini infra.yaml
-> minikube service grafana-service -n monitoring
-> ```
 ---
-# Final Objective
-At the end of this document, you should accomplished this:
-> [!IMPORTANT]
-> These are the credencials **admin/amin** to access Grafana and see the datasource and the dashboard that should look something like this
-> ![alt text](image.png). 
+
+## Running the Playbook
+
+To automate the deployment using Ansible:
+
+1. **Clarify the Dependency**  
+   Ensure Exercise 4.1 is complete and the `inventory.ini` file exists in `../exercise4.1/ansible_quickstart`.
+
+2. **Run the Playbook**  
+   Execute the playbook to deploy Grafana:
+   ```bash
+   ansible-playbook -i ../exercise4.1/ansible_quickstart/inventory.ini infra.yaml
+   ```
+
+3. **Verify Access**  
+   Confirm that Grafana is accessible:
+   ```bash
+   minikube service grafana-service -n monitoring
+   ```
+
+---
+
+## Final Objective
+
+At the end of this exercise, you should accomplish the following:
+
+> **Important**  
+> Log in to Grafana using the default credentials (`admin/admin`) and verify:
+> - Prometheus is configured as a data source.
+> - Dashboards display metrics from Prometheus.
+> - Example Dashboard with CPU Usage visualization is functional.
+
+Example Dashboard:
+![Grafana Dashboard](image.png)
+
+---
+
+## Cleanup
+
+After completing the exercise, clean up the resources:
+
+1. Delete the deployment and service:
+   ```bash
+   kubectl delete -f grafana.yaml
+   ```
+
+2. Verify that no resources remain:
+   ```bash
+   kubectl get pods -n monitoring
+   ```
+   Output:
+   ```
+   No resources found in monitoring namespace.
+   ```
+
+By following these steps, your environment will be ready for the next exercise.
+
+---
