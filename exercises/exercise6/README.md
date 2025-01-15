@@ -1,6 +1,7 @@
-# Deploying Grafana in Minikube with Ansible
+# Deploying Grafana in Minikube
 
 ## Table of Contents
+- [Navigate to the Application Directory](#navigate-to-the-application-directory)
 - [Overview](#overview)
 - [Key Features of Grafana](#key-features-of-grafana)
 - [Architecture](#architecture)
@@ -17,11 +18,22 @@
 
 ---
 
+## Navigate to the Application Directory
+
+To begin, navigate to the directory for Exercise 6:
+
+```bash
+cd sre-abc-training/exercises/exercise6
+```
+
+> **Note**: This directory contains the necessary YAML files for the deployment and service configuration.
+
+---
+
 ## Overview
 
 Grafana is an open-source platform for monitoring and observability that provides powerful visualization and analysis capabilities. This exercise focuses on deploying Grafana in a Minikube cluster and integrating it with Prometheus (set up in Exercise 5).
 
-> **Note**: The `grafana.yaml` file required for this exercise is already present in the directory. You do not need to create it manually.  
 > **Important**: Before proceeding, ensure that both Minikube and Podman are running. These were set up in previous exercises.
 
 ---
@@ -171,7 +183,7 @@ Access Grafana:
 minikube service grafana-service -n monitoring
 ```
 
-If everything is set up correctly, you should see the Grafana login screen. Use the default credentials (`admin/admin`) to log in.
+> **Expected Outcome**: After logging in with `admin/admin`, you should see the default Grafana interface. Navigate to **Configuration > Data Sources** to verify Prometheus is listed as the data source.
 
 ---
 
