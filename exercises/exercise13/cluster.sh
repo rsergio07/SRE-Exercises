@@ -23,13 +23,17 @@ echo "-------------------------------------------------------------------------"
 
 
 kubectl get pods -n awx #  awx-operator-controller-manager-*** is in a running state.
-kubectl apply -f awx-demo.yaml
+kubectl apply -f awx-demo.yml
 kubectl get service awx-demo-service -n awx #Wait for the awx-demo-service to become available: It could take someminutes
 sleep 2;
 kubectl get pods -A
 minikube service awx-demo-service -n awx
 kubectl get secret awx-demo-admin-password -o jsonpath="{.data.password}" -n awx | base64 --decode ; echo
-ansible-playbook -i ../exercise4.1/ansible_quickstart/inventory.ini job-template.yaml
+
+echo "-------------------------------------------------------------------------"
+echo "Execute an ansible playbook"
+echo "-------------------------------------------------------------------------"
+ansible-playbook -i ../exercise4.1/ansible_quickstart/inventory.ini collect-status-application.yaml
 
 echo "-------------------------------------------------------------------------"
 echo "Install the rest of the Infra"

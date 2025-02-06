@@ -367,7 +367,7 @@ data:
                         "for": "1m",
                         "isPaused": false,
                         "notification_settings": {
-                            "receiver": "Job to collect information"
+                            "receiver": "grafana-default-email"
                         }
                     },
                     {
@@ -439,7 +439,7 @@ data:
                         "for": "1m",
                         "isPaused": false,
                         "notification_settings": {
-                            "receiver": "Job to collect information"
+                            "receiver": "grafana-default-email"
                         }
                     },
                     {
@@ -562,7 +562,7 @@ data:
                       "labels": {},
                       "isPaused": false,
                       "notification_settings": {
-                          "receiver": "Job to collect information"
+                          "receiver": "grafana-default-email"
                       }
                   }
                 ]
