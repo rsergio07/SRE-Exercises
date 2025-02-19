@@ -1,3 +1,5 @@
+# Instrumenting a Python Application with OpenTelemetry for Distributed Tracing
+
 ## **Table of Contents**
  - [Overview](#overview)
  - [Navigate to the Directory](#navigate-to-the-directory)
