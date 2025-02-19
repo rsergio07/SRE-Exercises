@@ -13,7 +13,8 @@
    - [Build a Dashboard in Grafana Using the New Metrics](#build-a-dashboard-in-grafana-using-the-new-metrics)  
 - [Deployment](#deployment)  
 - [Tip for Infrastructure as Code (IaC) with Ansible](#tip-for-infrastructure-as-code-iac-with-ansible)  
-- [Final Objective](#final-objective)  
+- [Final Objective](#final-objective)
+- [Cleanup](#cleanup)
 
 ---
 
@@ -219,5 +220,22 @@ By completing this exercise, you should be able to visualize trace-based metrics
 > - Gain insights into application performance and error rates.  
 
 ![Grafana-dashboard](Grafana-dashboard.png)  
+
+---
+
+## **Cleanup**
+
+To remove deployed resources and free up cluster resources, execute the following cleanup commands:
+
+```bash
+kubectl delete -f ../exercise8/deployment.yaml
+kubectl delete -f ./otel-collector.yaml
+kubectl delete -f ../exercise8/jaeger.yaml
+kubectl delete -f ./prometheus.yaml
+kubectl delete -f ./grafana.yaml
+kubectl delete ns application opentelemetry monitoring
+```
+
+This ensures that any deployed workloads are properly removed, preventing unnecessary resource consumption.
 
 ---
