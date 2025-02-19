@@ -1,5 +1,6 @@
+# **Observability with Golden Signals in Grafana**
 
-# Table of Contents
+## **Table of Contents**
 
 - [Observability Approach](#observability-approach)
   - [What Are the Golden Signals?](#what-are-the-golden-signals)
@@ -10,17 +11,39 @@
 - [Deployment](#deployment)
 - [Tip for Infrastructure as Code (IaC) with Ansible](#tip-for-infrastructure-as-code-iac-with-ansible)
 - [Final Objective](#final-objective)
+- [Cleanup](#cleanup)
+
+---
 
 # Observability approach
 
-The **Golden Signals** approach is a fundamental monitoring framework in **Site Reliability Engineering (SRE)**. These signals provide key insights into system health, helping engineers quickly identify, diagnose, and resolve issues in production. Google's SRE teams developed the Golden Signals framework to define a standard set of metrics essential for monitoring system reliability.
+This exercise focuses on **observability** using the **Golden Signals** framework in **Site Reliability Engineering (SRE)**. The Golden Signals—**Latency, Traffic, Errors, and Saturation**—are key indicators of system health. They enable SREs to detect performance degradation, troubleshoot issues, and optimize resource allocation.
 
-![Logs](<../exercise10/Infra.png>)
-From infrastucture point of view all the elements are going to be the same because the new dashboards are going to be inside Grafana.
+This exercise builds on previous ones, using:
+- **Grafana** for visualization
+- **Prometheus** for metric collection
+- **OpenTelemetry** for distributed tracing
+
+The infrastructure remains the same as in **Exercise 10**, as we are enhancing monitoring **inside Grafana**.
+
+![Infrastructure](../exercise10/Infra.png)
+
+The following configurations correspond to the **blue square** in the diagram above.
+
+---
+
+## **Navigate to the Directory**
+Before proceeding, navigate to the correct directory:
+
+```bash
+cd sre-abc-training/exercises/exercise11
+```
+
+---
 
 ## What Are the Golden Signals?
 
-The Golden Signals consist of four primary metrics:
+The Golden Signals framework consists of four primary metrics:
 
 1. **Latency**: The time it takes to service a request. Latency includes both successful and failed requests, with a focus on measuring the time for successful ones as a primary indicator.
 
@@ -75,8 +98,12 @@ The Golden Signals consist of four primary metrics:
   > The output shoud be like this:
   > <img src="images/prometheus_result8.png" alt="Prometheus result" height="150" />
 
-# Deployment
-Before deploy all the new staff it's important to clean the changes from the previous exercises and then apply the new settings wih short program like this one:
+---
+
+## **Deployment**
+
+Before applying new configurations, **clean up previous resources**:
+
 ```bash
 #!/bin/bash
 
@@ -103,19 +130,24 @@ echo "-------------------------------------------------------------------------"
 sleep 5;
 kubectl get pods -A
 ```
-# Tip for Infrastructure as Code (IaC) with Ansible
+
+---
+
+## **Tip for Infrastructure as Code (IaC) with Ansible**
 
 > [!TIP]
 > A more efficient **Infrastructure as Code (IaC)** approach can be implemented with Ansible to apply the new configuration and start its service in Minikube. An [example](./infra.yaml) of how to structure a YAML playbook to achieve this.
 
-> 2. **Run the Playbook**
-> ```bash
-> ansible-playbook -i ../exercise4.1/ansible_quickstart/inventory.ini infra.yaml
-> minikube service grafana-service -n monitoring
-> ```
+Run the playbook:
+
+```bash
+ansible-playbook -i ../exercise4.1/ansible_quickstart/inventory.ini infra.yaml
+minikube service grafana-service -n monitoring
+```
 
 ---
-# Final Objective
+## **Final Objective**
+
 At the end of this document, you should accomplished this:
 > [!IMPORTANT]
 > These signals offer a holistic view of system performance, enabling SREs to quickly address critical reliability issues. Here is a preview of the dashboard 
@@ -124,3 +156,16 @@ At the end of this document, you should accomplished this:
 > <img src="images/Dashboard1.png" alt="Dashboard" height="150" />
 > 
 > At [New Dashboard](grafana.yaml) is an example of all Grafana setting which include the new dashboard configuration
+
+---
+
+## **Cleanup**
+To remove all resources:
+
+```bash
+kubectl delete ns application opentelemetry monitoring
+kubectl delete pv --all
+kubectl delete pvc --all
+```
+
+---
