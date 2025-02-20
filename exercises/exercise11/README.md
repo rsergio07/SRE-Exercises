@@ -41,62 +41,127 @@ cd sre-abc-training/exercises/exercise11
 
 ---
 
-## What Are the Golden Signals?
+## **Golden Signals for Observability**
 
-The Golden Signals framework consists of four primary metrics:
+The **Golden Signals** framework provides four key metrics that help **Site Reliability Engineers (SREs)** monitor and troubleshoot system performance issues. These signals help detect latency spikes, network congestion, high error rates, and resource saturation before they impact users.
 
-1. **Latency**: The time it takes to service a request. Latency includes both successful and failed requests, with a focus on measuring the time for successful ones as a primary indicator.
+---
 
-  > [!TIP]
-  > Create a Grafana panel with `sum(rate(otel_collector_span_metrics_duration_milliseconds_bucket[5m])) by (span_name)` using the `otel_collector_span_metrics_duration_milliseconds_bucket` metric from the Cadvisor service.
-  > The output should be like this:
-  > <img src="images/prometheus_result1.png" alt="Prometheus result" height="150" />
+### **1. Latency**  
 
+**Definition**: The time it takes to process a request. Latency includes both **successful** and **failed** requests, but the focus is on measuring **successful response times** as a key indicator of system performance.
 
-2. **Traffic**: The amount of demand on the system, such as the number of requests per second. Traffic helps SREs understand usage patterns and anticipate scalability needs.
+#### **Grafana Configuration:**
+> **📌 TIP**  
+> Create a **Grafana panel** with the following PromQL query:
+> ```promql
+> sum(rate(otel_collector_span_metrics_duration_milliseconds_bucket[5m])) by (span_name)
+> ```
+> using the `otel_collector_span_metrics_duration_milliseconds_bucket` metric from the **Cadvisor** service.  
+> The expected output should look like this:  
+>
+> ![Prometheus result](images/prometheus_result1.png)
 
-  > [!TIP]
-  > Create a Grafana panel with `sum(rate(container_network_receive_bytes_total[5m])) by (container_label_k8s_app) from cadvisor` using the `container_network_receive_bytes_total` metric from the Cadvisor service.
-  > The output should be like this:
-  > <img src="images/prometheus_result2.png" alt="Prometheus result" height="150" />
+---
 
-  > [!TIP]
-  > Create a Grafana panel with `sum(rate(container_network_transmit_bytes_total[5m])) by (span_name)` using the `container_network_transmit_bytes_total` metric from the Cadvisor service.
-  > The output should be like this:
-  > <img src="images/prometheus_result3.png" alt="Prometheus result" height="150" />
+### **2. Traffic**  
 
-  > [!TIP]
-  > Create a Grafana panel with `sum(rate(container_network_receive_errors_total[5m])) by (span_name)` using the `container_network_receive_errors_total` metric from the Cadvisor service.
-  > The output should be like this:
-  > <img src="images/prometheus_result4.png" alt="Prometheus result" height="150" />
+**Definition**: The total **request volume** your system processes over time. Traffic helps identify usage patterns and potential scalability requirements.
 
-  > [!TIP]
-  > Create a Grafana panel with `sum(rate(container_network_transmit_errors_total[5m])) by (span_name)` using the `container_network_transmit_errors_total` metric from the Cadvisor service.
-  > The output should be like this:
-  > <img src="images/prometheus_result5.png" alt="Prometheus result" height="150" />
+#### **Grafana Configuration:**
+> **📌 TIP**  
+> Create a **Grafana panel** with:  
+> ```promql
+> sum(rate(container_network_receive_bytes_total[5m])) by (container_label_k8s_app)
+> ```
+> using the `container_network_receive_bytes_total` metric from the **Cadvisor** service.  
+> The expected output should be:  
+>
+> ![Prometheus result](images/prometheus_result2.png)
 
-3. **Errors**: The rate of failed requests. Monitoring error rates allows engineers to see if users are encountering issues, which can be critical for user experience.
+> **📌 TIP**  
+> Create another **Grafana panel** for transmitted network traffic:  
+> ```promql
+> sum(rate(container_network_transmit_bytes_total[5m])) by (span_name)
+> ```
+> using the `container_network_transmit_bytes_total` metric from the **Cadvisor** service.  
+> The expected output should be:  
+>
+> ![Prometheus result](images/prometheus_result3.png)
 
-  > [!TIP]
-  > Create a Grafana panel with `sum(rate(container_scrape_error[5m])) by (job)` using the `container_scrape_error` metric from the Cadvisor service.
-  > The output should be like this:
-  > <img src="images/prometheus_result6.png" alt="Prometheus result" height="150" />
+> **📌 TIP**  
+> Monitor **network receive errors** with this query:  
+> ```promql
+> sum(rate(container_network_receive_errors_total[5m])) by (span_name)
+> ```
+> using the `container_network_receive_errors_total` metric from **Cadvisor**.  
+> The expected output should be:  
+>
+> ![Prometheus result](images/prometheus_result4.png)
 
-  > [!TIP]
-  > Create a Grafana panel with `{service_name=“unknown_service”} |= 'err'` using the logs line with the `err` level 
-  > <img src="images/grafana_result1.png" alt="Grafana result" height="150" />
+> **📌 TIP**  
+> Monitor **network transmit errors** with this query:  
+> ```promql
+> sum(rate(container_network_transmit_errors_total[5m])) by (span_name)
+> ```
+> using the `container_network_transmit_errors_total` metric from **Cadvisor**.  
+> The expected output should be:  
+>
+> ![Prometheus result](images/prometheus_result5.png)
 
-4. **Saturation**: The overall capacity and resource usage of the system, such as CPU or memory usage. Saturation helps identify potential bottlenecks before they cause outages.
+---
 
-  > [!TIP]
-  > Create a Grafana panel with `sum(rate(container_cpu_system_seconds_total[5m])) by (job)` using the `container_cpu_system_seconds_total` metric from the Cadvisor service.
-  > The output should be like this:
-  > <img src="images/prometheus_result7.png" alt="Prometheus result" height="150" />
+### **3. Errors**  
 
-  > [!TIP]
-  > Create a Grafana panel with `sum(rate(container_label_io_kubernetes_container_name[5m])) by (job)` using the `container_label_io_kubernetes_container_name` metric from the Cadvisor service.
-  > The output should be like this:
-  > <img src="images/prometheus_result8.png" alt="Prometheus result" height="150" />
+**Definition**: The rate of **failed requests** in the system. This includes HTTP errors (e.g., `5xx` codes) and **application-level failures**. High error rates indicate **instability** and may require immediate attention.
+
+#### **Grafana Configuration:**
+> **📌 TIP**  
+> Create a **Grafana panel** with the following PromQL query:
+> ```promql
+> sum(rate(container_scrape_error[5m])) by (job)
+> ```
+> using the `container_scrape_error` metric from **Cadvisor**.  
+> The expected output should be:  
+>
+> ![Prometheus result](images/prometheus_result6.png)
+
+> **📌 TIP**  
+> Create a **Grafana log panel** for error-level logs:  
+> ```promql
+> {service_name="unknown_service"} |= "err"
+> ```
+> This filters logs where `"err"` appears in the **log level** field.  
+> The expected output should be:  
+>
+> ![Grafana result](images/grafana_result1.png)
+
+---
+
+### **4. Saturation**  
+
+**Definition**: The **resource utilization** of the system. This includes CPU, memory, and disk usage. **High saturation levels** indicate potential performance bottlenecks.
+
+#### **Grafana Configuration:**
+> **📌 TIP**  
+> Create a **Grafana panel** for **CPU saturation** using this query:
+> ```promql
+> sum(rate(container_cpu_system_seconds_total[5m])) by (job)
+> ```
+> using the `container_cpu_system_seconds_total` metric from **Cadvisor**.  
+> The expected output should be:  
+>
+> ![Prometheus result](images/prometheus_result7.png)
+
+> **📌 TIP**  
+> Create a **Grafana panel** to track Kubernetes **container resource allocation**:
+> ```promql
+> sum(rate(container_label_io_kubernetes_container_name[5m])) by (job)
+> ```
+> using the `container_label_io_kubernetes_container_name` metric from **Cadvisor**.  
+> The expected output should be:  
+>
+> ![Prometheus result](images/prometheus_result8.png)
 
 ---
 
