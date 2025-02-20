@@ -1,6 +1,9 @@
+# **Automating a Runbook for Incident Reporting with AWX and Grafana**
 
-# Table of Contents
-- [Automating a Runbook for Incident Reporting](#automating-a-runbook-for-incident-reporting)  
+## **Table of Contents**
+
+- [Introduction](#introduction)
+- [Navigate to Directory](#navigate-to-directory)
 - [Understanding Ansible, AWX, and Operators](#understanding-ansible-awx-and-operators)
 - [Installing AWX Operator Using Helm](#installing-awx-operator-using-helm)  
 - [Setting Up a Project and Runbook in Ansible AWX](#setting-up-a-project-and-runbook-in-ansible-awx)  
@@ -8,13 +11,33 @@
 - [Configure Grafana to Trigger the AWX Job](#configure-grafana-to-trigger-the-awx-job)  
 - [Deployment](#deployment)  
 - [Tip for Infrastructure as Code (IaC) with Ansible](#tip-for-infrastructure-as-code-iac-with-ansible)  
-- [Final Objective](#final-objective)  
+- [Final Objective](#final-objective)
+- [Cleanup](#cleanup)
 
-# Automating a Runbook for Incident Reporting
+---
 
-In this section, we will automate a runbook to collect additional information whenever an incident is reported in Grafana. To achieve this, the infrastructure will be updated as follows to include AWX and Ansible in the workflow:
+## **Introduction**
+In this exercise, we automate an **incident response runbook** using **AWX** and **Grafana alerts**.  
+Whenever an alert is triggered in **Grafana**, it will execute an **AWX job** to collect system status.  
 
+This setup improves **incident resolution** by:
+- Automatically gathering **diagnostics**.
+- Reducing **manual intervention**.
+- Shortening **Time to Resolution (TTR)**.
+
+### **Infrastructure Overview**
 ![Infrastructure Diagram](./Infra.png)
+
+---
+
+## **Navigate to Directory**
+Before proceeding, navigate to the correct directory:
+
+```bash
+cd sre-abc-training/exercises/exercise13
+```
+
+---
 
 # What is a Runbook?
 A runbook is a structured document or automated script that provides step-by-step instructions to resolve specific operational tasks or incidents. In the context of Site Reliability Engineering (SRE), runbooks are invaluable for documenting:
@@ -53,13 +76,13 @@ By automating runbooks, organizations can reduce downtime, improve incident resp
    - Applies a resolution (e.g., restarts the service).
 4. **Notification:** Sends a summary of actions taken to the on-call engineer.
 
+---
+
 # Understanding Ansible, AWX, and Operators
 
 ## What is Ansible?
 
 Ansible is an open-source automation tool designed for IT tasks like configuration management, application deployment, and orchestration. It uses a simple YAML-based language called Playbooks to define the desired state of your systems. Ansible is agentless, meaning it does not require any software installation on the target systems. Instead, it uses SSH or APIs for communication.
-
----
 
 ## What are Kubernetes Operators vs Ansible Operators?
 
@@ -79,8 +102,6 @@ Key features of Ansible Operators:
 - Easier to write and maintain compared to traditional Kubernetes Operators.
 - Built using the Operator Framework, making it simpler to create operators for complex applications.
 
----
-
 ## What is Ansible AWX?
 
 Ansible AWX is the open-source upstream project for **Red Hat Ansible Automation Platform**. It provides a web-based user interface, REST API, and task engine to manage and execute Ansible Playbooks at scale.
@@ -95,17 +116,6 @@ AWX allows you to build, manage, and track automation tasks more effectively, an
 
 ---
 
-## What is the Ansible Operator?
-
-The **Ansible Operator** is a Kubernetes Operator framework that uses Ansible Playbooks and Roles to manage Kubernetes-native applications. It is part of the Operator SDK provided by Red Hat.
-
-Key benefits of the Ansible Operator:
-- Simplifies the creation of Kubernetes Operators without requiring in-depth Go programming knowledge.
-- Leverages Ansible’s existing automation capabilities for lifecycle management.
-- Supports actions like installation, upgrades, scaling, and monitoring of Kubernetes applications.
-
----
-
 ## Summary
 
 | Concept              | Description                                                                                   |
@@ -117,6 +127,7 @@ Key benefits of the Ansible Operator:
 
 Ansible and its ecosystem provide versatile tools for both traditional IT environments and Kubernetes-based cloud-native applications.
 
+---
 
 ## Installing AWX Operator Using Helm
 
@@ -220,7 +231,9 @@ A runbook, also known as a job template, defines the execution of a particular p
 5. After filling out the fields, click Save to create the job template.
 
 ![runbook](./images/runbook.png)
+
 ## Step 4: Launch the Runbook (Job)
+
 Once the runbook is created, you can run it manually from the AWX Web UI.
 
 1. Go to the Job Templates tab.
@@ -229,6 +242,7 @@ Once the runbook is created, you can run it manually from the AWX Web UI.
 The job will begin running, and you can monitor its progress on the Jobs page. The job logs will be displayed in real-time, showing the output from the playbook execution.
 
 ## Step 5: Monitor and Review Job Status
+
 You can view the status of your job by going to the Jobs tab in AWX. It will display:
 
 The job status (e.g., successful, failed).
@@ -236,6 +250,7 @@ The logs for the job execution.
 The duration of the job.
 If the job fails, you can view the logs for troubleshooting and error resolution.
 
+---
 
 # Executing Ansible Scripts in AWX via REST API
 
@@ -356,6 +371,8 @@ cristianguillenmendez@Cristians-MacBook-Pro exercise13 % curl -H "Authorization:
 3. Save rule and exit
 ![grafana alert preview contact point](./images/grafana-alert-preview-contact-point.png)
 
+---
+
 # Deployment
 Before deploy all the new staff it's important to clean the changes from the previous exercises and then apply the new settings wih short program like this one:
 ```bash
@@ -411,6 +428,8 @@ sleep 10;
 kubectl get pods -A
 ```
 
+---
+
 # Tip for Infrastructure as Code (IaC) with Ansible
 
 > [!TIP]
@@ -427,8 +446,8 @@ kubectl get pods -A
 > kubectl get secret awx-demo-admin-password -o jsonpath="{.data.password}" -n awx | base64 --decode ; echo
 > ```
 
-
 ---
+
 # Final Objective
 At the end of this document, you should accomplished this:
 > [!IMPORTANT]
@@ -439,4 +458,17 @@ At the end of this document, you should accomplished this:
 > ![grafana error triggering.png](./images/grafana-error-triggering.png)
 > After a while, each alert in Grafana will trigger the execution of the runbook:
 > ![awx template job executions](./images/awx-template-job-executions.png)
+
+---
+
+## **Cleanup**
+To remove **all** deployed resources:
+
+```bash
+kubectl delete ns awx application opentelemetry monitoring
+kubectl delete pv --all
+kubectl delete pvc --all
+```
+
+---
 
