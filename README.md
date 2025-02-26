@@ -306,7 +306,7 @@ Monitoring is crucial for detecting issues early and responding swiftly to incid
 
   <details>
   <summary style="color: green;">
-        <a href="exercises/topic4/" style="color: green; text-decoration: none;">
+        <a href="exercises/topic3/" style="color: green; text-decoration: none;">
             :chart_with_upwards_trend: 
             Syntetic Monitoring
         </a>
@@ -328,13 +328,13 @@ Operational Readiness Reviews ensure that services are ready for production depl
 
 <details>
   <summary style="color: green;">
-      <a href="exercises/topic3/" style="color: green; text-decoration: none;">
+      <a href="exercises/topic2/" style="color: green; text-decoration: none;">
           :chart_with_upwards_trend: 
           ORR
       </a>
   </summary>
 
-  > Previously, in [section 4: SLOs](https://github.com/cguillencr/sre-abc-training#slis-slos-slas-and-error-budgets), a list of 4 SLOs was created. Now, based on the information in the [Operational Readiness Review (ORR)](https://github.com/cguillencr/sre-abc-training/tree/main/exercises/topic3), please attach the results of a review conducted by you in the same document.
+  > Previously, in [section 4: SLOs](https://github.com/cguillencr/sre-abc-training#slis-slos-slas-and-error-budgets), a list of 4 SLOs was created. Now, based on the information in the [Operational Readiness Review (ORR)](https://github.com/cguillencr/sre-abc-training/tree/main/exercises/topic2), please attach the results of a review conducted by you in the same document.
 
   </details>
 
