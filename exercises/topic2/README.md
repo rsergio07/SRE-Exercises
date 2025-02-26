@@ -1,57 +1,70 @@
-# Table of Contents
+# Synthetic Monitoring in the SRE Process
 
-1. [Introduction](#introduction)
-2. [What is an ORR Checklist?](#what-is-an-orr-checklist)
-3. [When Does an ORR Checklist Occur?](#when-does-an-orr-checklist-occur)
-4. [ORR Checklist Items](#orr-checklist-items)
-   - [Logging Format & Catalog](#logging-format--catalog)
-   - [Distributed Tracing](#distributed-tracing)
-   - [RunBooks](#runbooks)
-   - [Monitoring](#monitoring)
-   - [Disaster Recovery](#disaster-recovery)
-5. [What to Do After Creating the ORR Checklist](#what-to-do-after-creating-the-orr-checklist)
+## Table of Contents
 
-# Introduction
+- [Overview](#overview)
+- [Purpose of Synthetic Monitoring](#purpose-of-synthetic-monitoring)
+- [How Synthetic Monitoring Works](#how-synthetic-monitoring-works)
+- [Use Cases in the SRE Process](#use-cases-in-the-sre-process)
+   - [Early Detection of Issues](#early-detection-of-issues)
+   - [Proactive Performance Validation](#proactive-performance-validation)
+   - [Alerting on Critical Path Failures](#alerting-on-critical-path-failures)
+   - [SLA and SLO Validation](#sla-and-slo-validation)
+   - [Regression Testing in Production](#regression-testing-in-production)
+- [Best Practices for Synthetic Monitoring](#best-practices-for-synthetic-monitoring)
+- [Conclusion](#conclusion)
 
-In Site Reliability Engineering (SRE), an Operational Readiness Review (ORR) checklist is a critical process that ensures applications and systems are production-ready. It evaluates various aspects of reliability, performance, and operational readiness, helping teams identify and address gaps before deployment.
+## Overview
 
-# What is an ORR Checklist?
+Synthetic monitoring is a proactive technique in the Site Reliability Engineering (SRE) process that involves simulating user interactions or transactions to test and monitor the performance, availability, and functionality of applications. It allows organizations to identify potential issues before they affect real users.
 
-An ORR checklist is a systematic evaluation used to verify that a system meets operational requirements and is prepared for production deployment. It involves assessing key areas such as logging, monitoring, disaster recovery, and documentation.
+## Purpose of Synthetic Monitoring
 
-# When Does an ORR Checklist Occur?
+The primary purpose of synthetic monitoring is to:
 
-The ORR checklist is typically conducted:
-- Before a new service or feature is deployed to production.
-- After significant architectural changes or migrations.
-- During routine reviews as part of a continuous reliability improvement process.
+- Detect issues in critical systems and user flows before real users encounter them.
+- Validate system performance and response times under different scenarios.
+- Ensure the reliability of services by continuously monitoring from various geographical locations.
+- Test the impact of new changes in production environments.
 
-# ORR Checklist Items
+By simulating user interactions, synthetic monitoring ensures that systems meet expected Service Level Objectives (SLOs) and agreements (SLAs).
 
-### Logging Format & Catalog
-- **Check**: Do the application microservices follow a standard logging format to capture consistent information at runtime?
-- **Importance**: Consistent logging helps with debugging, monitoring, and analyzing application behavior across distributed systems.
+## How Synthetic Monitoring Works
 
-### Distributed Tracing
-- **Check**: Are the user requests traced end-to-end using unique IDs?
-- **Importance**: Distributed tracing enables visibility into user flows and identifies bottlenecks in a microservices architecture.
+Synthetic monitoring works by:
 
-### RunBooks
-- **Check**: Are there manual and automated runbooks available that provide step-by-step instructions to administer the solution?
-- **Importance**: Runbooks ensure that operational tasks are executed consistently and efficiently, reducing mean time to recovery (MTTR).
+1. **Defining Scenarios**: Specifying key user journeys, APIs, or system interactions to monitor.
+2. **Simulating Actions**: Using automated tools to simulate these scenarios at predefined intervals.
+3. **Measuring Performance**: Recording metrics like response times, success rates, and system behavior.
+4. **Alerting on Anomalies**: Configuring thresholds to trigger alerts when performance deviates from expectations.
+5. **Reporting**: Analyzing data to identify trends and areas for improvement.
 
-### Monitoring
-- **Check**: Is the necessary monitoring established and alerts configured?
-- **Importance**: Proper monitoring ensures issues are detected and addressed promptly, minimizing downtime and impact.
+## Use Cases in the SRE Process
 
-### Disaster Recovery
-- **Check**: Are you able to successfully perform a disaster recovery test?
-- **Importance**: Disaster recovery testing verifies the ability to restore services and data in case of catastrophic failures.
+### Early Detection of Issues
 
-# What to Do After Creating the ORR Checklist
+Synthetic monitoring enables SREs to detect issues in critical systems proactively. By simulating real user actions, teams can identify outages or slowdowns before they impact end users, reducing Time to Detect (TTD).
 
-After completing the ORR checklist:
-1. **Analyze Results**: Identify gaps and areas for improvement.
-2. **Prioritize Improvements**: Categorize issues by their impact and urgency.
-3. **Implement Solutions**: Address critical gaps first, such as missing monitoring or inadequate disaster recovery plans.
-4. **Schedule Follow-Ups**: Regularly revisit the checklist to ensure continuous improvement and alignment with evolving requirements.
+### Proactive Performance Validation
+
+By running synthetic tests, SREs can validate that key user flows and APIs are functioning correctly after deployments or system changes. This reduces the risk of introducing errors into production.
+
+### Alerting on Critical Path Failures
+
+SREs can use synthetic monitoring to ensure that essential workflows, such as user logins or payment processing, are always operational. Alerts can be configured to notify teams of any failures in these workflows.
+
+### SLA and SLO Validation
+
+Synthetic monitoring helps validate whether systems meet defined SLAs and SLOs by continuously measuring performance and availability. This ensures alignment with organizational goals and customer expectations.
+
+### Regression Testing in Production
+
+SREs can use synthetic monitoring for regression testing, ensuring that new releases do not break existing functionality in production. This proactive approach minimizes downtime and user impact.
+
+## Best Practices for Synthetic Monitoring
+
+- **Define Critical User Journeys**: Focus on scenarios that are essential for business operations.
+- **Monitor from Multiple Locations**: Simulate actions from various geographical regions to identify localized issues.
+- **Set Realistic Thresholds**: Define thresholds for alerts that reflect actual user expectations.
+- **Automate Alert Management**: Integrate alerts with incident management tools to streamline responses.
+- **Regularly Update Tests**: Keep scenarios up to date with evolving application functionality.
