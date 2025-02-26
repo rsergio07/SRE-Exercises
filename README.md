@@ -344,18 +344,30 @@ Operational Readiness Reviews ensure that services are ready for production depl
 Automating repetitive tasks and following structured change management processes helps reduce risk during deployments.
 
 ### Key Automation Practices:
-- **Infrastructure as Code (IaC)**: Use tools like Terraform or Kubernetes for automated infrastructure management.
+- **Infrastructure as Code (IaC)**: Use tools like: Helm Charts Terraform or Kubernetes for automated infrastructure management.
     <details>
     <summary style="color: green;">
-        <a href="exercises/exercise16/" style="color: green; text-decoration: none;">
+        <a href="exercises/exercise14/" style="color: green; text-decoration: none;">
             :pencil2: 
-            Practice #16 - Helm chart PENDING
+            Practice #14 - Helm Charts
         </a>
     </summary>
 
-    > Apply these changes [16. Practice](./exercises/exercise14/):
+    > Apply these changes [14. Practice](./exercises/exercise14/):
     > 
-    > <img src="exercises/exercise12/Infra.png" alt="Infra" height="150" />
+    > <img src="exercises/exercise14/Infra.png" alt="Infra" height="150" />
+    </details>
+    <details>
+    <summary style="color: green;">
+        <a href="exercises/exercise15/" style="color: green; text-decoration: none;">
+            :pencil2: 
+            Practice #15 - Terraform PENDING
+        </a>
+    </summary>
+
+    > Apply these changes [15. Practice](./exercises/exercise15/):
+    > 
+    > <img src="exercises/exercise15/Infra.png" alt="Infra" height="150" />
     </details>
 
 - **CI/CD Pipelines**: Implement continuous integration and continuous delivery pipelines to deploy changes in a controlled manner.

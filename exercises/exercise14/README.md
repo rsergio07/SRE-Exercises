@@ -1,6 +1,15 @@
 
 # Installation and Configuration Using Helm Charts
 
+# Table of Contents
+
+1. [Installation and Configuration Using Helm Charts](#installation-and-configuration-using-helm-charts)  
+2. [Publish a Helm Chart to a Public Repository](#publish-a-helm-chart-to-a-public-repository)  
+   2.1 [Prerequisites](#prerequisites)  
+   2.2 [Steps to Publish the Chart](#steps-to-publish-the-chart)  
+3. [Final Objective](#final-objective)  
+
+
 Currently, we have built our entire application using the commands present in `../exercise13/cluster.sh`, which are used to review the installation order of each application and their respective configurations. As seen, the script installs numerous Kubernetes manifests, and while this is a valid approach, it entails a considerable amount of work for the SRE team due to the following reasons:
 
 1. **Rigid installation order:** The team must follow a strict installation sequence, with no version number to reference, making it difficult to roll back the installation in case of failure.
@@ -143,3 +152,38 @@ This guide explains how to publish a Helm chart to a public repository.
 
 8.**Install the aplication from the repository:**
 helm install sre-app sre-abc-lab/my-sre-app-chart
+
+
+## Final Objective
+
+At the end of this exercise, you should accomplish the following:
+
+> **[!IMPORTANT]**
+> All the cluster should was installed using the helm charts instead the kubernetes manifest directly. Execute this command
+> ```bash
+> kugbectl get pods -A
+> ```
+> 
+> Validate this output:
+> ```
+> application     sre-abc-training-app-766c47bdfc-4bmf2              0/1     ContainerCreating   0          18s
+> application     sre-abc-training-app-766c47bdfc-g99cn              0/1     ContainerCreating   0          18s
+> application     sre-abc-training-app-766c47bdfc-xfjxs              0/1     ContainerCreating   0          18s
+> awx             awx-demo-migration-24.6.1-js69h                    0/1     Completed           0          11m
+> awx             awx-demo-postgres-15-0                             1/1     Running             0          12m
+> awx             awx-demo-task-676f8784d6-j6b55                     4/4     Running             0          12m
+> awx             awx-demo-web-6cc8c7cbf6-zk9md                      3/3     Running             0          12m
+> awx             awx-operator-controller-manager-748c67f659-kf6jh   2/2     Running             0          14m
+> kube-system     coredns-6f6b679f8f-6h486                           1/1     Running             0          14m
+> kube-system     etcd-minikube                                      1/1     Running             0          15m
+> kube-system     kube-apiserver-minikube                            1/1     Running             0          15m
+> kube-system     kube-controller-manager-minikube                   1/1     Running             0          14m
+> kube-system     kube-proxy-cfcg5                                   1/1     Running             0          14m
+> kube-system     kube-scheduler-minikube                            1/1     Running             0          14m
+> kube-system     storage-provisioner                                1/1     Running             0          14m
+> monitoring      grafana-deployment-574d97df54-qfr65                0/1     ContainerCreating   0          18s
+> monitoring      prometheus-deployment-5798446c77-vwsbh             0/1     ContainerCreating   0          18s
+> opentelemetry   jaeger-67756bcc5b-twpv5                            1/1     Running             0          18s
+> opentelemetry   loki-844db6f8c7-q5r8q                              1/1     Running             0          18s
+> opentelemetry   otel-collector-7f64d77765-2b52r                    1/1     Running             0          18s
+> ```
