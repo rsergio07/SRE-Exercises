@@ -4,8 +4,6 @@
 
 GitHub Projects is a flexible and powerful tool that enables teams to manage tasks, track progress, and coordinate work directly from their GitHub repositories. In the context of Site Reliability Engineering (SRE), GitHub Projects helps streamline operational workflows, organize incident response efforts, and improve overall project visibility.
 
-> ⚠️ **Note:** This topic is informational and strategic. Unlike previous hands-on exercises, it introduces concepts and workflows that you’re encouraged to explore in your own GitHub repositories.
-
 This topic covers:
 - The core concepts behind GitHub Projects.
 - How to structure project boards to reflect SRE priorities.
