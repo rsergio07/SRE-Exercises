@@ -156,16 +156,16 @@ This generates an **index file** required for Helm repositories.
 
 ### **4. Push the Helm Chart Files to GitHub**
 ```bash
-mkdir -p ../../docs/
-mv my-sre-app-chart-0.1.0.tgz ../../docs/my-sre-app-chart-0.1.0.tgz
-cd ../../docs
+mkdir -p ./docs/
+mv my-sre-app-chart-0.1.0.tgz ./docs/my-sre-app-chart-0.1.0.tgz
+cd ./docs
 helm repo index ./ --url https://cguillencr.github.io/sre-abc-training
 
-git add ./index.yaml
-git add ./my-sre-app-chart-0.1.0.tgz
-cd ../exercises/exercise14
-git commit --amend -m "Helm configuration"
-git push -u origin main -f
+git add ./docs/index.yaml
+git add ./docs/my-sre-app-chart-0.1.0.tgz
+cd ..
+git commit -m "Move Helm repo files under exercise14/docs"
+git push origin main
 ```
 
 ### **5. Add the Repository Locally**
