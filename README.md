@@ -45,28 +45,28 @@ This will give you access to all the exercises (located in the `exercises/` fold
 
 ## Exercises
 
-| Exercise # | Title                                  | Link                                          |
-|------------|----------------------------------------|-----------------------------------------------|
-| 1          | Python app                             | [Exercise #1](./exercises/exercise1/)         |
-| 2          | App packaged as image                  | [Exercise #2](./exercises/exercise2/)         |
-| 3          | App image pushed to a registry         | [Exercise #3](./exercises/exercise3/)         |
-| 4          | Running the app as a service           | [Exercise #4](./exercises/exercise4/)         |
-| 4.1        | IaC with Ansible                       | [Exercise #4.1](./exercises/exercise4.1/)       |
-| 5          | Include Prometheus                     | [Exercise #5](./exercises/exercise5/)         |
-| 6          | Include Grafana                        | [Exercise #6](./exercises/exercise6/)         |
-| 7          | Share node metrics                     | [Exercise #7](./exercises/exercise7/)         |
-| 8          | Share app traces                       | [Exercise #8](./exercises/exercise8/)         |
-| 9          | Create metrics from traces             | [Exercise #9](./exercises/exercise9/)         |
-| 10         | Share app logs                         | [Exercise #10](./exercises/exercise10/)       |
-| 11         | Golden Signals Dashboard               | [Exercise #11](./exercises/exercise11/)       |
-| 12         | Define alerts                          | [Exercise #12](./exercises/exercise12/)       |
-| 13         | Automate runbooks with Ansible + AWX    | [Exercise #13](./exercises/exercise13/)       |
-| 14         | Helm Charts                            | [Exercise #14](./exercises/exercise14/)       |
-| 15         | Terraform                              | [Exercise #15](./exercises/exercise15/)       |
-| 16         | CI/CD with GitHub Actions              | [Exercise #16](./exercises/exercise16/)       |
-| 17         | GitOps with ArgoCD                     | [Exercise #17](./exercises/exercise17/)       |
-| 18         | Kubernetes Rollback                    | [Exercise #18](./exercises/exercise18/)       |
-| 19         | Chaos Engineering                      | [Exercise #19](./exercises/exercise19/)       |
+| Exercise #                                | Title                                  | Description                                      |
+|-------------------------------------------|----------------------------------------|--------------------------------------------------|
+| [Exercise #1](./exercises/exercise1/)     | Python app                             | Build and run a simple Python Flask application. |
+| [Exercise #2](./exercises/exercise2/)     | App packaged as image                  | Package the Python app as a Docker image.        |
+| [Exercise #3](./exercises/exercise3/)     | App image pushed to a registry         | Push the Docker image to a container registry.   |
+| [Exercise #4](./exercises/exercise4/)     | Running the app as a service           | Deploy the Docker image as a service.            |
+| [Exercise #4.1](./exercises/exercise4.1/) | IaC with Ansible                       | Use Ansible for Infrastructure as Code (IaC).    |
+| [Exercise #5](./exercises/exercise5/)     | Include Prometheus                     | Integrate Prometheus for monitoring.             |
+| [Exercise #6](./exercises/exercise6/)     | Include Grafana                        | Integrate Grafana for visualization.             |
+| [Exercise #7](./exercises/exercise7/)     | Share node metrics                     | Collect and share node metrics.                  |
+| [Exercise #8](./exercises/exercise8/)     | Share app traces                       | Collect and share application traces.            |
+| [Exercise #9](./exercises/exercise9/)     | Create metrics from traces             | Create metrics based on application traces.      |
+| [Exercise #10](./exercises/exercise10/)   | Share app logs                         | Set up log sharing and observability.            |
+| [Exercise #11](./exercises/exercise11/)   | Golden Signals Dashboard               | Create a dashboard for golden signals monitoring.|
+| [Exercise #12](./exercises/exercise12/)   | Define alerts                          | Define and configure alerts.                     |
+| [Exercise #13](./exercises/exercise13/)   | Automate runbooks with Ansible + AWX   | Automate runbooks using Ansible and AWX.         |
+| [Exercise #14](./exercises/exercise14/)   | Helm Charts                            | Use Helm charts for application deployment.      |
+| [Exercise #15](./exercises/exercise15/)   | Terraform                              | Manage infrastructure with Terraform.            |
+| [Exercise #16](./exercises/exercise16/)   | CI/CD with GitHub Actions              | Implement CI/CD pipelines with GitHub Actions.   |
+| [Exercise #17](./exercises/exercise17/)   | GitOps with ArgoCD                     | Practice GitOps using ArgoCD.                    |
+| [Exercise #18](./exercises/exercise18/)   | Kubernetes Rollback                    | Perform rollbacks in Kubernetes.                 |
+| [Exercise #19](./exercises/exercise19/)   | Chaos Engineering                      | Conduct chaos engineering experiments.           |
 
 ---
 
