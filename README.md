@@ -47,6 +47,7 @@ This will give you access to all the exercises (located in the `exercises/` fold
 
 | Exercise #                                | Title                                  | Description                                      |
 |-------------------------------------------|----------------------------------------|--------------------------------------------------|
+| [Exercise #0](./exercises/exercise0/)     | Python Basics                          | Introductory Python concepts and labs.           |
 | [Exercise #1](./exercises/exercise1/)     | Python app                             | Build and run a simple Python Flask application. |
 | [Exercise #2](./exercises/exercise2/)     | App packaged as image                  | Package the Python app as a Docker image.        |
 | [Exercise #3](./exercises/exercise3/)     | App image pushed to a registry         | Push the Docker image to a container registry.   |

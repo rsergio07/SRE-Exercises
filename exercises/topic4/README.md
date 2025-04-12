@@ -1,6 +1,16 @@
 # **GitHub Projects**
 
-## Overview
+## **Table of Contents**
+
+- [Why Use GitHub Projects in SRE?](#why-use-github-projects-in-sre)
+- [Key Features of GitHub Projects](#key-features-of-github-projects)
+- [Exploring GitHub Projects in Your Own Repositories](#exploring-github-projects-in-your-own-repositories)
+  - [Step-by-Step Guide](#step-by-step-guide)
+- [Summary](#summary)
+
+---
+
+## **Overview**
 
 GitHub Projects is a flexible and powerful tool that enables teams to manage tasks, track progress, and coordinate work directly from their GitHub repositories. In the context of Site Reliability Engineering (SRE), GitHub Projects helps streamline operational workflows, organize incident response efforts, and improve overall project visibility.
 
@@ -12,7 +22,7 @@ This topic covers:
 
 ---
 
-## Why Use GitHub Projects in SRE?
+## **Why Use GitHub Projects in SRE?**
 
 SRE teams use GitHub Projects to address operational and collaborative needs, including:
 
@@ -33,7 +43,7 @@ SRE teams use GitHub Projects to address operational and collaborative needs, in
 
 ---
 
-## Key Features of GitHub Projects
+## **Key Features of GitHub Projects**
 
 - **Project Boards**  
   Visualize your workflow with Kanban-style boards that allow you to manage tasks efficiently.
@@ -52,7 +62,7 @@ SRE teams use GitHub Projects to address operational and collaborative needs, in
 
 ---
 
-## Exploring GitHub Projects in Your Own Repositories
+## **Exploring GitHub Projects in Your Own Repositories**
 
 Although this topic is not a structured lab, you can gain hands-on experience by exploring GitHub Projects within your own repositories or team organization. Here’s a simple step-by-step guide:
 
@@ -92,15 +102,7 @@ Although this topic is not a structured lab, you can gain hands-on experience by
 
 ---
 
-## Resources and Further Learning
-
-- [GitHub Projects Documentation](https://docs.github.com/en/issues/planning-and-tracking-with-projects)
-- [GitHub Actions Documentation](https://docs.github.com/en/actions)
-- [Automating Project Boards with GitHub Actions](https://github.com/actions/add-to-project)
-
----
-
-## Summary
+## **Summary**
 
 GitHub Projects offers a scalable and transparent way to manage work within SRE teams. Whether it's organizing incident resolution, tracking observability improvements, or automating workflows, GitHub Projects unifies tracking and collaboration directly within your GitHub repository.
 
