@@ -39,7 +39,9 @@ This will give you access to all the exercises (located in the `exercises/` fold
 - [Topic 1 – Time to Detect, Acknowledge, and Resolve](./exercises/topic1/)
 - [Topic 2 – Synthetic Monitoring](./exercises/topic2/)
 - [Topic 3 – Operational Readiness Review (ORR)](./exercises/topic3/)
-- [Topic 4 – Managing Tasks with GitHub Projects](./exercises/topic4/)
+- [Topic 4 – GitHub Fundamentals](./exercises/topic4/)
+- [Topic 5 – Managing Tasks with GitHub Projects](./exercises/topic5/)
+- [Topic 6 – Incident Management](./exercises/topic6/)
 
 ---
 
@@ -47,7 +49,6 @@ This will give you access to all the exercises (located in the `exercises/` fold
 
 | Exercise #                                | Title                                  | Description                                      |
 |-------------------------------------------|----------------------------------------|--------------------------------------------------|
-| [Exercise #0](./exercises/exercise0/)     | Python Basics                          | Introductory Python concepts and labs.           |
 | [Exercise #1](./exercises/exercise1/)     | Python app                             | Build and run a simple Python Flask application. |
 | [Exercise #2](./exercises/exercise2/)     | App packaged as image                  | Package the Python app as a Docker image.        |
 | [Exercise #3](./exercises/exercise3/)     | App image pushed to a registry         | Push the Docker image to a container registry.   |
@@ -73,7 +74,7 @@ This will give you access to all the exercises (located in the `exercises/` fold
 
 ## Learning Path
 
-1. **Start with the Topics (Topic 0 to Topic 4):**  
+1. **Start with the Topics (Topic 0 to Topic 6):**  
    These foundational concepts are essential for understanding SRE principles before diving into practical labs.
 
 2. **Proceed Through the Exercises Sequentially (Exercise 1 to Exercise 19):**  
