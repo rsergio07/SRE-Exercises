@@ -1,116 +1,253 @@
-# **GitHub Projects**
+# **GitHub Fundamentals**
 
 ## **Table of Contents**
 
-- [Why Use GitHub Projects in SRE?](#why-use-github-projects-in-sre)
-- [Key Features of GitHub Projects](#key-features-of-github-projects)
-- [Exploring GitHub Projects in Your Own Repositories](#exploring-github-projects-in-your-own-repositories)
-  - [Step-by-Step Guide](#step-by-step-guide)
+- [Overview](#overview)
+- [What is GitHub?](#what-is-github)
+- [Key Concepts](#key-concepts)
+  - [Repositories](#repositories)
+  - [Commits and Version History](#commits-and-version-history)
+  - [Branches](#branches)
+  - [Pull Requests](#pull-requests)
+  - [Issues](#issues)
+  - [Forks and Cloning](#forks-and-cloning)
+- [Getting Started: Basic Workflow](#getting-started-basic-workflow)
+- [Best Practices for GitHub Collaboration](#best-practices-for-github-collaboration)
+  - [Commit Best Practices](#commit-best-practices)
+  - [Pull Request Best Practices](#pull-request-best-practices)
+  - [Issue Management Best Practices](#issue-management-best-practices)
+- [Branching Strategies](#branching-strategies)
+  - [Main Only](#main-only)
+  - [Feature Branching](#feature-branching)
+  - [Git Flow](#git-flow)
+  - [Trunk-Based Development](#trunk-based-development)
+  - [Choosing a Strategy](#choosing-a-strategy)
+- [Essential GitHub Commands](#essential-github-commands)
+- [Exercise: Practice the Fundamentals](#exercise-practice-the-fundamentals)
 - [Summary](#summary)
 
 ---
 
 ## **Overview**
 
-GitHub Projects is a flexible and powerful tool that enables teams to manage tasks, track progress, and coordinate work directly from their GitHub repositories. In the context of Site Reliability Engineering (SRE), GitHub Projects helps streamline operational workflows, organize incident response efforts, and improve overall project visibility.
-
-This topic covers:
-- The core concepts behind GitHub Projects.
-- How to structure project boards to reflect SRE priorities.
-- Integrating GitHub Projects with issues and pull requests.
-- An overview of automation possibilities with GitHub Actions.
+**GitHub** is the world’s most popular platform for collaborative software development. It builds on top of the Git version control system, enabling teams to manage code, track changes, and collaborate efficiently—whether open source or within organizations. This topic introduces the foundational concepts and practical workflows to help you become productive on GitHub.
 
 ---
 
-## **Why Use GitHub Projects in SRE?**
+## **What is GitHub?**
 
-SRE teams use GitHub Projects to address operational and collaborative needs, including:
+GitHub is a web-based platform for hosting Git repositories. It provides a user-friendly interface for managing code, tracking issues, reviewing changes, and collaborating with others. Developers and teams use GitHub to:
 
-- **Task Organization**  
-  Create and manage cards representing incidents, alerts, infrastructure changes, or improvement tasks.
-
-- **Workflow Visibility**  
-  Track the status of issues and pull requests through defined columns (e.g., To Do, In Progress, Review, Done).
-
-- **Collaboration**  
-  Integrate work items from issues, pull requests, and discussions to promote shared ownership and alignment across teams.
-
-- **Automation Opportunities**  
-  Leverage GitHub Actions to automatically move project cards, assign labels, or update issue statuses based on repository events.
-
-- **Practical Use Case**  
-  During an incident response, SREs can log issues in a GitHub Project and assign them to team members—tracking progress on tasks such as mitigation, root cause analysis, documentation, and follow-ups.
+- Collaborate on projects
+- Review and merge code changes
+- Track bugs and feature requests
+- Document project progress
 
 ---
 
-## **Key Features of GitHub Projects**
+## **Key Concepts**
 
-- **Project Boards**  
-  Visualize your workflow with Kanban-style boards that allow you to manage tasks efficiently.
+### **Repositories**
 
-- **Custom Columns**  
-  Tailor columns (e.g., “Backlog”, “In Progress”, “Done”) to match your team’s lifecycle and workflow priorities.
+A **repository** (or "repo") is a project’s home on GitHub. It contains all files, folders, and revision history, as well as metadata like issues and pull requests.
 
-- **Issue and Pull Request Integration**  
-  Link GitHub Issues and Pull Requests directly to project cards for enhanced traceability.
+- **Public Repositories:** Visible to everyone. Used for open-source projects.
+- **Private Repositories:** Visible only to selected collaborators or organizations.
+- **README file:** Most repos have a `README.md` file to describe the project and provide usage instructions.
+- **LICENSE file:** Important for specifying how others can use your code.
 
-- **Automation with GitHub Actions**  
-  Create workflows that react to GitHub events by automatically updating your project board.
+### **Commits and Version History**
 
-- **Reporting and Insights**  
-  Access built-in dashboards to track metrics such as cycle time, bottlenecks, and overall throughput—crucial for data-driven teams.
+A **commit** records a snapshot of your project’s files and directories at a point in time. Each commit has a unique ID (SHA) and a message describing the change.
+
+- **Commit Message:** Should be concise and describe what was changed and why.
+- **Atomic Commits:** Each commit should represent a single logical change.
+- **Version History:** Lets you track, compare, and revert code changes.
+- **Blame View:** Helps identify who made changes to a specific line/file.
+
+### **Branches**
+
+A **branch** is an independent line of development. The default branch is usually called `main` or `master`.
+
+- **Feature Branches:** Used to develop new features or fixes in isolation.
+- **Hotfix Branches:** For urgent fixes to production code.
+- **Merging:** Combines changes from one branch into another (often via pull requests).
+- **Branch Naming:** Use clear, descriptive names like `feature/login-page`, `bugfix/typo-navbar`, or `hotfix/critical-crash`.
+
+### **Pull Requests**
+
+A **pull request (PR)** is a proposal to merge changes from one branch into another. It is the core of GitHub’s collaborative workflow.
+
+- **Code Review:** Team members can comment, suggest changes, and approve PRs.
+- **Discussion:** PRs allow for discussion, context, and clarification before merging.
+- **Merge Conditions:** PRs may require checks, reviews, or status updates before they can be merged.
+
+### **Issues**
+
+**Issues** are used to track tasks, bugs, ideas, or feature requests.
+
+- **Labels:** Help categorize and prioritize issues (e.g., `bug`, `enhancement`).
+- **Assignees:** Assign issues to team members for ownership.
+- **Milestones:** Group issues and PRs for a specific release or project phase.
+- **Templates:** Use issue templates to standardize bug reports or feature requests.
+
+### **Forks and Cloning**
+
+- **Fork:** A personal copy of someone else’s repository, used to propose changes to upstream projects.
+- **Clone:** A local copy of a repository, used for offline work and development.
+- **Upstream:** The original repository from which a fork was created.
 
 ---
 
-## **Exploring GitHub Projects in Your Own Repositories**
+## **Getting Started: Basic Workflow**
 
-Although this topic is not a structured lab, you can gain hands-on experience by exploring GitHub Projects within your own repositories or team organization. Here’s a simple step-by-step guide:
-
-### Step-by-Step Guide
-
-1. **Access the Projects Tab**  
-   - Navigate to any repository on GitHub.
-   - Click on the **Projects** tab.
-
-2. **Create a New Project**  
-   - Choose between Classic Projects or the new Projects experience (based on GitHub Issues).
-   - Define columns such as **To Do**, **In Progress**, and **Done** to reflect your workflow.
-
-3. **Add Issues and Pull Requests**  
-   - Open or create an issue or pull request in your repository.
-   - Use the repository sidebar to associate the item with your GitHub Project.
-
-4. **Try Automation (Optional)**  
-   - Set up GitHub Actions to automatically update project boards.  
-   - For example, create a workflow that moves a card to the **Done** column when a pull request is merged.
-
-   ```yaml name=.github/workflows/auto-update-project.yml
-   name: "Auto Update Project Board"
-   
-   on:
-     pull_request:
-       types: [closed]
-   
-   jobs:
-     update_project:
-       runs-on: ubuntu-latest
-       steps:
-         - name: Move Project Card (Simulation)
-           run: |
-             echo "Simulated action: A pull request was merged, moving the associated project card to Done."
+1. **Fork or Clone a Repository**
+   ```bash
+   git clone https://github.com/username/repository.git
    ```
+2. **Create a New Branch**
+   ```bash
+   git checkout -b feature/my-feature
+   ```
+3. **Make Changes and Commit**
+   ```bash
+   git add .
+   git commit -m "Add my new feature"
+   ```
+4. **Push to GitHub**
+   ```bash
+   git push origin feature/my-feature
+   ```
+5. **Open a Pull Request**
+   - Go to your repository on GitHub and click "Compare & pull request."
+6. **Review and Merge**
+   - Collaborators review, approve, and merge your changes.
+
+---
+
+## **Best Practices for GitHub Collaboration**
+
+### **Commit Best Practices**
+- **Write meaningful commit messages:** Begin with a short summary, followed by an optional detailed description.
+- **Make atomic commits:** Each commit should contain a single logical change.
+- **Reference issues:** Use keywords like `Fixes #42` or `Closes #7` in commit messages or PR descriptions to link changes to issues.
+- **Avoid committing sensitive data:** Never commit passwords, API keys, or confidential information.
+
+### **Pull Request Best Practices**
+- **Keep PRs focused:** One feature, fix, or topic per pull request.
+- **Describe your changes:** Clearly explain what and why in the PR description.
+- **Request reviews:** Tag appropriate reviewers or teams.
+- **Use draft PRs:** For work in progress or early feedback.
+- **Resolve conversations:** Address comments and mark them as resolved.
+
+### **Issue Management Best Practices**
+- **File issues for bugs, enhancements, and questions:** Don’t let problems go undocumented.
+- **Use labels and milestones:** Organize and prioritize work.
+- **Assign ownership:** Make it clear who is responsible for each issue.
+- **Close issues when done:** Keep the issue tracker tidy and up to date.
+
+---
+
+## **Branching Strategies**
+
+A branching strategy defines how your team uses branches to manage features, fixes, and releases. Choosing the right strategy helps maintain code quality, enables parallel development, and eases collaboration.
+
+### **Main Only**
+
+- **Description:** All changes go directly to the `main` branch.
+- **Best for:** Very small projects or solo development.
+- **Drawbacks:** No isolation for features or fixes; risk of unstable code.
+
+### **Feature Branching**
+
+- **Description:** Create a new branch for each new feature or bugfix.
+- **Workflow:**
+  1. Branch off `main` (or `develop`): `feature/login-page`
+  2. Complete work and push branch.
+  3. Open a pull request to merge back to `main`.
+- **Benefits:** Isolates work, encourages code review, keeps the main branch stable.
+- **Best for:** Most small-to-medium teams and projects.
+
+### **Git Flow**
+
+- **Description:** A structured workflow with dedicated branches for features, releases, and hotfixes.
+- **Key Branches:**
+  - `main` — live, production-ready code
+  - `develop` — integration branch for features
+  - `feature/*` — new features
+  - `release/*` — preparation for releases
+  - `hotfix/*` — urgent fixes to production
+- **Benefits:** Scales well for larger teams and projects with regular releases.
+- **Drawbacks:** More complex; requires discipline and clear process.
+- **Best for:** Projects with scheduled releases and multiple contributors.
+
+### **Trunk-Based Development**
+
+- **Description:** Developers work in short-lived branches or directly on the main branch, merging early and often.
+- **Benefits:** Encourages continuous integration, reduces merge conflicts, faster delivery.
+- **Best for:** Teams practicing continuous delivery or deployment.
+
+### **Choosing a Strategy**
+
+- For most teams, **feature branching** is a good starting point.
+- Use **Git Flow** for complex projects with many contributors and planned releases.
+- Try **trunk-based development** if you have strong automated testing and CI/CD pipelines.
+- Regardless of strategy, keep branches short-lived and merge regularly.
+
+---
+
+## **Essential GitHub Commands**
+
+```bash
+# Clone a repository
+git clone <repository-url>
+
+# Check repository status
+git status
+
+# Stage changes
+git add <file-or-folder>
+
+# Commit staged changes
+git commit -m "Describe your changes"
+
+# Create a new branch
+git checkout -b <new-branch-name>
+
+# Push branch to GitHub
+git push origin <branch-name>
+
+# Pull latest changes
+git pull origin <branch-name>
+
+# View commit history
+git log --oneline --graph --all
+```
+
+---
+
+## **Exercise: Practice the Fundamentals**
+
+Try the following to reinforce your understanding of GitHub basics:
+
+1. **Create a new repository** on your own GitHub account.
+2. **Clone** the repository to your local machine.
+3. **Create a new branch** called `feature/hello-world`.
+4. **Add a new file** called `hello.txt` with the contents:  
+   ```
+   Hello, GitHub!
+   ```
+5. **Commit** your changes with a meaningful message.
+6. **Push** the branch to GitHub.
+7. **Open a pull request** from your branch to `main`.
+8. **Merge** the pull request once it’s reviewed (you can self-approve if working solo).
+9. **Create an issue** labeled `enhancement` suggesting a new feature for your repository.
+10. **Try using a branching strategy:** For your next change, create a branch named `bugfix/typo-in-readme` or follow another branching convention.
 
 ---
 
 ## **Summary**
 
-GitHub Projects offers a scalable and transparent way to manage work within SRE teams. Whether it's organizing incident resolution, tracking observability improvements, or automating workflows, GitHub Projects unifies tracking and collaboration directly within your GitHub repository.
+GitHub is the backbone of modern collaborative software development. Understanding repositories, commits, branches, pull requests, and issues empowers you to contribute effectively, track your work, and collaborate with others. By following best practices and adopting a clear branching strategy, you ensure your projects remain organized, maintainable, and ready for team collaboration.
 
-**Key Takeaways:**
-- **Structure Your Own Project Board:** Learn how to set up and customize columns to reflect your SRE workflow.
-- **Organize Team Workflows:** Integrate issues, pull requests, and other work items to promote collaboration.
-- **Explore Automation:** Use GitHub Actions to reduce manual overhead and streamline board updates.
-
-> 🎯 **Pro Tip:** If your team uses GitHub Enterprise or Codespaces, consider preconfiguring GitHub Projects in your training environments to simulate real-world collaboration at scale.
-
-Happy exploring and organizing your work with GitHub Projects!
+---
