@@ -15,8 +15,8 @@ This repository offers a step-by-step learning path with hands-on exercises and 
 Before beginning any exercise or topic, clone the repository to your local machine:
 
 ```bash
-git clone https://github.com/cguilencr/sre-abc-training.git
-cd sre-abc-training
+git clone https://github.com/rsergio07/site-reliability-engineering-exercises.git
+cd site-reliability-engineering-exercises
 ```
 
 This will give you access to all the exercises (located in the `exercises/` folder) and topics (located in the `topicX/` folders).
